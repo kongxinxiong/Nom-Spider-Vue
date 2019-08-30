@@ -6,13 +6,16 @@ import Login from "./views/Login.vue";
 import Profile from "./views/Profile.vue";
 import MainNavbar from "./layout/MainNavbar.vue";
 import MainFooter from "./layout/MainFooter.vue";
+import Explore from "./views/Explore";
+import Mynet from "./views/Mynet";
+import Signup from "./views/Signup";
 
 Vue.use(Router);
 
 export default new Router({
   routes: [
     {
-      path: "/",
+      path: "/index",
       name: "index",
       components: { default: Index, header: MainNavbar, footer: MainFooter },
       props: {
@@ -21,18 +24,41 @@ export default new Router({
       }
     },
     {
-      path: "/landing",
+      path: "/",
       name: "landing",
       components: { default: Landing, header: MainNavbar, footer: MainFooter },
       props: {
         header: { colorOnScroll: 400 },
-        footer: { backgroundColor: "black" }
       }
     },
     {
       path: "/login",
       name: "login",
       components: { default: Login, header: MainNavbar, footer: MainFooter },
+      props: {
+        header: { colorOnScroll: 400 }
+      }
+    },
+    {
+      path: "/signup",
+      name: "signup",
+      components: { default: Signup, header: MainNavbar, footer: MainFooter },
+      props: {
+        header: { colorOnScroll: 400 }
+      }
+    },
+    {
+      path: "/explore",
+      name: "explore",
+      components: { default: Explore, header: MainNavbar, footer: MainFooter },
+      props: {
+        header: { colorOnScroll: 400 }
+      }
+    },
+    {
+      path: "/mynet",
+      name: "mynet",
+      components: { default: Mynet, header: MainNavbar, footer: MainFooter },
       props: {
         header: { colorOnScroll: 400 }
       }

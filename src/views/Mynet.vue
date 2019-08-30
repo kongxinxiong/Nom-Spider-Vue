@@ -3,10 +3,8 @@
         <div class="section page-header header-filter" :style="headerStyle">
             <div class="container">
                 <div class="md-layout">
-                    <div
-                            class="md-layout-item md-size-33 md-small-size-66 md-xsmall-size-100 md-medium-size-40 mx-auto"
-                    >
-                        <p>explore</p>
+                    <div  class="md-layout-item md-size-33 md-small-size-66 md-xsmall-size-100 md-medium-size-40 mx-auto">
+                        <p>my-net</p>
                     </div>
                 </div>
             </div>
@@ -16,7 +14,7 @@
 
 <script>
     export default {
-        name: "Explore",
+        name: "Mynet",
         bodyClass: "login-page",
         props: {
             header: {
@@ -32,7 +30,6 @@
             }
         }
     }
-
 </script>
 
 <style scoped>

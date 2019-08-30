@@ -8,45 +8,24 @@
           >
             <login-card header-color="green">
               <h4 slot="title" class="card-title">Login</h4>
-              <md-button
-                slot="buttons"
-                href="javascript:void(0)"
-                class="md-just-icon md-simple md-white"
-              >
-                <i class="fab fa-facebook-square"></i>
-              </md-button>
-              <md-button
-                slot="buttons"
-                href="javascript:void(0)"
-                class="md-just-icon md-simple md-white"
-              >
-                <i class="fab fa-twitter"></i>
-              </md-button>
-              <md-button
-                slot="buttons"
-                href="javascript:void(0)"
-                class="md-just-icon md-simple md-white"
-              >
-                <i class="fab fa-google-plus-g"></i>
-              </md-button>
-              <p slot="description" class="description">Or Be Classical</p>
-              <md-field class="md-form-group" slot="inputs">
-                <md-icon>face</md-icon>
-                <label>First Name...</label>
-                <md-input v-model="firstname"></md-input>
+              <p slot="description" class="description">Welcome to Nom Hub</p>
+              <md-field class="md-form-group md-green" slot="inputs">
+                <md-icon>person_outline</md-icon>
+                <label>username/email</label>
+                <md-input v-model="username"></md-input>
               </md-field>
-              <md-field class="md-form-group" slot="inputs">
-                <md-icon>email</md-icon>
-                <label>Email...</label>
-                <md-input v-model="email" type="email"></md-input>
-              </md-field>
-              <md-field class="md-form-group" slot="inputs">
+              <md-field class="md-form-group md-green" slot="inputs">
                 <md-icon>lock_outline</md-icon>
                 <label>Password...</label>
                 <md-input v-model="password"></md-input>
               </md-field>
+              <md-field class="md-green" slot="inputs">Don't have an account?
+                <router-link to="/signup">
+                  sign up
+                </router-link>
+              </md-field>
               <md-button slot="footer" class="md-simple md-success md-lg">
-                Get Started
+                SIGN IN
               </md-button>
             </login-card>
           </div>
@@ -66,7 +45,7 @@ export default {
   bodyClass: "login-page",
   data() {
     return {
-      firstname: null,
+      username: null,
       email: null,
       password: null
     };
@@ -87,4 +66,8 @@ export default {
 };
 </script>
 
-<style lang="css"></style>
+<style lang="css" scoped>
+  h4 {
+    line-height: 3em;
+  }
+</style>

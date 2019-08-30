@@ -73,6 +73,20 @@
     }
   }
 
+  &.md-green{
+    a{
+      color:$brand-success !important;
+      &,
+      &:hover,
+      &:focus {
+        color: $brand-success !important;
+      }
+    }
+    &:before{
+      background-color: $brand-success !important;
+    }
+  }
+
   &.md-error{
     label{
       color: $brand-danger !important;
@@ -223,7 +237,7 @@
   &.md-focused > .fas,
   &.md-focused > .fab {
 
-    color: $brand-primary !important;
+    color: $brand-success !important;
   }
 
   .success.md-icon,

@@ -8,7 +8,7 @@
   >
     <div class="md-toolbar-row md-collapse-lateral">
       <div class="md-toolbar-section-start">
-        <h3 class="md-title">Nom Spider</h3>
+        <router-link to="/"><h3 class="md-title">Nom Hub</h3></router-link>
       </div>
       <div class="md-toolbar-section-end">
         <md-button
@@ -44,16 +44,43 @@
 
               <md-list-item href="#/profile">
                 <i class="material-icons">email</i>
-                <p>Notification</p>
+                <p>
+                  Notification
+                  <badge type="rose" v-if="hasNotification">12</badge>
+                </p>
               </md-list-item>
 
-              <li class="md-list-item">
+              <li class="md-list-item" v-if="!isLogin">
                 <a
                   href="javascript:void(0)"
                   class="md-list-item-router md-list-item-container md-button-clean"
                 >
                   <div class="md-list-item-content">
-                    <md-button class="md-warning md-round">Sign In</md-button>
+                    <md-button class="md-success md-round" href="#/login">Sign In</md-button>
+                  </div>
+                </a>
+              </li>
+              <li class="md-list-item" v-if="isLogin">
+                <a
+                        class="md-list-item-router md-list-item-container md-button-clean dropdown"
+                >
+                  <div class="md-list-item-content">
+                    <drop-down direction="down" class="profile-photo">
+                      <div
+                              class="profile-photo-small"
+                              slot="title"
+                              data-toggle="dropdown"
+                      >
+                        <img :src="img" alt="Circle Image" />
+                      </div>
+                      <ul class="dropdown-menu dropdown-menu-right">
+                        <li>
+                          <a href="#pablo" class="dropdown-item"
+                          >Sign Out</a
+                          >
+                        </li>
+                      </ul>
+                    </drop-down>
                   </div>
                 </a>
               </li>
@@ -80,9 +107,11 @@ function resizeThrottler(actualResizeHandler) {
 }
 
 import MobileMenu from "@/layout/MobileMenu";
+import { Badge } from "@/components";
 export default {
   components: {
-    MobileMenu
+    MobileMenu,
+    Badge
   },
   props: {
     type: {
@@ -103,6 +132,10 @@ export default {
     colorOnScroll: {
       type: Number,
       default: 0
+    },
+    img: {
+      type: String,
+      default: require("@/assets/img/faces/christian.jpg")
     }
   },
   data() {
@@ -115,6 +148,14 @@ export default {
     showDownload() {
       const excludedRoutes = ["login", "landing", "profile"];
       return excludedRoutes.every(r => r !== this.$route.name);
+    },
+    hasNotification() {
+      let notificationNum = 1;
+      return notificationNum > 0;
+    },
+    isLogin() {
+      let loginStatus = 0;
+      return loginStatus === 1;
     }
   },
   methods: {
