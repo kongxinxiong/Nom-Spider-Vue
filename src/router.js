@@ -9,7 +9,7 @@ import MainFooter from "./layout/MainFooter.vue";
 import Explore from "./views/Explore";
 import Mynet from "./views/Mynet";
 import Signup from "./views/Signup";
-
+import EditEvent from "./views/EditEvent";
 Vue.use(Router);
 
 export default new Router({
@@ -43,6 +43,14 @@ export default new Router({
       path: "/signup",
       name: "signup",
       components: { default: Signup, header: MainNavbar, footer: MainFooter },
+      props: {
+        header: { colorOnScroll: 400 }
+      }
+    },
+    {
+      path: "/editevent",
+      name: "editevent",
+      components: { default: EditEvent, header: MainNavbar, footer: MainFooter },
       props: {
         header: { colorOnScroll: 400 }
       }
