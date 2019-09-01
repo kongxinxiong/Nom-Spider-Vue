@@ -78,7 +78,7 @@
                     </div>
                     <div class="md-layout text-center">
                         <div class="md-layout-item md-size-100 mx-auto">
-                            <md-button class="md-success">Update</md-button>
+                            <md-button class="md-success">Update Profile</md-button>
                         </div>
                     </div>
                     <div class="space-50"></div>
