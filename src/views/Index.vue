@@ -323,6 +323,10 @@ export default {
     profile: {
       type: String,
       default: require("@/assets/img/profile.jpg")
+    },
+    activityInfo: {
+      type: String,
+      default: require("@/assets/img/profile.jpg")
     }
   },
   data() {
