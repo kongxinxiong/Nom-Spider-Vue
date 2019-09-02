@@ -38,7 +38,7 @@
         },
         methods: {
             goEvent(){
-                this.$router.push({name:"activityInfo", params:{id:this.eventid}})
+                this.$router.push({name:"activityInfo", params:{eventid:this.eventid}})
             }
         },
         data() {

@@ -135,7 +135,7 @@ import { setTimeout } from "timers";
   },
   created() {
    this.eventid = this.$route.params.eventid;
-    requestAPI({url: "http://localhost:8080/api/event/"+this.eventid})
+    requestAPI({url: 'http://localhost:8080/api/event/'+this.eventid})
             .then(res => {
               alert(JSON.stringify(res));
 
