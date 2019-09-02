@@ -13,6 +13,7 @@ import ActivityInfo from "./views/ActivityInfo";
 import ElementUI from "element-ui";
 
 import 'element-ui/lib/theme-chalk/index.css';
+import EditEvent from "./views/EditEvent";
 Vue.use(Router);
 Vue.use(ElementUI);
 
@@ -48,6 +49,14 @@ export default new Router({
       path: "/signup",
       name: "signup",
       components: { default: Signup, header: MainNavbar, footer: MainFooter },
+      props: {
+        header: { colorOnScroll: 400 }
+      }
+    },
+    {
+      path: "/editevent",
+      name: "editevent",
+      components: { default: EditEvent, header: MainNavbar, footer: MainFooter },
       props: {
         header: { colorOnScroll: 400 }
       }
