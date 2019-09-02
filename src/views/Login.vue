@@ -76,11 +76,11 @@ export default {
         body: this.userInfo
       })
               .then(res => {
-                alert(JSON.stringify(this.userInfo) + " success "+res);
+                alert(JSON.stringify(this.userInfo) + " success "+JSON.stringify(res));
                 console.log(res);
               })
               .catch(err => {
-                alert(JSON.stringify(this.userInfo) + " error "+err);
+                alert(JSON.stringify(this.userInfo) + " error "+JSON.stringify(err));
                 console.log(err);
               });
     }
