@@ -9,9 +9,15 @@
                 <div class="container">
                     <div class="md-layout">
                     <div  class="md-layout-item md-white md-size-100 md-small-size-100 md-xsmall-size-100 md-medium-size-100 mx-auto">
-                        <md-button class="md-primary md-block md-success">
+<!--                        <md-button class="md-primary md-block md-success">-->
+<!--                            New Event-->
+<!--                        </md-button>-->
+                        <div class="text-center">
+                        <h2>
                             New Event
-                        </md-button>
+                        </h2>
+                        </div>
+                        <div class="space-50"></div>
                         <p  class="description">Please input follow information to create your own Event!</p>
                     </div>
                         <div  class="md-layout-item md-white md-size-100 md-small-size-100 md-xsmall-size-100 md-medium-size-100 mx-auto">
@@ -25,9 +31,11 @@
                         </div>
                         <div  class="md-layout-item md-white md-size-100 md-small-size-100 md-xsmall-size-100 md-medium-size-100 mx-auto">
                             <md-field class="md-form-group md-green" slot="inputs">
-                                <md-icon>person_outline</md-icon>
-                                <label>PARTICIPANTS LIMIT</label>
-                                <md-input v-model="event.number"></md-input>
+<!--                                <md-icon>person_outline</md-icon>-->
+
+<!--                                <label>PARTICIPANTS LIMIT</label>-->
+                                <i class="fas fa-users"></i>
+                                <md-input v-model="event.number" placeholder="PARTICIPANTS LIMIT"></md-input>
                                 <span class="md-helper-text">Please input the number of participants</span>
                             </md-field>
                         </div>
@@ -56,7 +64,7 @@
                     </div>
                         <div class="md-layout-item md-white md-size-50 md-small-size-100 md-xsmall-size-100 md-medium-size-50 mx-auto">
                             <md-field class="md-form-group md-green" slot="inputs">
-                                <md-icon>person_outline</md-icon>
+                                <md-icon>explore</md-icon>
                                 <label>Location</label>
                             <md-select v-model="event.location" name="location" id="location">
                                 <md-option value="SH">Shang Hai</md-option>
@@ -77,13 +85,13 @@
                         </md-field>
 
                         </div>
-                        <div  class="md-layout-item md-white md-size-10 md-small-size-20 md-xsmall-size-30 md-medium-size-20 mx-auto">
+                        <div  class="md-layout-item md-white md-size-20 md-small-size-20 md-xsmall-size-30 md-medium-size-20 mx-auto">
+                            <div class="space-50"></div>
                             <md-button class="md-primary md-block md-success" @click="createEvent">
                                 Submit
                             </md-button>
-
+                            <div class="space-50"></div>
                         </div>
-
 
                 </div>
             </div>

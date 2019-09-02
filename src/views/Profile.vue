@@ -78,7 +78,7 @@
                     </div>
                     <div class="md-layout text-center">
                         <div class="md-layout-item md-size-100 mx-auto">
-                            <md-button class="md-success">Update Profile</md-button>
+                            <md-button class="md-success" @click="updateProfile">Update Profile</md-button>
                         </div>
                     </div>
                     <div class="space-50"></div>
@@ -144,6 +144,11 @@
                 return {
                     backgroundImage: `url(${this.header})`
                 };
+            }
+        },
+        methods:{
+            updateProfile(){
+                alert("profile "+ JSON.stringify(this.event))
             }
         }
     };
