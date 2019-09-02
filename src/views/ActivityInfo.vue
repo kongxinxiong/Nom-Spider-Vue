@@ -134,10 +134,15 @@ import { setTimeout } from "timers";
     }
   },
   created() {
-    this.activityTitle="122334";
-    setTimeout(()=>{
-      this.activityTitle="44143432432";
-    },5000)
+   this.eventid = this.$route.params.eventid;
+    requestAPI({url: "http://localhost:8080/api/event/"+this.eventid})
+            .then(res => {
+              alert(JSON.stringify(res));
+
+            })
+            .catch(err => {
+              alert(JSON.stringify(err));
+            });
     },
   data() {
     return {

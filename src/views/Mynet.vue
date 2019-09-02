@@ -4,7 +4,14 @@
             <div class="container">
                 <div class="md-layout">
                     <div  class="md-layout-item md-size-33 md-small-size-66 md-xsmall-size-100 md-medium-size-40 mx-auto">
-                        <p>my-net</p>
+                        <md-button
+                                class="md-success"
+                                @click="goEvent"
+                        >Enroll
+                            <md-tooltip md-direction="bottom">
+                                Finished/Full
+                            </md-tooltip></md-button
+                        >
                     </div>
                 </div>
             </div>
@@ -28,6 +35,16 @@
                     backgroundImage: `url(${this.header})`
                 };
             }
+        },
+        methods: {
+            goEvent(){
+                this.$router.push({name:"activityInfo", params:{id:this.eventid}})
+            }
+        },
+        data() {
+            return{
+            eventid : "21"
+        }
         }
     }
 </script>
