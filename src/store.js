@@ -7,11 +7,11 @@ const store=new Vuex.Store({
         Authorization:localStorage.getItem('Authorization')?localStorage.getItem('Authorization'):null
     },
     mutations:{
-        changeLogin(user){
+        changeLogin(Authorization){
+            // alert("JSON.stringify(Authorization):"+JSON.stringify(Authorization))
+            // localStorage.setItem('Authorization',JSON.stringify(Authorization));
 
-            localStorage.setItem('Authorization',JSON.stringify(user.Authorization));
-
-            //alert(localStorage.getItem('Authorization'))
+            // alert(localStorage.getItem('Authorization'))
         }
     }
 });

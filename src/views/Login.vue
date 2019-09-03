@@ -84,7 +84,9 @@ export default {
                 alert("please input correct username and password");}
                 else{
                 this.userToken=res.data;
-                this.changeLogin({Authorization:this.userToken});
+                // alert(JSON.stringify(this.userToken))
+                // this.changeLogin(this.userToken);
+                    localStorage.setItem('Authorization',JSON.stringify(this.userToken));
                 this.$router.push('/explore');}
                 console.log(res);
               })
