@@ -8,8 +8,10 @@ const store=new Vuex.Store({
     },
     mutations:{
         changeLogin(user){
-            state.Authorization=user.Authorization;
-            localStorage.setItem('Authorization',user.Authorization);
+
+            localStorage.setItem('Authorization',JSON.stringify(user.Authorization));
+
+            //alert(localStorage.getItem('Authorization'))
         }
     }
 });
