@@ -83,9 +83,9 @@ export default {
                 if(res.data==null){
                 alert("please input correct username and password");}
                 else{
-                _this.userToken=res.data;
-                _this.changeLogin({Authorization:_this.userToken});
-                _this.$router.push('/explore');}
+                this.userToken=res.data;
+                this.changeLogin({Authorization:this.userToken});
+                this.$router.push('/explore');}
                 console.log(res);
               })
               .catch(err => {

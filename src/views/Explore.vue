@@ -254,7 +254,7 @@ export default {
   },
   created() {
     this.searched = this.events;
-    this.userInfo=localStorage.getItem('Authorization')
+    this.userInfo=localStorage.getItem('Authorization');
     alert(JSON.stringify(this.userInfo))
   }
 };
