@@ -12,19 +12,20 @@
               <md-field class="md-form-group md-green" slot="inputs">
                 <md-icon>person_outline</md-icon>
                 <label>username/email</label>
-                <md-input v-model="userInfo.username"></md-input>
+                <md-input v-model="username"></md-input>
               </md-field>
               <md-field class="md-form-group md-green" slot="inputs">
                 <md-icon>lock_outline</md-icon>
                 <label>Password...</label>
-                <md-input v-model="userInfo.password"></md-input>
+                <md-input v-model="password"></md-input>
               </md-field>
-              <md-field class="md-green" slot="inputs">Don't have an account?
+              <p slot="inputs">
+                Don't have an account?
                 <router-link to="/signup">
                   sign up
                 </router-link>
-              </md-field>
-              <md-button slot="footer" class="md-simple md-success md-lg" @click="signin">
+              </p>
+              <md-button slot="footer" class="md-simple md-success md-lg">
                 SIGN IN
               </md-button>
             </login-card>
@@ -37,20 +38,19 @@
 
 <script>
 import { LoginCard } from "@/components";
-import requestAPI from "../plugins/request";
 
 export default {
   components: {
     LoginCard
   },
   bodyClass: "login-page",
-  data: () => ({
-            userInfo: {
-              username: null,
-              email: null,
-              password: null
-            }}
-  ),
+  data() {
+    return {
+      username: null,
+      email: null,
+      password: null
+    };
+  },
   props: {
     header: {
       type: String,
@@ -63,32 +63,12 @@ export default {
         backgroundImage: `url(${this.header})`
       };
     }
-  },
-  methods: {
-    signin(){
-      requestAPI({
-        url: "http://localhost:8080/api/user/login",
-        method: "POST",
-        headers:{
-          'Content-Type':'application/json'
-        },
-        body: this.userInfo
-      })
-              .then(res => {
-                alert(JSON.stringify(this.userInfo) + " success "+JSON.stringify(res));
-                console.log(res);
-              })
-              .catch(err => {
-                alert(JSON.stringify(this.userInfo) + " error "+JSON.stringify(err));
-                console.log(err);
-              });
-    }
   }
 };
 </script>
 
 <style lang="css" scoped>
-  h4 {
-    line-height: 3em;
-  }
+h4 {
+  line-height: 3em;
+}
 </style>

@@ -23,7 +23,8 @@
     "vue-material": "1.0.0-beta-11",
     "vue-router": "3.0.7",
     "vux-uploader-component": "^1.0.14",
-    "timers": "latest"
+    "timers": "latest",
+    "vuelidate": "^0.7.4"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "3.9.2",

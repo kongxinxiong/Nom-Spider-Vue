@@ -85,6 +85,13 @@
     &:before{
       background-color: $brand-success !important;
     }
+    &.md-focused > .fa,
+    &.md-focused > .md-icon,
+    &.md-focused > .fas,
+    &.md-focused > .fab {
+      color: $brand-success !important;
+    }
+
   }
 
   &.md-error{
@@ -237,7 +244,7 @@
   &.md-focused > .fas,
   &.md-focused > .fab {
 
-    color: $brand-success !important;
+    color: $brand-primary !important;
   }
 
   .success.md-icon,
