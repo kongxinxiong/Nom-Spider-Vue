@@ -102,6 +102,7 @@
 
 <script>
     import requestAPI from "../plugins/request";
+
     export default {
 
         name: "EditEvent",
@@ -126,7 +127,6 @@
                     method: "POST",
                     headers:{
                     'Content-Type':'application/json',
-                        'Authorization':localStorage.getItem('Authorization')
                 },
                 body: this.event}).then(res => {
                     alert(JSON.stringify(this.event) + " success "+JSON.stringify(res));
@@ -140,9 +140,13 @@
 
             }
         },
+        created: function() {
+            this.userInfo=localStorage.getItem('Authorization')
+        },
         data: () => ({
                 event:{
                     id:"",
+                    user:this.userInfo,
                     title:"",
                     maxnumber:"",
                     location:"",

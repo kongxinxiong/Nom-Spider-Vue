@@ -80,10 +80,12 @@ export default {
         body: this.userInfo
       })
               .then(res => {
-                alert(JSON.stringify(this.userInfo) + " success "+JSON.stringify(res));
-                _this.userToken=res.data.userToken;
+                if(res.data==null){
+                alert("please input correct username and password");}
+                else{
+                _this.userToken=res.data;
                 _this.changeLogin({Authorization:_this.userToken});
-                _this.$router.push('/explore');
+                _this.$router.push('/explore');}
                 console.log(res);
               })
               .catch(err => {

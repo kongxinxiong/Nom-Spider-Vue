@@ -4,7 +4,7 @@ Vue.use(Vuex);
 
 const store=new Vuex.Store({
     state:{
-        Authorization:localStorage.getItem('Authorization')?localStorage.getItem('Authorization'):''
+        Authorization:localStorage.getItem('Authorization')?localStorage.getItem('Authorization'):null
     },
     mutations:{
         changeLogin(state,user){
