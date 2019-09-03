@@ -73,7 +73,7 @@
                   >Create New Event</md-button
                 >
               </md-table-empty-state>
-              <md-table-row slot="md-table-row" slot-scope="{ item }">
+              <md-table-row slot="md-table-row" slot-scope="{ item }" @click="go4Details">
                 <md-table-cell md-label="Event" md-sort-by="rank">
                   <div class="img-container"><img :src="item.img" /></div>
                 </md-table-cell>
@@ -250,6 +250,9 @@ export default {
     searchOnTable() {
       this.searched = searchByName(this.events, this.search);
       console.log(this.searched);
+    },
+    go4Details(){
+      this.$router.push({name:"eventInfo", params:{eventid:this.eventid}})
     }
   },
   created() {
