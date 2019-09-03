@@ -6,10 +6,15 @@
           <div
             class="md-layout-item md-size-50 md-small-size-70 md-xsmall-size-100"
           >
-            <h1 class="title">Welcome to <br/> Nom Hub</h1>
+            <h1 class="title">
+              Welcome to <br />
+              Nom Hub
+            </h1>
             <h4>
-              Create your events and make friends with others. Enjoy you life!
+              Create your events and make friends with others. <br />Enjoy you
+              life!
             </h4>
+            <h3></h3>
           </div>
           <div
             class="md-layout-item md-size-33 md-small-size-66 md-xsmall-size-100 md-medium-size-40 mx-auto"
@@ -27,7 +32,8 @@
                 <label>Password...</label>
                 <md-input v-model="password"></md-input>
               </md-field>
-              <p slot="inputs" class="">Don't have an account?
+              <p slot="inputs" class="">
+                Don't have an account?
                 <router-link to="/signup">
                   sign up
                 </router-link>
@@ -54,13 +60,13 @@ export default {
     header: {
       type: String,
       default: require("@/assets/img/bg7.jpg")
-    },
+    }
   },
   data() {
     return {
       name: null,
-      email: null,
-      message: null
+      username: null,
+      password: null
     };
   },
   computed: {
@@ -73,4 +79,8 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+h3 {
+  padding-bottom: 40px;
+}
+</style>

@@ -108,8 +108,10 @@
 }
 
 .img-container{
-    width: 100%;
+    width: 120px;
+    max-height: 160px;
     overflow: hidden;
+    display: block;
 }
 .img-container img{
     width: 100%;

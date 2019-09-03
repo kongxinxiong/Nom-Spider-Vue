@@ -43,11 +43,11 @@
               </md-list-item>
 
               <md-list-item href="#/profile">
-                <i class="material-icons">email</i>
+                <i class="material-icons">notifications</i>
                 <p>
                   Notification
-                  <badge type="rose" v-if="hasNotification">12</badge>
                 </p>
+                <md-badge md-content="1"></md-badge>
               </md-list-item>
 
               <li class="md-list-item" v-if="!isLogin">
@@ -212,3 +212,22 @@ export default {
   }
 };
 </script>
+
+<style lang="scss" scoped>
+.md-badge {
+  display: inline-block;
+  border-radius: 50%;
+  padding: 4px 4px;
+  text-transform: uppercase;
+  font-size: 10px;
+  color: #FFFFFF;
+  font-weight: 500;
+  line-height: 1;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  width: 18px;
+  height: 18px;
+  margin-left: 5px;
+}
+</style>

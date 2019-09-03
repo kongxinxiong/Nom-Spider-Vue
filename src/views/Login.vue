@@ -19,11 +19,12 @@
                 <label>Password...</label>
                 <md-input v-model="password"></md-input>
               </md-field>
-              <md-field class="md-green" slot="inputs">Don't have an account?
+              <p slot="inputs">
+                Don't have an account?
                 <router-link to="/signup">
                   sign up
                 </router-link>
-              </md-field>
+              </p>
               <md-button slot="footer" class="md-simple md-success md-lg">
                 SIGN IN
               </md-button>
@@ -67,7 +68,7 @@ export default {
 </script>
 
 <style lang="css" scoped>
-  h4 {
-    line-height: 3em;
-  }
+h4 {
+  line-height: 3em;
+}
 </style>
