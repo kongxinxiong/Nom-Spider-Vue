@@ -146,6 +146,9 @@
                 };
             }
         },
+        created: function() {
+            this.userInfo=JSON.parse(localStorage.getItem('Authorization'));
+        },
         methods:{
             updateProfile(){
                 alert("profile "+ JSON.stringify(this.event))

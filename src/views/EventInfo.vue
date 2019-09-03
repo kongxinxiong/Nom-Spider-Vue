@@ -137,6 +137,7 @@ export default {
     // eslint-disable-next-line no-undef
     this.changeDisabled(this.isDisabled) ;
 
+    this.userInfo=JSON.parse(localStorage.getItem('Authorization'));
     // this.getEventPics();
     //
     // this.requestAPI({ url: "http://localhost:8080/api/event/" + this.eventid })

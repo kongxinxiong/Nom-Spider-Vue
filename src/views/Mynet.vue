@@ -75,6 +75,9 @@ export default {
       default: require("@/assets/img/faces/christian.jpg")
     }
   },
+  created: function() {
+    this.userInfo=JSON.parse(localStorage.getItem('Authorization'));
+  },
   computed: {
     headerStyle() {
       return {
