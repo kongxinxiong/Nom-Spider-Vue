@@ -75,10 +75,10 @@
               </md-table-empty-state>
               <md-table-row slot="md-table-row" slot-scope="{ item }">
                 <md-table-cell md-label="Event" md-sort-by="rank">
-                  <div class="img-container"><img :src="item.img" /></div>
+                  <div class="img-container"><img :src="'http://localhost:8080/api/user/image/'+item.photoURL" /></div>
                 </md-table-cell>
                 <md-table-cell md-label="Detail" md-sort-by="detail">{{
-                  item.detail
+                  item.title
                 }}</md-table-cell>
                 <md-table-cell md-label="Action">
                   <md-button class="md-primary md-sm"
@@ -103,6 +103,7 @@
 </template>
 
 <script>
+  import requestAPI from "../plugins/request";
 const searchByName = (items, term) => {
   if (term) {
     return items.filter(item =>
@@ -188,63 +189,7 @@ export default {
         score: 132
       }
     ],
-    events: [
-      {
-        img: require("@/assets/img/profile_city.jpg"),
-        title: "Hiking Saturaday",
-        detail:
-          "Hiking Saturaday\n" +
-          "Location: Hong Kong\n" +
-          "Date: 20190909\n" +
-          "Time: 3:00pm\n" +
-          "Number of Participants: 30\n" +
-          "Fees: Free"
-      },
-      {
-        img: require("@/assets/img/profile_city.jpg"),
-        title: "Karaoke Night",
-        detail:
-          "Karaoke Night\n" +
-          "Location: Hong Kong\n" +
-          "Date: 20190909\n" +
-          "Time: 3:00pm\n" +
-          "Number of Participants: 30\n" +
-          "Fees: Free"
-      },
-      {
-        img: require("@/assets/img/profile_city.jpg"),
-        title: "Hiking Saturaday",
-        detail:
-          "Hiking Saturaday\n" +
-          "Location: Hong Kong\n" +
-          "Date: 20190909\n" +
-          "Time: 3:00pm\n" +
-          "Number of Participants: 30\n" +
-          "Fees: Free"
-      },
-      {
-        img: require("@/assets/img/profile_city.jpg"),
-        title: "Hiking Saturaday",
-        detail:
-          "Hiking Saturaday\n" +
-          "Location: Hong Kong\n" +
-          "Date: 20190909\n" +
-          "Time: 3:00pm\n" +
-          "Number of Participants: 30\n" +
-          "Fees: Free"
-      },
-      {
-        img: require("@/assets/img/profile_city.jpg"),
-        title: "Hiking Saturaday",
-        detail:
-          "Hiking Saturaday\n" +
-          "Location: Hong Kong\n" +
-          "Date: 20190909\n" +
-          "Time: 3:00pm\n" +
-          "Number of Participants: 30\n" +
-          "Fees: Free"
-      }
-    ]
+    events: ['aaa']
   }),
   methods: {
     searchOnTable() {
@@ -253,9 +198,24 @@ export default {
     }
   },
   created() {
-    this.searched = this.events;
-    this.userInfo=JSON.parse(localStorage.getItem('Authorization'));
-    // alert(JSON.stringify(this.userInfo))
+      this.userid = this.$route.params.eventid;
+      this.userInfo=JSON.parse(localStorage.getItem('Authorization'));
+  },
+  mounted() {
+    requestAPI({
+      url: "http://localhost:8080/api/events",
+      method: "GET",
+      headers:{
+        'Content-Type':'application/json'
+      },
+    })
+            .then(res => {
+              this.events = JSON.parse(JSON.stringify(res)).data;
+              this.searched = this.events;
+            })
+            .catch(err => {
+              alert(JSON.stringify(err));
+            });
   }
 };
 </script>
