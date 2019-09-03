@@ -35,7 +35,7 @@
 
 <!--                                <label>PARTICIPANTS LIMIT</label>-->
                                 <i class="fas fa-users"></i>
-                                <md-input v-model="event.number" placeholder="PARTICIPANTS LIMIT"></md-input>
+                                <md-input v-model="event.maxnumber" placeholder="PARTICIPANTS LIMIT"></md-input>
                                 <span class="md-helper-text">Please input the number of participants</span>
                             </md-field>
                         </div>
@@ -49,12 +49,12 @@
 <!--                        </div>-->
                         <div  class="md-layout-item md-white md-size-100 md-small-size-100 md-xsmall-size-100 md-medium-size-100 mx-auto">
 
-                            <md-checkbox slot="inputs" v-model="event.subject.t1" >Game</md-checkbox>
-                            <md-checkbox slot="inputs" v-model="event.subject.t2" >Spots</md-checkbox>
-                            <md-checkbox slot="inputs" v-model="event.subject.t3" >Travel</md-checkbox>
-                            <md-checkbox slot="inputs" v-model="event.subject.t4" >Hiking</md-checkbox>
-                            <md-checkbox slot="inputs" v-model="event.subject.t5" >Movie</md-checkbox>
-                            <md-checkbox slot="inputs" v-model="event.subject.t6" >Reading</md-checkbox>
+                            <md-checkbox slot="inputs" v-model="event.perferences" value="1" >Game</md-checkbox>
+                            <md-checkbox slot="inputs" v-model="event.perferences" value="2">Spots</md-checkbox>
+                            <md-checkbox slot="inputs" v-model="event.perferences" value="3">Travel</md-checkbox>
+                            <md-checkbox slot="inputs" v-model="event.perferences" value="4">Hiking</md-checkbox>
+                            <md-checkbox slot="inputs" v-model="event.perferences" value="5">Movie</md-checkbox>
+                            <md-checkbox slot="inputs" v-model="event.perferences" value="6">Reading</md-checkbox>
                             <p  class="description">Please choose subject of your event!</p>
                        </div>
                         <div class="md-layout-item md-white md-size-50 md-small-size-100 md-xsmall-size-100 md-medium-size-50 mx-auto">
@@ -63,18 +63,18 @@
                         </md-datepicker>
                     </div>
                         <div class="md-layout-item md-white md-size-50 md-small-size-100 md-xsmall-size-100 md-medium-size-50 mx-auto">
-                            <md-field class="md-form-group md-green" slot="inputs">
+                            <md-field class="md-green">
                                 <md-icon>explore</md-icon>
                                 <label>Location</label>
                             <md-select v-model="event.location" name="location" id="location">
-                                <md-option value="SH">Shang Hai</md-option>
-                                <md-option value="BJ">Bei Jing</md-option>
-                                <md-option value="TK">Tokyo</md-option>
-                                <md-option value="HK">Hong Kong</md-option>
-                                <md-option value="NY">Now York</md-option>
-                                <md-option value="LN">London</md-option>
-                                <md-option value="SINGAPORE">Singapore</md-option>
-                                <md-option value="BOMBAY">Bombay</md-option>
+                                <md-option value="SH">&nbsp;&nbsp; &nbsp;&nbsp; Shang Hai</md-option>
+                                <md-option value="BJ"> &nbsp;&nbsp; &nbsp;&nbsp; Bei Jing</md-option>
+                                <md-option value="TK"> &nbsp;&nbsp; &nbsp;&nbsp; Tokyo</md-option>
+                                <md-option value="HK"> &nbsp;&nbsp; &nbsp;&nbsp; Hong Kong</md-option>
+                                <md-option value="NY"> &nbsp;&nbsp; &nbsp;&nbsp; New York</md-option>
+                                <md-option value="LN"> &nbsp;&nbsp; &nbsp;&nbsp; London</md-option>
+                                <md-option value="SINGAPORE">&nbsp;&nbsp; &nbsp;&nbsp;  Singapore</md-option>
+                                <md-option value="BOMBAY"> &nbsp;&nbsp; &nbsp;&nbsp; Mumbai</md-option>
                             </md-select>
                             </md-field>
                         </div>
@@ -122,23 +122,19 @@
         methods:{
             createEvent(){
                 alert("event "+ JSON.stringify(this.event))
+
+
             }
         },
         data: () => ({
                 event:{
-                title:"",
-                    number:"",
+                    id:"",
+                    title:"",
+                    maxnumber:"",
                     location:"",
                     description:"",
-                    date:"",
-                    subject:{
-                        t1: false,
-                        t2: false,
-                        t3: false,
-                        t4: false,
-                        t5: false,
-                        t6: false
-                    }
+                    startdate:"",
+                    perferences:[]
 
                 }
 

@@ -9,16 +9,15 @@ import MainFooter from "./layout/MainFooter.vue";
 import Explore from "./views/Explore";
 import Mynet from "./views/Mynet";
 import Signup from "./views/Signup";
-import ActivityInfo from "./views/ActivityInfo";
+import ActivityInfo from "./views/EventInfo";
 import ElementUI from "element-ui";
-
 import 'element-ui/lib/theme-chalk/index.css';
 import EditEvent from "./views/EditEvent";
 Vue.use(Router);
 Vue.use(ElementUI);
 
 
-export default new Router({
+const router = new Router({
   routes: [
     {
       path: "/index",
@@ -87,8 +86,8 @@ export default new Router({
       }
     },
     {
-      path: "/activityInfo",
-      name: "activityInfo",
+      path: "/eventInfo",
+      name: "eventInfo",
       components: { default: ActivityInfo, header: MainNavbar, footer: MainFooter },
       props: {
         header: { colorOnScroll: 400 },
@@ -104,3 +103,18 @@ export default new Router({
     }
   }
 });
+router.beforeEach((to, from, next) => {
+  if (to.path === '/login') {
+    next();
+  } else {
+    let token = localStorage.getItem('Authorization');
+
+    if (token === 'null' || token === '') {
+      next('/login');
+    } else {
+      next();
+    }
+  }
+});
+
+export default router;
