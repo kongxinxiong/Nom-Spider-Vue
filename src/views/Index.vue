@@ -324,7 +324,7 @@ export default {
       type: String,
       default: require("@/assets/img/profile.jpg")
     },
-    activityInfo: {
+    eventInfo: {
       type: String,
       default: require("@/assets/img/profile.jpg")
     }
