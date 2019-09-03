@@ -101,7 +101,7 @@
 </template>
 
 <script>
-
+    import requestAPI from "../plugins/request";
     export default {
 
         name: "EditEvent",
@@ -121,8 +121,22 @@
         },
         methods:{
             createEvent(){
-                alert("event "+ JSON.stringify(this.event))
-
+                alert("event "+ JSON.stringify(this.event));
+                requestAPI({url: "http://localhost:8080/api/event/",
+                    method: "POST",
+                    headers:{
+                    'Content-Type':'application/json',
+                        'Authorization':localStorage.getItem('Authorization')
+                },
+                body: this.event}).then(res => {
+                    alert(JSON.stringify(this.event) + " success "+JSON.stringify(res));
+                    _this.$router.push('/explore');
+                    console.log(res);
+                })
+                    .catch(err => {
+                        alert(JSON.stringify(this.userInfo) + " error "+JSON.stringify(err));
+                        console.log(err);
+                    });
 
             }
         },

@@ -37,6 +37,7 @@
 </template>
 
 <script>
+  import {mapMutations} from 'vuex'
 import { LoginCard } from "@/components";
 import requestAPI from "../plugins/request";
 
@@ -50,7 +51,9 @@ export default {
               username: null,
               email: null,
               password: null
-            }}
+            },
+            userToken:''
+  }
   ),
   props: {
     header: {
@@ -66,6 +69,7 @@ export default {
     }
   },
   methods: {
+    ...mapMutations(['changeLogin']),
     signin(){
       requestAPI({
         url: "http://localhost:8080/api/user/login",
@@ -77,6 +81,9 @@ export default {
       })
               .then(res => {
                 alert(JSON.stringify(this.userInfo) + " success "+JSON.stringify(res));
+                _this.userToken=res.data.userToken;
+                _this.changeLogin({Authorization:_this.userToken});
+                _this.$router.push('/explore');
                 console.log(res);
               })
               .catch(err => {
