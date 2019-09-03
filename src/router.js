@@ -9,8 +9,14 @@ import MainFooter from "./layout/MainFooter.vue";
 import Explore from "./views/Explore";
 import Mynet from "./views/Mynet";
 import Signup from "./views/Signup";
+import ActivityInfo from "./views/ActivityInfo";
+import ElementUI from "element-ui";
 
+import 'element-ui/lib/theme-chalk/index.css';
+import EditEvent from "./views/EditEvent";
 Vue.use(Router);
+Vue.use(ElementUI);
+
 
 export default new Router({
   routes: [
@@ -48,6 +54,14 @@ export default new Router({
       }
     },
     {
+      path: "/editevent",
+      name: "editevent",
+      components: { default: EditEvent, header: MainNavbar, footer: MainFooter },
+      props: {
+        header: { colorOnScroll: 400 }
+      }
+    },
+    {
       path: "/explore",
       name: "explore",
       components: { default: Explore, header: MainNavbar, footer: MainFooter },
@@ -67,6 +81,15 @@ export default new Router({
       path: "/profile",
       name: "profile",
       components: { default: Profile, header: MainNavbar, footer: MainFooter },
+      props: {
+        header: { colorOnScroll: 400 },
+        footer: { backgroundColor: "black" }
+      }
+    },
+    {
+      path: "/activityInfo",
+      name: "activityInfo",
+      components: { default: ActivityInfo, header: MainNavbar, footer: MainFooter },
       props: {
         header: { colorOnScroll: 400 },
         footer: { backgroundColor: "black" }
