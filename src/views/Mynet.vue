@@ -38,17 +38,17 @@
         </div>
         <div class="md-layout">
           <div class="md-layout-item" style="max-height: 300px">
-            <md-card style="max-width: 300px">
+            <md-card style="max-width: 300px" @click="go4Details">
               <md-card-media md-ratio="16:9">
-                <img :src="img" alt="People" />
+                <img :src="img" alt="People" @click="go4Details"/>
               </md-card-media>
               <md-card-content>
                 aaa
               </md-card-content>
             </md-card>
-            <md-card style="max-width: 300px">
+            <md-card style="max-width: 300px" @click="go4Details">
               <md-card-media md-ratio="16:9">
-                <img :src="header" alt="People" />
+                <img :src="header" alt="People" @click="go4Details"/>
               </md-card-media>
               <md-card-content>
                 aaa
@@ -62,7 +62,26 @@
 </template>
 
 <script>
-export default {
+import requestAPI from "../plugins/request";
+
+function getUserEvents(userId,eventType) {
+  requestAPI({
+    url: "http://localhost:8080/api/user/"+eventType+"/"+ userId,
+    method: "POST",
+    headers:{
+      'Content-Type':'application/json'
+    }
+  })
+          .then(res => {
+            alert(JSON.stringify(this.userInfo) + " success "+JSON.stringify(res));
+            console.log(res);
+          })
+          .catch(err => {
+            alert(JSON.stringify(this.userInfo) + " error "+JSON.stringify(err));
+            console.log(err);
+          });
+}
+  export default {
   name: "Mynet",
   bodyClass: "login-page",
   props: {
@@ -81,7 +100,20 @@ export default {
         backgroundImage: `url(${this.header})`
       };
     }
-  }
+  },
+  created() {
+    //request for all joint but not yet started events
+    getUserEvents(this.userInfo.userId, "userJointEvents");
+    //request for all interested but not joint events ????? recommendation
+    getUserEvents(this.userInfo.userId, "userInterestEvents");
+    //request for all events that you created
+    getUserEvents(this.userInfo.userId, "userCreatedEvents");
+  },
+    methods:{
+      go4Details(){
+        this.$router.push({name:"eventInfo", params:{eventid:this.eventid}})
+      }
+    }
 };
 </script>
 
