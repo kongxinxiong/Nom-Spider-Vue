@@ -141,7 +141,7 @@
             }
         },
         created: function() {
-            this.userInfo=localStorage.getItem('Authorization')
+            this.userInfo=JSON.parse(localStorage.getItem('Authorization'));
         },
         data: () => ({
                 event:{
