@@ -101,6 +101,7 @@
 </template>
 
 <script>
+    import requestAPI from "../plugins/request";
 
     export default {
 
@@ -121,14 +122,31 @@
         },
         methods:{
             createEvent(){
-                alert("event "+ JSON.stringify(this.event))
-
+                alert("event "+ JSON.stringify(this.event));
+                requestAPI({url: "http://localhost:8080/api/event/",
+                    method: "POST",
+                    headers:{
+                    'Content-Type':'application/json',
+                },
+                body: this.event}).then(res => {
+                    alert(JSON.stringify(this.event) + " success "+JSON.stringify(res));
+                    _this.$router.push('/explore');
+                    console.log(res);
+                })
+                    .catch(err => {
+                        alert(JSON.stringify(this.userInfo) + " error "+JSON.stringify(err));
+                        console.log(err);
+                    });
 
             }
+        },
+        created: function() {
+            this.userInfo=JSON.parse(localStorage.getItem('Authorization'));
         },
         data: () => ({
                 event:{
                     id:"",
+                    user:this.userInfo,
                     title:"",
                     maxnumber:"",
                     location:"",

@@ -62,6 +62,9 @@ export default {
       default: require("@/assets/img/bg7.jpg")
     }
   },
+  created: function() {
+    this.userInfo=JSON.parse(localStorage.getItem('Authorization'));
+  },
   data() {
     return {
       name: null,

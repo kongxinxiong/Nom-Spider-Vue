@@ -126,6 +126,7 @@ import requestAPI from "../plugins/request";
 import { createRequest, sendFormRequest } from "../plugins/request";
 import { setTimeout } from "timers";
 
+
 export default {
   name: "ActivityInfo",
   components: {
