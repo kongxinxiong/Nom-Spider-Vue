@@ -73,7 +73,7 @@
                   >Create New Event</md-button
                 >
               </md-table-empty-state>
-              <md-table-row slot="md-table-row" slot-scope="{ item }">
+              <md-table-row slot="md-table-row" slot-scope="{ item }" @click="go4Details">
                 <md-table-cell md-label="Event" md-sort-by="rank">
                   <div class="img-container"><img :src="'http://localhost:8080/api/user/image/'+item.photoURL" /></div>
                 </md-table-cell>
@@ -195,42 +195,11 @@ export default {
     searchOnTable() {
       this.searched = searchByName(this.events, this.search);
       console.log(this.searched);
-    },
-    createEvent(){
-      this.$router.push('/editevent')
     }
   },
   created() {
-
-    // localStorage.setItem('Authorization',"{\n" +
-    //     "\"id\": 25,\n" +
-    //     "\"name\": \"mark\",\n" +
-    //     "\"birthday\": \"2019-08-26T09:26:57.000+0000\",\n" +
-    //     "\"location\": \"Hong Kong\",\n" +
-    //     "\"username\": null,\n" +
-    //     "\"password\": null,\n" +
-    //     "\"email\": null,\n" +
-    //     "\"photoURL\": null\n" +
-    //     "}")
+      this.userid = this.$route.params.eventid;
       this.userInfo=JSON.parse(localStorage.getItem('Authorization'));
-      //this.getRanking()
-  },
-  getRanking(){
-    //get ranking data
-    requestAPI({
-      url: "http://localhost:8080/api/rank",
-      method: "GET",
-      headers:{
-        'Content-Type':'application/json'
-      },
-    })
-            .then(res => {
-              this.ranking = JSON.parse(JSON.stringify(res)).data;
-
-            })
-            .catch(err => {
-              alert(JSON.stringify(err));
-            });
   },
   mounted() {
     requestAPI({
