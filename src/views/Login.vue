@@ -50,7 +50,9 @@ export default {
             userInfo: {
               username: null,
               email: null,
-              password: null
+              password: null,
+                name: null,
+                photoURL: null
             },
             userToken:''
   }
