@@ -80,7 +80,6 @@
               <md-table-row
                 slot="md-table-row"
                 slot-scope="{ item }"
-                @click="go4Details"
               >
                 <md-table-cell md-label="Event" md-sort-by="rank">
                   <div class="img-container">
@@ -88,6 +87,7 @@
                       :src="
                         'http://localhost:8080/api/user/image/' + item.photoURL
                       "
+                      @click="go4Details(item.id)"
                     />
                   </div>
                 </md-table-cell>
@@ -212,6 +212,12 @@ export default {
     },
     createEvent() {
       this.$router.push("/editevent");
+    },
+    go4Details(id) {
+      this.$router.push({
+        name: "eventInfo",
+        params: { eventid: id}
+      });
     }
   },
   created: function() {
