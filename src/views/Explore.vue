@@ -232,7 +232,7 @@ export default {
   },
   mounted() {
     requestAPI({
-      url: "http://localhost:8080/api/events",
+      url: "http://localhost:8080/api/comingEvents",
       method: "GET",
       headers: {
         "Content-Type": "application/json"
@@ -242,7 +242,9 @@ export default {
         this.events = JSON.parse(JSON.stringify(res)).data;
         this.searched = this.events;
       })
-      .catch(err => {});
+      .catch(err => {
+        console.log(err);
+      });
   }
 };
 </script>
