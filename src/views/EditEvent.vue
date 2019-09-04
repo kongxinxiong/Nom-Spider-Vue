@@ -91,7 +91,7 @@
                         <div class="md-layout-item md-white md-size-100 md-small-size-100 md-xsmall-size-100 md-medium-size-50 mx-auto">
                             <div class="space-50"></div>
                             <el-upload
-                                    :show-file-list="false"
+                                    :show-file-list="true"
                                     accept=".png,jpg,jpeg"
                                     with-credentials
                                     name="file"
@@ -189,7 +189,7 @@
             uploadImgUrl() {
                 //上传的地址
                 console.log("uploadImgUrl");
-                return "http://localhost:8080/api/user/image/";
+                return "http://localhost:8080/api/event/image/";
             },
             uploadImgError() {
                 console.log("uploadImgError");
@@ -201,8 +201,8 @@
             uploadImgSuccess(res,file) {
                 console.log("uploadImgSuccess");
                 this.$notify.success();
-                console.log(res,file);
-                this.event.filename=res.filename
+                console.log(JSON.stringify(res));
+                this.event.photoURL=res.data.filename
                 //在此处刷新当前界面
                 // let NewPage = "_empty" + "?time=" + new Date().getTime() / 500;
                 // this.$router.push(NewPage);
@@ -238,7 +238,7 @@
                     description:"",
                     startdate:"",
                     perferences:[],
-                    filename:""
+                    photoURL:""
 
                 },
                 carousel: [
