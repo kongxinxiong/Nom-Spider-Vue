@@ -222,7 +222,7 @@
                 "\"password\": null,\n" +
                 "\"email\": null,\n" +
                 "\"photoURL\": null\n" +
-                "}")
+                "}");
             this.userInfo=JSON.parse(localStorage.getItem('Authorization'));
 
 

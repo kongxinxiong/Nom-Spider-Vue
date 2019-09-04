@@ -201,6 +201,9 @@ export default {
       this.userid = this.$route.params.eventid;
       this.userInfo=JSON.parse(localStorage.getItem('Authorization'));
   },
+  createEvent(){
+    this.$router.push('/editevent');
+  },
   mounted() {
     requestAPI({
       url: "http://localhost:8080/api/events",
