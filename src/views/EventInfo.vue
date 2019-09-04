@@ -192,6 +192,7 @@ export default {
     );
     this.userInfo = JSON.parse(localStorage.getItem("Authorization"));
 
+    alert("userId "+this.userInfo.id+" eventId="+ this.eventid);
     //request to get all the detailed information of an event
     requestAPI({
       url: "http://localhost:8080/api/event/" + this.eventid,
@@ -202,9 +203,10 @@ export default {
     })
       .then(res => {
         this.event = JSON.parse(JSON.stringify(res)).data;
+        console.log(JSON.stringify(this.event));
       })
       .catch(err => {
-        alert(JSON.stringify(err));
+        console.log(JSON.stringify(err));
       });
 
     //request to get all the attendees for this event
@@ -219,7 +221,7 @@ export default {
         this.enrollment = JSON.parse(JSON.stringify(res)).data;
       })
       .catch(err => {
-        alert(JSON.stringify(err));
+        console.log(JSON.stringify(err));
       });
 
     //get event-user status : liked or joint
@@ -238,7 +240,7 @@ export default {
                this.isDisabled = JSON.parse(JSON.stringify(res)).data.status;
             })
             .catch(err => {
-              alert(JSON.stringify(err));
+              console.log(JSON.stringify(err));
             });
 
     requestAPI({
@@ -257,7 +259,7 @@ export default {
               this.like = JSON.parse(JSON.stringify(res)).data.status;
             })
             .catch(err => {
-              alert(JSON.stringify(err));
+              console.log(JSON.stringify(err));
             });
   },
 
@@ -346,10 +348,10 @@ export default {
         body: this.eventid
       })
         .then(res => {
-          alert(JSON.stringify(res));
+          console.log(JSON.stringify(res));
         })
         .catch(err => {
-          alert(JSON.stringify(err));
+          console.log(JSON.stringify(err));
         });
     },
     //like request, add/remove record from DB
@@ -367,11 +369,11 @@ export default {
         }
       })
               .then(res => {
-                alert(JSON.stringify(this.userInfo) + " success "+JSON.stringify(res));
+                console.log(JSON.stringify(this.userInfo) + " success "+JSON.stringify(res));
                 console.log(res);
               })
               .catch(err => {
-                alert(JSON.stringify(this.userInfo) + " "+ this.eventId +" error "+JSON.stringify(err));
+                console.log(JSON.stringify(this.userInfo) + " "+ this.eventId +" error "+JSON.stringify(err));
                 console.log(err);
               });
     },
@@ -389,13 +391,13 @@ export default {
         }
       })
         .then(res => {
-          alert(
+          console.log(
             JSON.stringify(this.userInfo) + " success " + JSON.stringify(res)
           );
           console.log(res);
         })
         .catch(err => {
-          alert(
+          console.log(
             JSON.stringify(this.userInfo) + " error " + JSON.stringify(err)
           );
           console.log(err);
