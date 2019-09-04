@@ -47,7 +47,7 @@
         >
           <md-card style="max-width: 250px;">
             <md-card-media md-ratio="16:9">
-              <img :src="img" alt="Rounded Image" class="rounded" />
+              <img :src="img" alt="Rounded Image" class="rounded" @click="go4Details" />
             </md-card-media>
             <md-card-content style="text-align: center;padding:0">
               <strong>Hiking Saturaday</strong><br />2019-09-09
@@ -55,7 +55,7 @@
           </md-card>
           <md-card style="max-width: 250px;">
             <md-card-media md-ratio="16:9">
-              <img :src="img" alt="Rounded Image" class="rounded" />
+              <img :src="img" alt="Rounded Image" class="rounded" @click="go4Details" />
             </md-card-media>
             <md-card-content style="text-align: center;padding:0">
               <strong>Hiking Saturaday</strong><br />2019-09-09
@@ -63,7 +63,7 @@
           </md-card>
           <md-card style="max-width: 250px;">
             <md-card-media md-ratio="16:9">
-              <img :src="img" alt="Rounded Image" class="rounded" />
+              <img :src="img" alt="Rounded Image" class="rounded" @click="go4Details" />
             </md-card-media>
             <md-card-content style="text-align: center;padding:0">
               <strong>Hiking Saturaday</strong><br />2019-09-09
@@ -71,7 +71,7 @@
           </md-card>
           <md-card style="max-width: 250px;">
             <md-card-media md-ratio="16:9">
-              <img :src="img" alt="Rounded Image" class="rounded" />
+              <img :src="img" alt="Rounded Image" class="rounded" @click="go4Details" />
             </md-card-media>
             <md-card-content style="text-align: center;padding:0">
               <strong>Hiking Saturaday</strong><br />2019-09-09
@@ -79,7 +79,7 @@
           </md-card>
           <md-card style="max-width: 250px;">
             <md-card-media md-ratio="16:9">
-              <img :src="img" alt="Rounded Image" class="rounded" />
+              <img :src="img" alt="Rounded Image" class="rounded" @click="go4Details" />
             </md-card-media>
             <md-card-content style="text-align: center;padding:0">
               <strong>Hiking Saturaday</strong><br />2019-09-09
@@ -87,7 +87,7 @@
           </md-card>
           <md-card style="max-width: 250px;">
             <md-card-media md-ratio="16:9">
-              <img :src="img" alt="Rounded Image" class="rounded" />
+              <img :src="img" alt="Rounded Image" class="rounded" @click="go4Details" />
             </md-card-media>
             <md-card-content style="text-align: center;padding:0">
               <strong>Hiking Saturaday</strong><br />2019-09-09
@@ -95,7 +95,7 @@
           </md-card>
           <md-card style="max-width: 250px;">
             <md-card-media md-ratio="16:9">
-              <img :src="img" alt="Rounded Image" class="rounded" />
+              <img :src="img" alt="Rounded Image" class="rounded"  @click="go4Details" />
             </md-card-media>
             <md-card-content style="text-align: center;padding:0">
               <strong>Hiking Saturaday</strong><br />2019-09-09
