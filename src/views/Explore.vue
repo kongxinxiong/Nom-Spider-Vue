@@ -169,7 +169,7 @@ export default {
     },
     participant(eventid) {
       requestAPI({
-        url: "http::localhost:8080/api/user/jointEvent/",
+        url: "http://localhost:8080/api/user/jointEvent/",
         method: "POST",
         headers: {
           "Content-Type": "application/json"
@@ -229,7 +229,8 @@ export default {
         "}"
     );
     this.userInfo = JSON.parse(localStorage.getItem("Authorization"));
-
+  },
+  mounted() {
     requestAPI({
       url: "http://localhost:8080/api/user/userRanking",
       method: "GET",
@@ -243,8 +244,7 @@ export default {
             .catch(err => {
               console.log(err);
             });
-  },
-  mounted() {
+
     requestAPI({
       url: "http://localhost:8080/api/comingEvents",
       method: "GET",
