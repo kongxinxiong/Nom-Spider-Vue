@@ -229,8 +229,7 @@ export default {
         "}"
     );
     this.userInfo = JSON.parse(localStorage.getItem("Authorization"));
-  },
-  mounted() {
+
     requestAPI({
       url: "http://localhost:8080/api/user/userRanking",
       method: "GET",
@@ -238,13 +237,14 @@ export default {
         "Content-Type": "application/json"
       }
     })
-      .then(res => {
-        this.ranking = JSON.parse(JSON.stringify(res)).data;
-      })
-      .catch(err => {
-        console.log(err);
-      });
-
+            .then(res => {
+              this.ranking = JSON.parse(JSON.stringify(res)).data;
+            })
+            .catch(err => {
+              console.log(err);
+            });
+  },
+  mounted() {
     requestAPI({
       url: "http://localhost:8080/api/comingEvents",
       method: "GET",
