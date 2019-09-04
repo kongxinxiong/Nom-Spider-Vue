@@ -244,7 +244,7 @@ export default {
             });
 
     requestAPI({
-      url: "http://localhost:8080/api/user/user/userInterestParticularEvents/",
+      url: "http://localhost:8080/api/user/userInterestParticularEvents/",
       method: "GET",
       headers: {
         "Content-Type": "application/json"
