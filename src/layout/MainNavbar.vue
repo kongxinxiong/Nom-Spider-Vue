@@ -139,8 +139,6 @@ export default {
     }
   },
   created(){
-    localStorage.setItem('Authorization','xxx');
-
     this.isLogin=(localStorage.getItem('Authorization')!=null);
     //alert(this.isLogin);
   },
