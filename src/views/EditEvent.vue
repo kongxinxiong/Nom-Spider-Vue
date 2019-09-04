@@ -95,7 +95,7 @@
                                     accept=".png,jpg,jpeg"
                                     with-credentials
                                     name="file"
-                                    :action="uploadImgUrl"
+                                    :action="uploadImgUrl()"
                                     :on-error="uploadImgError"
                                     :on-success="uploadImgSuccess"
                                     :before-upload="beforeImgUpload"
@@ -218,7 +218,7 @@
             localStorage.setItem('Authorization',"{\n" +
                 "\"id\": 25,\n" +
                 "\"name\": \"mark\",\n" +
-                "\"birthday\": \"2019-08-26T09:26:57.000+0000\",\n" +
+                "\"birthday\": \"2019-08-26\",\n" +
                 "\"location\": null,\n" +
                 "\"username\": null,\n" +
                 "\"password\": null,\n" +
@@ -238,7 +238,7 @@
                     maxnumber:"",
                     location:"",
                     description:"",
-                    startdate:"",
+                    startdate:null,
                     perferences:[],
                     photoURL:""
 

@@ -58,7 +58,7 @@
                                 </div>
                                 <div class="md-layout">
                                     <div class="flex-column md-layout-item md-size-50 md-xsmall-size-100 md-small-size-50 md-medium-size-50">
-                                        <md-checkbox v-model="userProfile.preferences" value=1>Party</md-checkbox>
+                                        <md-checkbox v-model="userProfile.preferences" value=20>Party</md-checkbox>
                                         <md-checkbox v-model="userProfile.preferences" value=2>Reading</md-checkbox>
                                         <md-checkbox v-model="userProfile.preferences" value=3>Skiing</md-checkbox>
                                         <md-checkbox v-model="userProfile.preferences" value=4>Badminton</md-checkbox>
@@ -69,7 +69,7 @@
                                         <md-checkbox v-model="userProfile.preferences" value=7>Video Game</md-checkbox>
                                         <md-checkbox v-model="userProfile.preferences" value=8>Basket Ball</md-checkbox>
                                         <md-checkbox v-model="userProfile.preferences" value=9>Family Event</md-checkbox>
-                                        <md-checkbox v-model="userProfile.preferences" value=20>Pet</md-checkbox>
+                                        <md-checkbox v-model="userProfile.preferences" value=10>Pet</md-checkbox>
                                     </div>
                                 </div>
                                 <div class="space-50"></div>
@@ -140,6 +140,7 @@
             })
                 .then(res => {
                     this.userProfile = JSON.parse(JSON.stringify(res)).data;
+                    // alert(JSON.stringify(res));
                 })
                 .catch(err => {
                     alert(JSON.stringify(err));
