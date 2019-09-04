@@ -11,11 +11,10 @@ import Mynet from "./views/Mynet";
 import Signup from "./views/Signup";
 import ActivityInfo from "./views/EventInfo";
 import ElementUI from "element-ui";
-import 'element-ui/lib/theme-chalk/index.css';
+import "element-ui/lib/theme-chalk/index.css";
 import EditEvent from "./views/EditEvent";
 Vue.use(Router);
 Vue.use(ElementUI);
-
 
 const router = new Router({
   routes: [
@@ -33,7 +32,7 @@ const router = new Router({
       name: "landing",
       components: { default: Landing, header: MainNavbar, footer: MainFooter },
       props: {
-        header: { colorOnScroll: 400 },
+        header: { colorOnScroll: 400 }
       }
     },
     {
@@ -55,7 +54,11 @@ const router = new Router({
     {
       path: "/editevent",
       name: "editevent",
-      components: { default: EditEvent, header: MainNavbar, footer: MainFooter },
+      components: {
+        default: EditEvent,
+        header: MainNavbar,
+        footer: MainFooter
+      },
       props: {
         header: { colorOnScroll: 400 }
       }
@@ -88,7 +91,11 @@ const router = new Router({
     {
       path: "/eventInfo",
       name: "eventInfo",
-      components: { default: ActivityInfo, header: MainNavbar, footer: MainFooter },
+      components: {
+        default: ActivityInfo,
+        header: MainNavbar,
+        footer: MainFooter
+      },
       props: {
         header: { colorOnScroll: 400 },
         footer: { backgroundColor: "black" }
@@ -105,13 +112,13 @@ const router = new Router({
 });
 
 router.beforeEach((to, from, next) => {
-  if (to.path === '/login'||to.path === '/signup') {
+  if (to.path === "/login" || to.path === "/signup") {
     next();
   } else {
-    let token = localStorage.getItem('Authorization');
+    let token = localStorage.getItem("Authorization");
 
-    if (token === null || token === '') {
-      next('/login');
+    if (token === null || token === "") {
+      next("/login");
     } else {
       next();
     }

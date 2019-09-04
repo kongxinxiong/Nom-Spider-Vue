@@ -1,5 +1,5 @@
 module.exports = {
-  publicPath:"/static",
+  publicPath: "/static",
   css: {
     loaderOptions: {
       css: {

@@ -25,7 +25,11 @@
                   sign up
                 </router-link>
               </p>
-              <md-button slot="footer" class="md-simple md-success md-lg" @click="signin">
+              <md-button
+                slot="footer"
+                class="md-simple md-success md-lg"
+                @click="signin"
+              >
                 SIGN IN
               </md-button>
             </login-card>
@@ -37,7 +41,7 @@
 </template>
 
 <script>
-  import {mapMutations} from 'vuex'
+import { mapMutations } from "vuex";
 import { LoginCard } from "@/components";
 import requestAPI from "../plugins/request";
 
@@ -47,16 +51,13 @@ export default {
   },
   bodyClass: "login-page",
   data: () => ({
-            userInfo: {
-              username: null,
-              email: null,
-              password: null,
-                name: null,
-                photoURL: null
-            },
-            userToken:''
-  }
-  ),
+    userInfo: {
+      username: null,
+      email: null,
+      password: null
+    },
+    userToken: ""
+  }),
   props: {
     header: {
       type: String,
@@ -71,31 +72,37 @@ export default {
     }
   },
   methods: {
-    ...mapMutations(['changeLogin']),
-    signin(){
+    ...mapMutations(["changeLogin"]),
+    signin() {
       requestAPI({
         url: "http://localhost:8080/api/user/login",
         method: "POST",
-        headers:{
-          'Content-Type':'application/json'
+        headers: {
+          "Content-Type": "application/json"
         },
         body: this.userInfo
       })
-              .then(res => {
-                if(res.data==null){
-                alert("please input correct username and password");}
-                else{
-                this.userToken=res.data;
-                // alert(JSON.stringify(this.userToken))
-                // this.changeLogin(this.userToken);
-                    localStorage.setItem('Authorization',JSON.stringify(this.userToken));
-                this.$router.push('/explore');}
-                console.log(res);
-              })
-              .catch(err => {
-                alert(JSON.stringify(this.userInfo) + " error "+JSON.stringify(err));
-                console.log(err);
-              });
+        .then(res => {
+          if (res.data == null) {
+            alert("please input correct username and password");
+          } else {
+            this.userToken = res.data;
+            // alert(JSON.stringify(this.userToken))
+            // this.changeLogin(this.userToken);
+            localStorage.setItem(
+              "Authorization",
+              JSON.stringify(this.userToken)
+            );
+            this.$router.push("/explore");
+          }
+          console.log(res);
+        })
+        .catch(err => {
+          alert(
+            JSON.stringify(this.userInfo) + " error " + JSON.stringify(err)
+          );
+          console.log(err);
+        });
     }
   }
 };

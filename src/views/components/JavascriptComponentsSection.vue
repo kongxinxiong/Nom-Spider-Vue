@@ -29,9 +29,9 @@
 
                 <template slot="body">
                   <md-button
-                          class="md-danger md-simple"
-                          @click="classicModalHide"
-                  >Close</md-button
+                    class="md-danger md-simple"
+                    @click="classicModalHide"
+                    >Close</md-button
                   >
                 </template>
 
