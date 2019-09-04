@@ -14,9 +14,7 @@
           </li>
         </ul>
       </nav>
-      <div class="copyright">
-        &copy; {{ year }}, made BY Nom-Spider
-      </div>
+      <div class="copyright">&copy; {{ year }}, made BY Nom-Spider</div>
     </div>
   </footer>
 </template>

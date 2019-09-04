@@ -17,9 +17,10 @@
                 />
               </div>
               <div class="md-layout-item">
-                <h4 class="info-title">{{this.userInfo.name}}</h4>
+                <h4 class="info-title">{{ this.userInfo.name }}</h4>
                 <h6 class="description">
-                  <i class="material-icons">my_location</i>{{this.userInfo.location}}
+                  <i class="material-icons">my_location</i
+                  >{{ this.userInfo.location }}
                 </h6>
               </div>
             </div>
@@ -47,7 +48,10 @@
             <div
               class="md-layout-item md-size-100 md-small-size-100 md-xsmall-size-100"
             >
-              <md-field md-clearable class="md-toolbar-section-end md-form-group">
+              <md-field
+                md-clearable
+                class="md-toolbar-section-end md-form-group"
+              >
                 <md-icon>search</md-icon>
                 <md-input
                   placeholder="Search by title..."
@@ -73,9 +77,19 @@
                   >Create New Event</md-button
                 >
               </md-table-empty-state>
-              <md-table-row slot="md-table-row" slot-scope="{ item }" @click="go4Details">
+              <md-table-row
+                slot="md-table-row"
+                slot-scope="{ item }"
+                @click="go4Details"
+              >
                 <md-table-cell md-label="Event" md-sort-by="rank">
-                  <div class="img-container"><img :src="'http://localhost:8080/api/user/image/'+item.photoURL" /></div>
+                  <div class="img-container">
+                    <img
+                      :src="
+                        'http://localhost:8080/api/user/image/' + item.photoURL
+                      "
+                    />
+                  </div>
                 </md-table-cell>
                 <md-table-cell md-label="Detail" md-sort-by="detail">{{
                   item.title
@@ -103,7 +117,7 @@
 </template>
 
 <script>
-  import requestAPI from "../plugins/request";
+import requestAPI from "../plugins/request";
 const searchByName = (items, term) => {
   if (term) {
     return items.filter(item =>
@@ -136,7 +150,7 @@ export default {
   data: () => ({
     search: null,
     searched: [],
-    second:false,
+    second: false,
     ranking: [
       {
         rank: 1,
@@ -189,7 +203,7 @@ export default {
         score: 132
       }
     ],
-    events: ['aaa']
+    events: ["aaa"]
   }),
   methods: {
     searchOnTable() {
@@ -198,27 +212,27 @@ export default {
     }
   },
   created() {
-      this.userid = this.$route.params.eventid;
-      this.userInfo=JSON.parse(localStorage.getItem('Authorization'));
+    this.userid = this.$route.params.eventid;
+    this.userInfo = JSON.parse(localStorage.getItem("Authorization"));
   },
-  createEvent(){
-    this.$router.push('/editevent');
+  createEvent() {
+    this.$router.push("/editevent");
   },
   mounted() {
     requestAPI({
       url: "http://localhost:8080/api/events",
       method: "GET",
-      headers:{
-        'Content-Type':'application/json'
-      },
+      headers: {
+        "Content-Type": "application/json"
+      }
     })
-            .then(res => {
-              this.events = JSON.parse(JSON.stringify(res)).data;
-              this.searched = this.events;
-            })
-            .catch(err => {
-              alert(JSON.stringify(err));
-            });
+      .then(res => {
+        this.events = JSON.parse(JSON.stringify(res)).data;
+        this.searched = this.events;
+      })
+      .catch(err => {
+        alert(JSON.stringify(err));
+      });
   }
 };
 </script>
@@ -244,7 +258,7 @@ export default {
 .md-table-cell {
   white-space: pre;
 }
-.md-overlay{
-  background: rgba(0,0,0,0.05);
+.md-overlay {
+  background: rgba(0, 0, 0, 0.05);
 }
 </style>
