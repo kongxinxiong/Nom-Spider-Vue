@@ -62,7 +62,7 @@
                 @click="participant"
                 >Enroll</md-button
               >
-              <md-button v-else>Finished</md-button>
+              <md-button v-else>Enrolled</md-button>
             </div>
             <div class="md-layout-item" style="justify-content: center">
               <md-button
