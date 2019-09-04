@@ -102,7 +102,7 @@
                     md-title="Post created!"
                     md-content="Your post <strong>Material Design is awesome</strong> has been created."
                   />
-                  <md-button class="md-primary md-sm" @click="clicklike(item.id)"
+                  <md-button class="md-primary md-sm" @click="clickLike(item.id)"
                     ><md-icon>favorite</md-icon>Add To favorite</md-button
                   >
                 </md-table-cell>
@@ -232,7 +232,7 @@ export default {
   },
   mounted() {
     requestAPI({
-      url: "http://localhost:8080/api/user/userRanking",
+      url: "http://localhost:8080/api/user/userRanking/",
       method: "GET",
       headers: {
         "Content-Type": "application/json"
