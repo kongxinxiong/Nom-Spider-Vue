@@ -254,6 +254,7 @@ export default {
     })
       .then(res => {
         this.events = JSON.parse(JSON.stringify(res)).data;
+        this.searched = this.events;
       })
       .catch(err => {
         console.log(err);
