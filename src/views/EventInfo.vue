@@ -168,8 +168,7 @@ export default {
       };
     },
     isFinished() {
-      let eventFinished = true;
-      return eventFinished;
+      return this.isDisabled;
     },
 
     isLiked() {

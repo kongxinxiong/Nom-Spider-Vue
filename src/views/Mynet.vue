@@ -7,8 +7,7 @@
             class="md-layout-item md-layout md-gutter md-size-50 md-small-size-100 md-xsmall-size-100"
           >
             <div class="md-layout-item md-size-40">
-              <img
-                :src="img"
+              <img :src="'http://localhost:8080/api/user/image/'+this.userInfo.photoURL"
                 alt="Circle Image"
                 class="rounded-circle avatar"
               />

@@ -94,7 +94,7 @@
                   item.title
                 }}</md-table-cell>
                 <md-table-cell md-label="Action">
-                  <md-button class="md-primary md-sm"
+                  <md-button class="md-primary md-sm" @click="participant(item.id)"
                     ><md-icon>plus_one</md-icon>JOIN NOW</md-button
                   >
                   <md-dialog-alert
@@ -102,7 +102,7 @@
                     md-title="Post created!"
                     md-content="Your post <strong>Material Design is awesome</strong> has been created."
                   />
-                  <md-button class="md-primary md-sm" @click="second = true"
+                  <md-button class="md-primary md-sm" @click="clicklike(item.id)"
                     ><md-icon>favorite</md-icon>Add To favorite</md-button
                   >
                 </md-table-cell>
@@ -166,7 +166,53 @@ export default {
         name: "eventInfo",
         params: { eventid: id}
       });
-    }
+    },
+    participant(eventid) {
+      requestAPI({
+        url: "http::localhost:8080/api/user/jointEvent/",
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: {
+          userId: this.userInfo.userId,
+          eventId: eventid
+        }
+      })
+              .then(res => {
+                alert(
+                        JSON.stringify(this.userInfo) + " success " + JSON.stringify(res)
+                );
+                console.log(res);
+              })
+              .catch(err => {
+                alert(
+                        JSON.stringify(this.userInfo) + " error " + JSON.stringify(err)
+                );
+                console.log(err);
+              });
+    },
+    clickLike(eventid) {
+      requestAPI({
+        url: "http://localhost:8080/api/user/favorateEvent/",
+        method: "POST",
+        headers:{
+          'Content-Type':'application/json'
+        },
+        body: {
+          userId: JSON.parse(localStorage.getItem("Authorization")).id,
+          eventId: eventid
+        }
+      })
+              .then(res => {
+                console.log(JSON.stringify(this.userInfo) + " success "+JSON.stringify(res));
+                this.second = true;
+              })
+              .catch(err => {
+                alert(JSON.stringify(this.userInfo) + " "+ this.eventId +" error "+JSON.stringify(err));
+                console.log(err);
+              });
+    },
   },
   created: function() {
     localStorage.setItem(
