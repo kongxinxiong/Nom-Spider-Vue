@@ -2,7 +2,7 @@
   <div class="wrapper">
     <div class="section page-header header-filter" :style="headerStyle">
       <div class="container">
-        <div class="md-layout md-gutter md-alignment-top-left">
+        <div class="md-layout md-gutter md-alignment-top-left" style="margin-top: 100px">
           <div
             class="md-layout-item md-layout md-gutter md-size-33 md-small-size-33 md-xsmall-size-100"
           >
@@ -209,14 +209,26 @@ export default {
     searchOnTable() {
       this.searched = searchByName(this.events, this.search);
       console.log(this.searched);
+    },
+    createEvent() {
+      this.$router.push("/editevent");
     }
   },
-  created() {
-    this.userid = this.$route.params.eventid;
+  created: function() {
+    localStorage.setItem(
+      "Authorization",
+      "{\n" +
+        '"id": 25,\n' +
+        '"name": "mark",\n' +
+        '"birthday": "2019-08-26T09:26:57.000+0000",\n' +
+        '"location": null,\n' +
+        '"username": null,\n' +
+        '"password": null,\n' +
+        '"email": null,\n' +
+        '"photoURL": null\n' +
+        "}"
+    );
     this.userInfo = JSON.parse(localStorage.getItem("Authorization"));
-  },
-  createEvent() {
-    this.$router.push("/editevent");
   },
   mounted() {
     requestAPI({
@@ -230,9 +242,7 @@ export default {
         this.events = JSON.parse(JSON.stringify(res)).data;
         this.searched = this.events;
       })
-      .catch(err => {
-        alert(JSON.stringify(err));
-      });
+      .catch(err => {});
   }
 };
 </script>

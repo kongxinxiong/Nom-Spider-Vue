@@ -185,6 +185,7 @@ import requestAPI from "../plugins/request";
 
 export default {
   name: "EditEvent",
+  bodyClass: "profile-page",
   components: {
     requestAPI
   },

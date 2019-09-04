@@ -102,6 +102,204 @@
             </md-card-content>
           </md-card>
         </md-content>
+          <div class="md-layout">
+              <div class="md-layout-item">
+                  <h3 class="md-title">Upcoming Events</h3>
+              </div>
+          </div>
+          <md-content
+                  class="md-scrollbar"
+                  style="overflow-x: auto; white-space: nowrap;width:100%;z-index: 5;background-color: rgba(0,0,0,0)"
+          >
+              <md-card style="max-width: 250px;">
+                  <md-card-media md-ratio="16:9">
+                      <img :src="img" alt="Rounded Image" class="rounded" />
+                  </md-card-media>
+                  <md-card-content style="text-align: center;padding:0">
+                      <strong>Hiking Saturaday</strong><br />2019-09-09
+                  </md-card-content>
+              </md-card>
+              <md-card style="max-width: 250px;">
+                  <md-card-media md-ratio="16:9">
+                      <img :src="img" alt="Rounded Image" class="rounded" />
+                  </md-card-media>
+                  <md-card-content style="text-align: center;padding:0">
+                      <strong>Hiking Saturaday</strong><br />2019-09-09
+                  </md-card-content>
+              </md-card>
+              <md-card style="max-width: 250px;">
+                  <md-card-media md-ratio="16:9">
+                      <img :src="img" alt="Rounded Image" class="rounded" />
+                  </md-card-media>
+                  <md-card-content style="text-align: center;padding:0">
+                      <strong>Hiking Saturaday</strong><br />2019-09-09
+                  </md-card-content>
+              </md-card>
+              <md-card style="max-width: 250px;">
+                  <md-card-media md-ratio="16:9">
+                      <img :src="img" alt="Rounded Image" class="rounded" />
+                  </md-card-media>
+                  <md-card-content style="text-align: center;padding:0">
+                      <strong>Hiking Saturaday</strong><br />2019-09-09
+                  </md-card-content>
+              </md-card>
+              <md-card style="max-width: 250px;">
+                  <md-card-media md-ratio="16:9">
+                      <img :src="img" alt="Rounded Image" class="rounded" />
+                  </md-card-media>
+                  <md-card-content style="text-align: center;padding:0">
+                      <strong>Hiking Saturaday</strong><br />2019-09-09
+                  </md-card-content>
+              </md-card>
+              <md-card style="max-width: 250px;">
+                  <md-card-media md-ratio="16:9">
+                      <img :src="img" alt="Rounded Image" class="rounded" />
+                  </md-card-media>
+                  <md-card-content style="text-align: center;padding:0">
+                      <strong>Hiking Saturaday</strong><br />2019-09-09
+                  </md-card-content>
+              </md-card>
+              <md-card style="max-width: 250px;">
+                  <md-card-media md-ratio="16:9">
+                      <img :src="img" alt="Rounded Image" class="rounded" />
+                  </md-card-media>
+                  <md-card-content style="text-align: center;padding:0">
+                      <strong>Hiking Saturaday</strong><br />2019-09-09
+                  </md-card-content>
+              </md-card>
+          </md-content>
+          <div class="md-layout">
+              <div class="md-layout-item">
+                  <h3 class="md-title">Upcoming Events</h3>
+              </div>
+          </div>
+          <md-content
+                  class="md-scrollbar"
+                  style="overflow-x: auto; white-space: nowrap;width:100%;z-index: 5;background-color: rgba(0,0,0,0)"
+          >
+              <md-card style="max-width: 250px;">
+                  <md-card-media md-ratio="16:9">
+                      <img :src="img" alt="Rounded Image" class="rounded" />
+                  </md-card-media>
+                  <md-card-content style="text-align: center;padding:0">
+                      <strong>Hiking Saturaday</strong><br />2019-09-09
+                  </md-card-content>
+              </md-card>
+              <md-card style="max-width: 250px;">
+                  <md-card-media md-ratio="16:9">
+                      <img :src="img" alt="Rounded Image" class="rounded" />
+                  </md-card-media>
+                  <md-card-content style="text-align: center;padding:0">
+                      <strong>Hiking Saturaday</strong><br />2019-09-09
+                  </md-card-content>
+              </md-card>
+              <md-card style="max-width: 250px;">
+                  <md-card-media md-ratio="16:9">
+                      <img :src="img" alt="Rounded Image" class="rounded" />
+                  </md-card-media>
+                  <md-card-content style="text-align: center;padding:0">
+                      <strong>Hiking Saturaday</strong><br />2019-09-09
+                  </md-card-content>
+              </md-card>
+              <md-card style="max-width: 250px;">
+                  <md-card-media md-ratio="16:9">
+                      <img :src="img" alt="Rounded Image" class="rounded" />
+                  </md-card-media>
+                  <md-card-content style="text-align: center;padding:0">
+                      <strong>Hiking Saturaday</strong><br />2019-09-09
+                  </md-card-content>
+              </md-card>
+              <md-card style="max-width: 250px;">
+                  <md-card-media md-ratio="16:9">
+                      <img :src="img" alt="Rounded Image" class="rounded" />
+                  </md-card-media>
+                  <md-card-content style="text-align: center;padding:0">
+                      <strong>Hiking Saturaday</strong><br />2019-09-09
+                  </md-card-content>
+              </md-card>
+              <md-card style="max-width: 250px;">
+                  <md-card-media md-ratio="16:9">
+                      <img :src="img" alt="Rounded Image" class="rounded" />
+                  </md-card-media>
+                  <md-card-content style="text-align: center;padding:0">
+                      <strong>Hiking Saturaday</strong><br />2019-09-09
+                  </md-card-content>
+              </md-card>
+              <md-card style="max-width: 250px;">
+                  <md-card-media md-ratio="16:9">
+                      <img :src="img" alt="Rounded Image" class="rounded" />
+                  </md-card-media>
+                  <md-card-content style="text-align: center;padding:0">
+                      <strong>Hiking Saturaday</strong><br />2019-09-09
+                  </md-card-content>
+              </md-card>
+          </md-content>
+          <div class="md-layout">
+              <div class="md-layout-item">
+                  <h3 class="md-title">Upcoming Events</h3>
+              </div>
+          </div>
+          <md-content
+                  class="md-scrollbar"
+                  style="overflow-x: auto; white-space: nowrap;width:100%;z-index: 5;background-color: rgba(0,0,0,0)"
+          >
+              <md-card style="max-width: 250px;">
+                  <md-card-media md-ratio="16:9">
+                      <img :src="img" alt="Rounded Image" class="rounded" />
+                  </md-card-media>
+                  <md-card-content style="text-align: center;padding:0">
+                      <strong>Hiking Saturaday</strong><br />2019-09-09
+                  </md-card-content>
+              </md-card>
+              <md-card style="max-width: 250px;">
+                  <md-card-media md-ratio="16:9">
+                      <img :src="img" alt="Rounded Image" class="rounded" />
+                  </md-card-media>
+                  <md-card-content style="text-align: center;padding:0">
+                      <strong>Hiking Saturaday</strong><br />2019-09-09
+                  </md-card-content>
+              </md-card>
+              <md-card style="max-width: 250px;">
+                  <md-card-media md-ratio="16:9">
+                      <img :src="img" alt="Rounded Image" class="rounded" />
+                  </md-card-media>
+                  <md-card-content style="text-align: center;padding:0">
+                      <strong>Hiking Saturaday</strong><br />2019-09-09
+                  </md-card-content>
+              </md-card>
+              <md-card style="max-width: 250px;">
+                  <md-card-media md-ratio="16:9">
+                      <img :src="img" alt="Rounded Image" class="rounded" />
+                  </md-card-media>
+                  <md-card-content style="text-align: center;padding:0">
+                      <strong>Hiking Saturaday</strong><br />2019-09-09
+                  </md-card-content>
+              </md-card>
+              <md-card style="max-width: 250px;">
+                  <md-card-media md-ratio="16:9">
+                      <img :src="img" alt="Rounded Image" class="rounded" />
+                  </md-card-media>
+                  <md-card-content style="text-align: center;padding:0">
+                      <strong>Hiking Saturaday</strong><br />2019-09-09
+                  </md-card-content>
+              </md-card>
+              <md-card style="max-width: 250px;">
+                  <md-card-media md-ratio="16:9">
+                      <img :src="img" alt="Rounded Image" class="rounded" />
+                  </md-card-media>
+                  <md-card-content style="text-align: center;padding:0">
+                      <strong>Hiking Saturaday</strong><br />2019-09-09
+                  </md-card-content>
+              </md-card>
+              <md-card style="max-width: 250px;">
+                  <md-card-media md-ratio="16:9">
+                      <img :src="img" alt="Rounded Image" class="rounded" />
+                  </md-card-media>
+                  <md-card-content style="text-align: center;padding:0">
+                      <strong>Hiking Saturaday</strong><br />2019-09-09
+                  </md-card-content>
+              </md-card>
+          </md-content>
       </div>
     </div>
   </div>
