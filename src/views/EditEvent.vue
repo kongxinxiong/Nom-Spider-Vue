@@ -126,32 +126,34 @@
 <script>
     import requestAPI from "../plugins/request";
 
-    export default {
-
-        name: "EditEvent",
-        components:{
-            requestAPI
-        },
-        props: {
-            header: {
-                type: String,
-                default: require("@/assets/img/profile_city.jpg")
-            }
-        },
-        computed: {
-            headerStyle() {
-                return {
-                    backgroundImage: `url(${this.header})`
-                };
-            }
-        },
-        methods:{
-            onUploadChange(file)
-            {
-                var This=this;
-                This.event.file.name=file.name
-                const isIMAGE = (file.raw.type === 'image/jpeg' || file.raw.type === 'image/png'|| file.raw.type === 'image/gif');
-                const isLt1M = file.size / 1024 / 1024 < 1;
+export default {
+  name: "EditEvent",
+  bodyClass: "profile-page",
+  components: {
+    requestAPI
+  },
+  props: {
+    header: {
+      type: String,
+      default: require("@/assets/img/profile_city.jpg")
+    }
+  },
+  computed: {
+    headerStyle() {
+      return {
+        backgroundImage: `url(${this.header})`
+      };
+    }
+  },
+  methods: {
+    onUploadChange(file) {
+      var This = this;
+      This.event.file.name = file.name;
+      const isIMAGE =
+        file.raw.type === "image/jpeg" ||
+        file.raw.type === "image/png" ||
+        file.raw.type === "image/gif";
+      const isLt1M = file.size / 1024 / 1024 < 1;
 
                 if (!isIMAGE) {
                     this.$message.error('上传文件只能是图片格式!');
@@ -266,6 +268,4 @@
     }
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>
