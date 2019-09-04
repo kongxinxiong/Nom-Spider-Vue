@@ -91,15 +91,19 @@
                         <div class="md-layout-item md-white md-size-100 md-small-size-100 md-xsmall-size-100 md-medium-size-50 mx-auto">
                             <div class="space-50"></div>
                             <el-upload
-                                    action=""
-                                    accept="image/jpeg,image/gif,image/png"
+                                    :show-file-list="false"
+                                    accept=".png,jpg,jpeg"
+                                    with-credentials
+                                    name="file"
+                                    :action="uploadImgUrl()"
+                                    :on-error="uploadImgError"
+                                    :on-success="uploadImgSuccess"
+                                    :before-upload="beforeImgUpload"
+                                    enctype="multipart/form-data"
                                     :limit="1"
-                                    :on-change="onUploadChange"
-                                    :auto-upload="false"
-                                    :show-file-list="true"
-                                    >
-                                <el-button slot="trigger" size="small" type="primary">选取</el-button>
-
+                            >
+                                <md-button class="md-success md-sm">Upload</md-button>
+                                <!--                <div slot="tip" class="el-upload__tip">You can only upload required picture format</div>-->
                             </el-upload>
                             <p class="description">please upload images for your event</p>
                         </div>
@@ -196,8 +200,9 @@
             },
             uploadImgSuccess(res,file) {
                 console.log("uploadImgSuccess");
-                this.$notify.success()
-                console.log(res,file)
+                this.$notify.success();
+                console.log(res,file);
+                this.event.filename=res.filename
                 //在此处刷新当前界面
                 // let NewPage = "_empty" + "?time=" + new Date().getTime() / 500;
                 // this.$router.push(NewPage);
@@ -233,10 +238,7 @@
                     description:"",
                     startdate:"",
                     perferences:[],
-                    file:{
-                        name:'',
-                        data:''
-                    }
+                    filename:""
 
                 },
                 carousel: [
