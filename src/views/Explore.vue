@@ -10,8 +10,7 @@
               class="md-layout-item md-gutter md-layout md-size-100 md-small-size-100 md-xsmall-size-100 main main-raised"
             >
               <div class="md-layout-item md-size-40">
-                <img
-                  :src="img"
+                <img :src="'http://localhost:8080/api/user/image/'+this.userInfo.photoURL"
                   alt="Circle Image"
                   class="rounded-circle avatar"
                 />
@@ -151,58 +150,7 @@ export default {
     search: null,
     searched: [],
     second: false,
-    ranking: [
-      {
-        rank: 1,
-        name: "Shawna Dubbin",
-        score: 314
-      },
-      {
-        rank: 2,
-        name: "Odette Demageard",
-        score: 301
-      },
-      {
-        rank: 3,
-        name: "Vera Taleworth",
-        score: 299
-      },
-      {
-        rank: 4,
-        name: "Lonnie Izkovitz",
-        score: 288
-      },
-      {
-        rank: 5,
-        name: "Thatcher Stave",
-        score: 277
-      },
-      {
-        rank: 6,
-        name: "Karim Chipping",
-        score: 266
-      },
-      {
-        rank: 7,
-        name: "Helge Holyard",
-        score: 255
-      },
-      {
-        rank: 8,
-        name: "Rod Titterton",
-        score: 244
-      },
-      {
-        rank: 9,
-        name: "Gawen Applewhite",
-        score: 189
-      },
-      {
-        rank: 10,
-        name: "Nero Mulgrew",
-        score: 132
-      }
-    ],
+    ranking: [],
     events: ["aaa"]
   }),
   methods: {
@@ -245,8 +193,21 @@ export default {
       }
     })
       .then(res => {
+        this.ranking = JSON.parse(JSON.stringify(res)).data;
+      })
+      .catch(err => {
+        console.log(err);
+      });
+
+    requestAPI({
+      url: "http://localhost:8080/api/user/userRanking",
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json"
+      }
+    })
+      .then(res => {
         this.events = JSON.parse(JSON.stringify(res)).data;
-        this.searched = this.events;
       })
       .catch(err => {
         console.log(err);
