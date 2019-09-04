@@ -138,10 +138,17 @@ export default {
       default: require("@/assets/img/faces/christian.jpg")
     }
   },
+  created(){
+    localStorage.setItem('Authorization','xxx');
+
+    this.isLogin=(localStorage.getItem('Authorization')!=null);
+    //alert(this.isLogin);
+  },
   data() {
     return {
       extraNavClasses: "",
-      toggledClass: false
+      toggledClass: false,
+      isLogin:false
     };
   },
   computed: {
@@ -153,10 +160,6 @@ export default {
       let notificationNum = 1;
       return notificationNum > 0;
     },
-    isLogin() {
-      let loginStatus = 0;
-      return loginStatus === 1;
-    }
   },
   methods: {
     bodyClick() {

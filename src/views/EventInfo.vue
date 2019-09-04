@@ -20,16 +20,15 @@
                   <span class="tim-note">{{ event.title }}</span>
                 </p>
                 <h4 class="title"><span class="tim-note">Description</span></h4>
-                <p>
-                  <span class="tim-note">{{ event.description }}</span>
-                </p>
+                  <p>
+                    <span class="tim-note">{{ event.description }}</span>
+                  </p>
 
                 <h4 class="title"><span class="tim-note">Number</span></h4>
                 <p>
                   <span class="tim-note">{{ event.maxnumber }}</span>
                 </p>
-                <h4 class="title">
-                  <span class="tim-note">Time &nbsp; & &nbsp; Location</span>
+                <h4 class="title"><span class="tim-note">Time &nbsp; & &nbsp; Location</span>
                 </h4>
                 <p>
                   <span class="tim-note"
@@ -39,7 +38,7 @@
                 </p>
               </div>
             </div>
-          </div>
+            </div>
           <div class="md-layout">
             <div class="md-layout-item md-size-40 md-small-size-100 ml-auto">
               <h4 class="title"><span class="tim-note">Enrollment</span></h4>
@@ -48,32 +47,19 @@
               </p>
             </div>
             <div
-              class="md-layout-item md-size-40 md-small-size-100 mr-auto"
+                    class="md-layout-item md-size-40 md-small-size-100 mr-auto"
             ></div>
           </div>
           <div class="md-layout md-gutter">
             <div class="md-layout-item " style="justify-content: center">
-              <md-button
-                class="md-success"
-                v-if="!isFinished"
-                @click="participant"
-                >Enroll</md-button
-              >
+              <md-button class="md-success" v-if="!isFinished" @click="participant">Enroll</md-button>
               <md-button v-else>Finished</md-button>
             </div>
             <div class="md-layout-item" style="justify-content: center">
-              <md-button
-                class="md-just-icon"
-                v-if="!isLiked"
-                @click="clickLike"
-              >
+              <md-button class="md-just-icon" v-if="!isLiked" @click="clickLike">
                 <md-icon>favorite</md-icon>
               </md-button>
-              <md-button
-                class="md-just-icon md-rose"
-                v-if="isLiked"
-                @click="clickLike"
-              >
+              <md-button class="md-just-icon md-rose" v-if="isLiked" @click="clickLike">
                 <md-icon>favorite</md-icon>
               </md-button>
             </div>
@@ -92,16 +78,16 @@
                   <div class="md-layout-item mx-auto md-small-size-100">
                     <h4 class="title"><span class="tim-note">Moment</span></h4>
                     <el-upload
-                      :show-file-list="false"
-                      accept=".png,jpg,jpeg"
-                      with-credentials
-                      name="file"
-                      :action="uploadImgUrl()"
-                      :on-error="uploadImgError"
-                      :on-success="uploadImgSuccess"
-                      :before-upload="beforImgUpload"
-                      enctype="multipart/form-data"
-                      :file-list="carousel"
+                            :show-file-list="false"
+                            accept=".png,jpg,jpeg"
+                            with-credentials
+                            name="file"
+                            :action="uploadImgUrl()"
+                            :on-error="uploadImgError"
+                            :on-success="uploadImgSuccess"
+                            :before-upload="beforImgUpload"
+                            enctype="multipart/form-data"
+                            :file-list="carousel"
                     >
                       <md-button class="md-success md-sm">Upload</md-button>
                       <!--                <div slot="tip" class="el-upload__tip">You can only upload required picture format</div>-->
@@ -109,15 +95,12 @@
                     <p>
                       <br />
                       <span class="tim-note"
-                        >Share you Moment within the Activity</span
+                      >Share you Moment within the Activity</span
                       >
                     </p>
                     <md-card>
                       <el-carousel trigger="click" :interval="5000">
-                        <el-carousel-item
-                          v-for="item in carousel"
-                          :key="item.image"
-                        >
+                        <el-carousel-item v-for="item in carousel" :key="item.image">
                           <h4 class="carousel-caption">
                             <md-icon>location_on</md-icon>
                             {{ item.title }}
@@ -134,14 +117,15 @@
           </md-card>
         </div>
       </div>
+      </div>
     </div>
-  </div>
 </template>
 
 <script>
 import requestAPI from "../plugins/request";
 import { createRequest, sendFormRequest } from "../plugins/request";
 import { setTimeout } from "timers";
+
 
 export default {
   name: "ActivityInfo",
@@ -177,13 +161,11 @@ export default {
     this.eventid = this.$route.params.eventid;
 
     //request to get all the detailed information of an event
-    requestAPI({
-      url: "http://localhost:8080/api/event/" + this.eventid,
+    requestAPI({ url: "http://localhost:8080/api/event/" + this.eventid ,
       method: "GET",
-      headers: {
-        "Content-Type": "application/json"
-      }
-    })
+      headers:{
+        'Content-Type':'application/json'
+      }})
       .then(res => {
         this.event = JSON.parse(res);
       })
@@ -192,26 +174,24 @@ export default {
       });
 
     //request to get all the attendees for this event
-    requestAPI({
-      url: "http://localhost:8080/api/event/jointUsers/" + this.eventid,
+    requestAPI({ url: "http://localhost:8080/api/event/jointUsers/" + this.eventid ,
       method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      }
-    })
-      .then(res => {
-        this.enrollment = JSON.parse(res);
-      })
-      .catch(err => {
-        // alert(JSON.stringify(err));
-      });
+      headers:{
+        'Content-Type':'application/json'
+      }})
+            .then(res => {
+              this.enrollment = JSON.parse(res);
+            })
+            .catch(err => {
+              // alert(JSON.stringify(err));
+            });
   },
 
   data() {
     return {
       like: false,
       isDisabled: true,
-      enrollment: "",
+      enrollment:"",
       img: require("@/assets/img/faces/kendall.jpg"),
       event: [],
       carousel: [
@@ -287,8 +267,8 @@ export default {
       this.requestAPI({
         url: " http://localhost:8080/api/user/image/" + this.eventid,
         method: "GET",
-        headers: {
-          "Content-Type": "application/json"
+        headers:{
+          'Content-Type':'application/json'
         },
         body: this.eventid
       })
@@ -300,9 +280,11 @@ export default {
         });
     },
     //like request, add/remove record from DB
-    clickLike() {
-      if (this.like) this.like = false;
-      else this.like = true;
+    clickLike(){
+      if(this.like)
+        this.like = false;
+      else
+        this.like  = true;
       // requestAPI({
       //   url: "http://localhost:8080/api/user/favorateEvent/",
       //   method: "POST",
@@ -322,32 +304,29 @@ export default {
       //           alert(JSON.stringify(this.userInfo) + " error "+JSON.stringify(err));
       //           console.log(err);
       //         });
+
     },
     //participant request, add or remove record from DB
-    participant() {
+    participant(){
       requestAPI({
         url: "http::localhost:8080/api/user/jointEvent/",
         method: "POST",
-        headers: {
-          "Content-Type": "application/json"
+        headers:{
+          'Content-Type':'application/json'
         },
         body: {
           userId: this.userInfo.userId,
           eventId: this.eventid
         }
       })
-        .then(res => {
-          alert(
-            JSON.stringify(this.userInfo) + " success " + JSON.stringify(res)
-          );
-          console.log(res);
-        })
-        .catch(err => {
-          alert(
-            JSON.stringify(this.userInfo) + " error " + JSON.stringify(err)
-          );
-          console.log(err);
-        });
+              .then(res => {
+                alert(JSON.stringify(this.userInfo) + " success "+JSON.stringify(res));
+                console.log(res);
+              })
+              .catch(err => {
+                alert(JSON.stringify(this.userInfo) + " error "+JSON.stringify(err));
+                console.log(err);
+              });
     }
   }
 };

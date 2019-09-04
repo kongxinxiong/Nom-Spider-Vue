@@ -102,6 +102,7 @@
                                     enctype="multipart/form-data"
                                     :limit="1"
                                     :data="uploadParams"
+                                    :headers="headers"
                             >
                                 <md-button class="md-success md-sm">Upload</md-button>
                                 <!--                <div slot="tip" class="el-upload__tip">You can only upload required picture format</div>-->
@@ -192,14 +193,14 @@ export default {
             uploadImgUrl() {
                 //上传的地址
                 console.log("uploadImgUrl");
-                return "http://localhost:8080/api/event/image/";
+                return "http://192.168.43.129:8080/api/event/image/";
             },
             uploadImgError() {
                 console.log("uploadImgError");
-                //刷新当前页面，应该只在成功的时候调用，此处只是为了测试，应该注释
-                let NewPage = "_empty" + "?time=" + new Date().getTime() / 500;
-                this.$router.push(NewPage);
-                this.$router.go(-1);
+                // //刷新当前页面，应该只在成功的时候调用，此处只是为了测试，应该注释
+                // let NewPage = "_empty" + "?time=" + new Date().getTime() / 500;
+                // this.$router.push(NewPage);
+                // this.$router.go(-1);
             },
             uploadImgSuccess(res,file) {
                 console.log("uploadImgSuccess");
@@ -212,8 +213,9 @@ export default {
                 // this.$router.go(-1);
             },
             beforeImgUpload(file) {
-                console.log(file);
-                this.uploadParams.uploadFile=file.name
+
+                this.uploadParams.uploadFile=file.name;
+                console.log(this.uploadParams);
             }
         },
         created: function() {
@@ -244,6 +246,9 @@ export default {
                     perferences:[],
                     photoURL:""
 
+                },
+                headers:{
+                    'content-type':'multipart/form-data'
                 },
                 carousel: [
                     {
