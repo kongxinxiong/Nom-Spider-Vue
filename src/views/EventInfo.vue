@@ -324,8 +324,8 @@ export default {
           'Content-Type':'application/json'
         },
         body: {
-          userId: this.userInfo.id,
-          eventId: this.$route.params.eventid
+          userID: this.userInfo.id,
+          eventID: this.$route.params.eventid
         }
       })
               .then(res => {
@@ -346,8 +346,8 @@ export default {
           "Content-Type": "application/json"
         },
         body: {
-          userId: this.userInfo.id,
-          eventId: this.eventid
+          userID: this.userInfo.id,
+          eventID: this.eventid
         }
       })
         .then(res => {
