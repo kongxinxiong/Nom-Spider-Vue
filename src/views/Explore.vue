@@ -17,9 +17,9 @@
                 />
               </div>
               <div class="md-layout-item">
-                <h4 class="info-title">Carla Hortensia</h4>
+                <h4 class="info-title">{{this.userInfo.name}}</h4>
                 <h6 class="description">
-                  <i class="material-icons">my_location</i>Hong Kong
+                  <i class="material-icons">my_location</i>{{this.userInfo.location}}
                 </h6>
               </div>
             </div>
@@ -58,7 +58,7 @@
             </div>
             <div class="md-layout-item">
               <div class="md-toolbar-section-end">
-                <md-button class="md-primary md-round">
+                <md-button class="md-primary md-round" @click="createEvent">
                   <md-icon>add</md-icon>
                   create event</md-button
                 >
@@ -69,7 +69,7 @@
                 md-label="No Events found"
                 md-description="Try a different search term or create a new Events."
               >
-                <md-button class="md-primary md-raised"
+                <md-button class="md-primary md-raised" @click="createEvent"
                   >Create New Event</md-button
                 >
               </md-table-empty-state>
@@ -195,9 +195,6 @@ export default {
     searchOnTable() {
       this.searched = searchByName(this.events, this.search);
       console.log(this.searched);
-    },
-    go4Details(){
-      this.$router.push({name:"eventInfo", params:{eventid:this.eventid}})
     }
   },
   created() {

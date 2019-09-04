@@ -124,7 +124,7 @@
                         class="md-form-group md-green"
                       >
                         <md-icon>my_location</md-icon>
-                        <label for="location">Location</label>
+                        <label >Location</label>
                         <md-select
                           name="location"
                           id="location"
@@ -132,8 +132,14 @@
                           md-dense
                           :disabled="sending"
                         >
-                          <md-option value="shanghai">Shanghai</md-option>
-                          <md-option value="hongkong">Hongkong</md-option>
+                          <md-option value="Shang Hai">&nbsp;&nbsp; &nbsp;&nbsp; Shang Hai</md-option>
+                          <md-option value="Bei Jing"> &nbsp;&nbsp; &nbsp;&nbsp; Bei Jing</md-option>
+                          <md-option value="Tokyo"> &nbsp;&nbsp; &nbsp;&nbsp; Tokyo</md-option>
+                          <md-option value="Hong Kong"> &nbsp;&nbsp; &nbsp;&nbsp; Hong Kong</md-option>
+                          <md-option value="New York"> &nbsp;&nbsp; &nbsp;&nbsp; New York</md-option>
+                          <md-option value="London"> &nbsp;&nbsp; &nbsp;&nbsp; London</md-option>
+                          <md-option value="Singapore">&nbsp;&nbsp; &nbsp;&nbsp;  Singapore</md-option>
+                          <md-option value="Mumbai"> &nbsp;&nbsp; &nbsp;&nbsp; Mumbai</md-option>
                         </md-select>
                         <p class="md-error">The gender is required</p>
                       </md-field>
@@ -142,7 +148,7 @@
                         class="md-form-group md-green"
                       >
                         <md-icon>face</md-icon>
-                        <label for="gender">Gender</label>
+                        <label>Gender</label>
                         <md-select
                           name="gender"
                           id="gender"
@@ -150,8 +156,8 @@
                           md-dense
                           :disabled="sending"
                         >
-                          <md-option value="M">M</md-option>
-                          <md-option value="F">F</md-option>
+                          <md-option value="M">&nbsp;&nbsp; &nbsp;&nbsp; M</md-option>
+                          <md-option value="F">&nbsp;&nbsp; &nbsp;&nbsp; F</md-option>
                         </md-select>
                         <p class="md-error">The gender is required</p>
                       </md-field>
@@ -177,14 +183,12 @@
                       </md-field>
                       <h6>Select your preference</h6>
                       <div class="flex-column">
-                        <md-checkbox v-model="sport">Sport</md-checkbox>
-                        <md-checkbox v-model="food">Food</md-checkbox>
-                        <md-checkbox v-model="party">Party</md-checkbox>
-                        <md-checkbox v-model="drink">Drink</md-checkbox>
-                        <md-checkbox v-model="sport">Sport</md-checkbox>
-                        <md-checkbox v-model="food">Food</md-checkbox>
-                        <md-checkbox v-model="party">Party</md-checkbox>
-                        <md-checkbox v-model="drink">Drink</md-checkbox>
+                        <md-checkbox  v-model="form.perferences" value=1>Game</md-checkbox>
+                        <md-checkbox  v-model="form.perferences" value=2>Spots</md-checkbox>
+                        <md-checkbox  v-model="form.perferences" value=3>Travel</md-checkbox>
+                        <md-checkbox  v-model="form.perferences" value=4>Hiking</md-checkbox>
+                        <md-checkbox v-model="form.perferences" value=5>Movie</md-checkbox>
+                        <md-checkbox  v-model="form.perferences" value=6>Reading</md-checkbox>
                       </div>
                     </div>
                   </div>
@@ -219,6 +223,7 @@
 
 <script>
 import { validationMixin } from "vuelidate";
+import requestAPI from "../plugins/request";
 import {
   required,
   email,
@@ -226,7 +231,11 @@ import {
   maxLength
 } from "vuelidate/lib/validators";
 export default {
+
   name: "Signup",
+  components:{
+    requestAPI
+  },
   bodyClass: "login-page",
   mixins: [validationMixin],
   props: {
@@ -248,15 +257,13 @@ export default {
       lastName: null,
       gender: null,
       age: null,
-      email: null
+      email: null,
+      perferences:[]
     },
     userSaved: false,
     sending: false,
-    lastUser: null,
-    sport: true,
-    food: false,
-    drink: false,
-    party: false
+    lastUser: null
+
   }),
   validations: {
     form: {
@@ -309,6 +316,20 @@ export default {
         this.sending = false;
         this.clearForm();
       }, 1500);
+      console.log(JSON.stringify(this.form))
+      requestAPI({url: "http://localhost:8080/api/user/",
+        method: "POST",
+        headers:{
+          'Content-Type':'application/json',
+        },
+        body: this.event}).then(res => {
+        this.$router.push('/login');
+        console.log(res);
+      })
+              .catch(err => {
+                alert(" error "+JSON.stringify(err));
+                console.log(err);
+              });
     },
     validateUser() {
       this.$v.$touch();
