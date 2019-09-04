@@ -224,8 +224,26 @@ export default {
 
     //get event-user status : liked or joint
     requestAPI({
-      url: "http://localhost:8080/api/user/jointEvent/",
-      method: "POST",
+      url: "http://localhost:8080/api/user/userJointParticularEvents/",
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: {
+        userID: this.userInfo.id,
+        eventID: this.eventid
+      }
+    })
+            .then(res => {
+               this.isDisabled = JSON.parse(JSON.stringify(res)).data.status;
+            })
+            .catch(err => {
+              alert(JSON.stringify(err));
+            });
+
+    requestAPI({
+      url: "http://localhost:8080/api/user/user/userInterestParticularEvents/",
+      method: "GET",
       headers: {
         "Content-Type": "application/json"
       },
@@ -236,8 +254,7 @@ export default {
     })
             .then(res => {
               JSON.parse(JSON.stringify(res)).data;
-              this.isDisabled = false ;
-              this.like = true;
+              this.like = JSON.parse(JSON.stringify(res)).data.status;
             })
             .catch(err => {
               alert(JSON.stringify(err));
