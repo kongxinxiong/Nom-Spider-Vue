@@ -67,7 +67,7 @@ import requestAPI from "../plugins/request";
 function getUserEvents(userId,eventType) {
   requestAPI({
     url: "http://localhost:8080/api/user/"+eventType+"/"+ userId,
-    method: "POST",
+    method: "GET",
     headers:{
       'Content-Type':'application/json'
     }
@@ -106,7 +106,7 @@ function getUserEvents(userId,eventType) {
   },
   created() {
     //request for all joint but not yet started events
-    getUserEvents(this.userInfo.userId, "userJointEvents");
+    getUserEvents(this.userInfo.userId, "userJointComingEvents");
     //request for all interested but not joint events ????? recommendation
     getUserEvents(this.userInfo.userId, "userInterestEvents");
     //request for all events that you created
