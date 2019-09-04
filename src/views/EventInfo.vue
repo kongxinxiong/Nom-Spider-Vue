@@ -324,7 +324,7 @@ export default {
           'Content-Type':'application/json'
         },
         body: {
-          userId: JSON.parse(localStorage.getItem("Authorization")).id,
+          userId: this.userInfo.id,
           eventId: this.$route.params.eventid
         }
       })
@@ -346,7 +346,7 @@ export default {
           "Content-Type": "application/json"
         },
         body: {
-          userId: this.userInfo.userId,
+          userId: this.userInfo.id,
           eventId: this.eventid
         }
       })
