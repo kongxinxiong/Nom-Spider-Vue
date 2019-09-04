@@ -255,7 +255,6 @@ export default {
       }
     })
             .then(res => {
-              JSON.parse(JSON.stringify(res)).data;
               this.like = JSON.parse(JSON.stringify(res)).data.status;
             })
             .catch(err => {
