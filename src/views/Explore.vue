@@ -17,9 +17,9 @@
                 />
               </div>
               <div class="md-layout-item">
-                <h4 class="info-title">Carla Hortensia</h4>
+                <h4 class="info-title">{{this.userInfo.name}}</h4>
                 <h6 class="description">
-                  <i class="material-icons">my_location</i>Hong Kong
+                  <i class="material-icons">my_location</i>{{this.userInfo.location}}
                 </h6>
               </div>
             </div>
@@ -58,7 +58,7 @@
             </div>
             <div class="md-layout-item">
               <div class="md-toolbar-section-end">
-                <md-button class="md-primary md-round">
+                <md-button class="md-primary md-round" @click="createEvent">
                   <md-icon>add</md-icon>
                   create event</md-button
                 >
@@ -69,16 +69,16 @@
                 md-label="No Events found"
                 md-description="Try a different search term or create a new Events."
               >
-                <md-button class="md-primary md-raised"
+                <md-button class="md-primary md-raised" @click="createEvent"
                   >Create New Event</md-button
                 >
               </md-table-empty-state>
-              <md-table-row slot="md-table-row" slot-scope="{ item }">
+              <md-table-row slot="md-table-row" slot-scope="{ item }" @click="go4Details">
                 <md-table-cell md-label="Event" md-sort-by="rank">
-                  <div class="img-container"><img :src="item.img" /></div>
+                  <div class="img-container"><img :src="'http://localhost:8080/api/user/image/'+item.photoURL" /></div>
                 </md-table-cell>
                 <md-table-cell md-label="Detail" md-sort-by="detail">{{
-                  item.detail
+                  item.title
                 }}</md-table-cell>
                 <md-table-cell md-label="Action">
                   <md-button class="md-primary md-sm"
@@ -103,6 +103,7 @@
 </template>
 
 <script>
+  import requestAPI from "../plugins/request";
 const searchByName = (items, term) => {
   if (term) {
     return items.filter(item =>
@@ -188,63 +189,7 @@ export default {
         score: 132
       }
     ],
-    events: [
-      {
-        img: require("@/assets/img/profile_city.jpg"),
-        title: "Hiking Saturaday",
-        detail:
-          "Hiking Saturaday\n" +
-          "Location: Hong Kong\n" +
-          "Date: 20190909\n" +
-          "Time: 3:00pm\n" +
-          "Number of Participants: 30\n" +
-          "Fees: Free"
-      },
-      {
-        img: require("@/assets/img/profile_city.jpg"),
-        title: "Karaoke Night",
-        detail:
-          "Karaoke Night\n" +
-          "Location: Hong Kong\n" +
-          "Date: 20190909\n" +
-          "Time: 3:00pm\n" +
-          "Number of Participants: 30\n" +
-          "Fees: Free"
-      },
-      {
-        img: require("@/assets/img/profile_city.jpg"),
-        title: "Hiking Saturaday",
-        detail:
-          "Hiking Saturaday\n" +
-          "Location: Hong Kong\n" +
-          "Date: 20190909\n" +
-          "Time: 3:00pm\n" +
-          "Number of Participants: 30\n" +
-          "Fees: Free"
-      },
-      {
-        img: require("@/assets/img/profile_city.jpg"),
-        title: "Hiking Saturaday",
-        detail:
-          "Hiking Saturaday\n" +
-          "Location: Hong Kong\n" +
-          "Date: 20190909\n" +
-          "Time: 3:00pm\n" +
-          "Number of Participants: 30\n" +
-          "Fees: Free"
-      },
-      {
-        img: require("@/assets/img/profile_city.jpg"),
-        title: "Hiking Saturaday",
-        detail:
-          "Hiking Saturaday\n" +
-          "Location: Hong Kong\n" +
-          "Date: 20190909\n" +
-          "Time: 3:00pm\n" +
-          "Number of Participants: 30\n" +
-          "Fees: Free"
-      }
-    ]
+    events: ['aaa']
   }),
   methods: {
     searchOnTable() {
@@ -253,7 +198,24 @@ export default {
     }
   },
   created() {
-    this.searched = this.events;
+      this.userid = this.$route.params.eventid;
+      this.userInfo=JSON.parse(localStorage.getItem('Authorization'));
+  },
+  mounted() {
+    requestAPI({
+      url: "http://localhost:8080/api/events",
+      method: "GET",
+      headers:{
+        'Content-Type':'application/json'
+      },
+    })
+            .then(res => {
+              this.events = JSON.parse(JSON.stringify(res)).data;
+              this.searched = this.events;
+            })
+            .catch(err => {
+              alert(JSON.stringify(err));
+            });
   }
 };
 </script>
