@@ -49,13 +49,16 @@
 <!--                                                </md-field>-->
 <!--                                                </div>-->
                         <div  class="md-layout-item md-white md-size-100 md-small-size-100 md-xsmall-size-100 md-medium-size-100 mx-auto">
-
-                            <md-checkbox slot="inputs" v-model="event.perferences" value=1>Game</md-checkbox>
-                            <md-checkbox slot="inputs" v-model="event.perferences" value=2>Spots</md-checkbox>
-                            <md-checkbox slot="inputs" v-model="event.perferences" value=3>Travel</md-checkbox>
-                            <md-checkbox slot="inputs" v-model="event.perferences" value=4>Hiking</md-checkbox>
-                            <md-checkbox slot="inputs" v-model="event.perferences" value=5>Movie</md-checkbox>
-                            <md-checkbox slot="inputs" v-model="event.perferences" value=6>Reading</md-checkbox>
+                            <md-checkbox v-model="event.preferences" value=20>Party</md-checkbox>
+                            <md-checkbox v-model="event.preferences" value=2>Reading</md-checkbox>
+                            <md-checkbox v-model="event.preferences" value=3>Skiing</md-checkbox>
+                            <md-checkbox v-model="event.preferences" value=4>Badminton</md-checkbox>
+                            <md-checkbox v-model="event.preferences" value=5>Hiking</md-checkbox>
+                            <md-checkbox v-model="event.preferences" value=6>Climbing</md-checkbox>
+                            <md-checkbox v-model="event.preferences" value=7>Video Game</md-checkbox>
+                            <md-checkbox v-model="event.preferences" value=8>Basket Ball</md-checkbox>
+                            <md-checkbox v-model="event.preferences" value=9>Family Event</md-checkbox>
+                            <md-checkbox v-model="event.preferences" value=10>Pet</md-checkbox>
                             <p  class="description">Please choose subject of your event!</p>
                         </div>
 
@@ -91,7 +94,7 @@
                         <div class="md-layout-item md-white md-size-100 md-small-size-100 md-xsmall-size-100 md-medium-size-50 mx-auto">
                             <div class="space-50"></div>
                             <el-upload
-                                    :show-file-list="true"
+                                    :show-file-list="false"
                                     accept=".png,jpg,jpeg"
                                     with-credentials
                                     name="file"
@@ -101,7 +104,6 @@
                                     :before-upload="beforeImgUpload"
                                     enctype="multipart/form-data"
                                     :limit="1"
-                                    :data="uploadParams"
                                     :headers="headers"
                             >
                                 <md-button class="md-success md-sm">Upload</md-button>
@@ -172,15 +174,16 @@ export default {
                 //console.log(this.eventpic)
             },
             createEvent(){
-                this.event.user=this.userInfo.id
+                this.event.user=this.userInfo.id;
+                alert(JSON.stringify(this.event));
                 console.log(JSON.stringify(this.event));
-                requestAPI({url: "http://localhost:8080/api/event/",
+                requestAPI({url: "http://192.168.43.129:8080/api/event/",
                     method: "POST",
                     headers:{
                     'Content-Type':'application/json',
                 },
                 body: this.event}).then(res => {
-                    //alert(JSON.stringify(this.event) + " success "+JSON.stringify(res));
+                    alert(JSON.stringify(this.event) + " success "+JSON.stringify(res));
                     this.$router.push('/explore');
                     console.log(res);
                 })
@@ -193,6 +196,7 @@ export default {
             uploadImgUrl() {
                 //上传的地址
                 console.log("uploadImgUrl");
+
                 return "http://192.168.43.129:8080/api/event/image/";
             },
             uploadImgError() {
@@ -214,8 +218,6 @@ export default {
             },
             beforeImgUpload(file) {
 
-                this.uploadParams.uploadFile=file.name;
-                console.log(this.uploadParams);
             }
         },
         created: function() {
@@ -244,7 +246,7 @@ export default {
                     description:"",
                     startdate:null,
                     perferences:[],
-                    photoURL:""
+                    photoURL:"test.png"
 
                 },
                 headers:{
@@ -263,10 +265,8 @@ export default {
                         image: require("@/assets/img/nature-3.jpg"),
                         title: "National Park, United States"
                     }
-                ],
-                uploadParams:{
-                    uploadFile:'',
-                }
+                ]
+
 
         }
         )

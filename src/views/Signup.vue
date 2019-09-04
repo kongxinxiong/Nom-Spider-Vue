@@ -203,24 +203,16 @@
                       </md-field>
                       <h6>Select your preference</h6>
                       <div class="flex-column">
-                        <md-checkbox v-model="form.perferences" value="1"
-                          >Game</md-checkbox
-                        >
-                        <md-checkbox v-model="form.perferences" value="2"
-                          >Spots</md-checkbox
-                        >
-                        <md-checkbox v-model="form.perferences" value="3"
-                          >Travel</md-checkbox
-                        >
-                        <md-checkbox v-model="form.perferences" value="4"
-                          >Hiking</md-checkbox
-                        >
-                        <md-checkbox v-model="form.perferences" value="5"
-                          >Movie</md-checkbox
-                        >
-                        <md-checkbox v-model="form.perferences" value="6"
-                          >Reading</md-checkbox
-                        >
+                        <md-checkbox v-model="form.preferences" value=20>Party</md-checkbox>
+                        <md-checkbox v-model="form.preferences" value=2>Reading</md-checkbox>
+                        <md-checkbox v-model="form.preferences" value=3>Skiing</md-checkbox>
+                        <md-checkbox v-model="form.preferences" value=4>Badminton</md-checkbox>
+                        <md-checkbox v-model="form.preferences" value=5>Hiking</md-checkbox>
+                        <md-checkbox v-model="form.preferences" value=6>Climbing</md-checkbox>
+                        <md-checkbox v-model="form.preferences" value=7>Video Game</md-checkbox>
+                        <md-checkbox v-model="form.preferences" value=8>Basket Ball</md-checkbox>
+                        <md-checkbox v-model="form.preferences" value=9>Family Event</md-checkbox>
+                        <md-checkbox v-model="form.preferences" value=10>Pet</md-checkbox>
                       </div>
                     </div>
                   </div>
