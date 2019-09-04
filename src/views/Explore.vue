@@ -246,7 +246,7 @@ export default {
       });
 
     requestAPI({
-      url: "http://localhost:8080/api/user/comingEvents",
+      url: "http://localhost:8080/api/comingEvents",
       method: "GET",
       headers: {
         "Content-Type": "application/json"
