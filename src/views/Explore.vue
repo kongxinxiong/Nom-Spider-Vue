@@ -232,7 +232,7 @@ export default {
   },
   mounted() {
     requestAPI({
-      url: "http://localhost:8080/api/userRanking",
+      url: "http://localhost:8080/api/user/userRanking",
       method: "GET",
       headers: {
         "Content-Type": "application/json"
