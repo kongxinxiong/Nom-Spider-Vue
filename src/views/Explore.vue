@@ -175,8 +175,8 @@ export default {
           "Content-Type": "application/json"
         },
         body: {
-          userId: this.userInfo.userId,
-          eventId: eventid
+          userID: this.userInfo.userId,
+          eventID: eventid
         }
       })
               .then(res => {
@@ -200,8 +200,8 @@ export default {
           'Content-Type':'application/json'
         },
         body: {
-          userId: JSON.parse(localStorage.getItem("Authorization")).id,
-          eventId: eventid
+          userID: JSON.parse(localStorage.getItem("Authorization")).id,
+          eventID: eventid
         }
       })
               .then(res => {
