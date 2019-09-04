@@ -95,12 +95,13 @@
                                     accept=".png,jpg,jpeg"
                                     with-credentials
                                     name="file"
-                                    :action="uploadImgUrl()"
+                                    :action="uploadImgUrl"
                                     :on-error="uploadImgError"
                                     :on-success="uploadImgSuccess"
                                     :before-upload="beforeImgUpload"
                                     enctype="multipart/form-data"
                                     :limit="1"
+                                    :data="uploadParams"
                             >
                                 <md-button class="md-success md-sm">Upload</md-button>
                                 <!--                <div slot="tip" class="el-upload__tip">You can only upload required picture format</div>-->
@@ -147,7 +148,7 @@
         methods:{
             onUploadChange(file)
             {
-                var This=this
+                var This=this;
                 This.event.file.name=file.name
                 const isIMAGE = (file.raw.type === 'image/jpeg' || file.raw.type === 'image/png'|| file.raw.type === 'image/gif');
                 const isLt1M = file.size / 1024 / 1024 < 1;
@@ -210,6 +211,7 @@
             },
             beforeImgUpload(file) {
                 console.log(file);
+                this.uploadParams.uploadFile=file.name
             }
         },
         created: function() {
@@ -254,7 +256,10 @@
                         image: require("@/assets/img/nature-3.jpg"),
                         title: "National Park, United States"
                     }
-                ]
+                ],
+                uploadParams:{
+                    uploadFile:'',
+                }
 
         }
         )
