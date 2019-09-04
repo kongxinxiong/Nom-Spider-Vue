@@ -221,6 +221,27 @@ export default {
       .catch(err => {
         alert(JSON.stringify(err));
       });
+
+    //get event-user status : liked or joint
+    requestAPI({
+      url: "http://localhost:8080/api/user/jointEvent/",
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: {
+        userID: this.userInfo.id,
+        eventID: this.eventid
+      }
+    })
+            .then(res => {
+              JSON.parse(JSON.stringify(res)).data;
+              this.isDisabled = false ;
+              this.like = true;
+            })
+            .catch(err => {
+              alert(JSON.stringify(err));
+            });
   },
 
   data() {
@@ -340,7 +361,7 @@ export default {
     //participant request, add or remove record from DB
     participant() {
       requestAPI({
-        url: "http::localhost:8080/api/user/jointEvent/",
+        url: "http://localhost:8080/api/user/jointEvent/",
         method: "POST",
         headers: {
           "Content-Type": "application/json"

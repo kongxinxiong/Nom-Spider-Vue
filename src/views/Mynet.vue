@@ -13,9 +13,9 @@
               />
             </div>
             <div class="md-layout-item">
-              <h3 class="title">Carla Hortensia</h3>
+              <h3 class="title">{{this.userInfo.name}}</h3>
               <h6 class="description">
-                <i class="material-icons">my_location</i>Hong Kong
+                <i class="material-icons">my_location</i>{{this.userInfo.location}}
               </h6>
             </div>
           </div>

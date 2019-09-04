@@ -99,8 +99,8 @@
                   >
                   <md-dialog-alert
                     :md-active.sync="second"
-                    md-title="Post created!"
-                    md-content="Your post <strong>Material Design is awesome</strong> has been created."
+                    md-title="Favorite Added!"
+                    md-content="Your favorite <strong> Interest </strong> has been created."
                   />
                   <md-button class="md-primary md-sm" @click="clickLike(item.id)"
                     ><md-icon>favorite</md-icon>Add To favorite</md-button
