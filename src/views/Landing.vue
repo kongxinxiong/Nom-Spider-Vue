@@ -63,7 +63,7 @@ export default {
     }
   },
   created: function() {
-    this.userInfo=JSON.parse(localStorage.getItem('Authorization'));
+    this.userInfo = JSON.parse(localStorage.getItem("Authorization"));
   },
   data() {
     return {

@@ -110,24 +110,24 @@
 <script>
 import requestAPI from "../plugins/request";
 
-function getUserEvents(userId,eventType) {
+function getUserEvents(userId, eventType) {
   requestAPI({
-    url: "http://localhost:8080/api/user/"+eventType+"/"+ userId,
+    url: "http://localhost:8080/api/user/" + eventType + "/" + userId,
     method: "GET",
-    headers:{
-      'Content-Type':'application/json'
+    headers: {
+      "Content-Type": "application/json"
     }
   })
-          .then(res => {
-            alert(JSON.stringify(this.userInfo) + " success "+JSON.stringify(res));
-            console.log(res);
-          })
-          .catch(err => {
-            alert(JSON.stringify(this.userInfo) + " error "+JSON.stringify(err));
-            console.log(err);
-          });
+    .then(res => {
+      alert(JSON.stringify(this.userInfo) + " success " + JSON.stringify(res));
+      console.log(res);
+    })
+    .catch(err => {
+      alert(JSON.stringify(this.userInfo) + " error " + JSON.stringify(err));
+      console.log(err);
+    });
 }
-  export default {
+export default {
   name: "Mynet",
   bodyClass: "login-page",
   props: {
@@ -140,9 +140,6 @@ function getUserEvents(userId,eventType) {
       default: require("@/assets/img/faces/christian.jpg")
     }
   },
-  created: function() {
-    this.userInfo=JSON.parse(localStorage.getItem('Authorization'));
-  },
   computed: {
     headerStyle() {
       return {
@@ -151,6 +148,7 @@ function getUserEvents(userId,eventType) {
     }
   },
   created() {
+    this.userInfo = JSON.parse(localStorage.getItem("Authorization"));
     //request for all joint but not yet started events
     getUserEvents(this.userInfo.userId, "userJointComingEvents");
     //request for all interested but not joint events ????? recommendation
@@ -158,10 +156,12 @@ function getUserEvents(userId,eventType) {
     //request for all events that you created
     getUserEvents(this.userInfo.userId, "userCreatedEvents");
   },
-    methods:{
-      go4Details(){
-        this.$router.push({name:"eventInfo", params:{eventid:this.eventid}})
-      }
+  methods: {
+    go4Details() {
+      this.$router.push({
+        name: "eventInfo",
+        params: { eventid: this.eventid }
+      });
     }
   },
   data: () => ({

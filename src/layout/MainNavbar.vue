@@ -56,28 +56,28 @@
                   class="md-list-item-router md-list-item-container md-button-clean"
                 >
                   <div class="md-list-item-content">
-                    <md-button class="md-success md-round" href="#/login">Sign In</md-button>
+                    <md-button class="md-success md-round" href="#/login"
+                      >Sign In</md-button
+                    >
                   </div>
                 </a>
               </li>
               <li class="md-list-item" v-if="isLogin">
                 <a
-                        class="md-list-item-router md-list-item-container md-button-clean dropdown"
+                  class="md-list-item-router md-list-item-container md-button-clean dropdown"
                 >
                   <div class="md-list-item-content">
                     <drop-down direction="down" class="profile-photo">
                       <div
-                              class="profile-photo-small"
-                              slot="title"
-                              data-toggle="dropdown"
+                        class="profile-photo-small"
+                        slot="title"
+                        data-toggle="dropdown"
                       >
                         <img :src="img" alt="Circle Image" />
                       </div>
                       <ul class="dropdown-menu dropdown-menu-right">
                         <li>
-                          <a href="#pablo" class="dropdown-item"
-                          >Sign Out</a
-                          >
+                          <a href="#pablo" class="dropdown-item">Sign Out</a>
                         </li>
                       </ul>
                     </drop-down>
@@ -220,7 +220,7 @@ export default {
   padding: 4px 4px;
   text-transform: uppercase;
   font-size: 10px;
-  color: #FFFFFF;
+  color: #ffffff;
   font-weight: 500;
   line-height: 1;
   text-align: center;
