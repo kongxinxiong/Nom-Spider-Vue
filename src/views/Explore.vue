@@ -10,8 +10,7 @@
               class="md-layout-item md-gutter md-layout md-size-100 md-small-size-100 md-xsmall-size-100 main main-raised"
             >
               <div class="md-layout-item md-size-40">
-                <img
-                  :src="img"
+                <img :src="'http://localhost:8080/api/user/image/'+this.userInfo.photoURL"
                   alt="Circle Image"
                   class="rounded-circle avatar"
                 />
@@ -95,15 +94,15 @@
                   item.title
                 }}</md-table-cell>
                 <md-table-cell md-label="Action">
-                  <md-button class="md-primary md-sm"
+                  <md-button class="md-primary md-sm" @click="participant(item.id)"
                     ><md-icon>plus_one</md-icon>JOIN NOW</md-button
                   >
                   <md-dialog-alert
                     :md-active.sync="second"
-                    md-title="Post created!"
-                    md-content="Your post <strong>Material Design is awesome</strong> has been created."
+                    md-title="Favorite Added!"
+                    md-content="Your favorite <strong> Interest </strong> has been created."
                   />
-                  <md-button class="md-primary md-sm" @click="second = true"
+                  <md-button class="md-primary md-sm" @click="clickLike(item.id)"
                     ><md-icon>favorite</md-icon>Add To favorite</md-button
                   >
                 </md-table-cell>
@@ -151,58 +150,7 @@ export default {
     search: null,
     searched: [],
     second: false,
-    ranking: [
-      {
-        rank: 1,
-        name: "Shawna Dubbin",
-        score: 314
-      },
-      {
-        rank: 2,
-        name: "Odette Demageard",
-        score: 301
-      },
-      {
-        rank: 3,
-        name: "Vera Taleworth",
-        score: 299
-      },
-      {
-        rank: 4,
-        name: "Lonnie Izkovitz",
-        score: 288
-      },
-      {
-        rank: 5,
-        name: "Thatcher Stave",
-        score: 277
-      },
-      {
-        rank: 6,
-        name: "Karim Chipping",
-        score: 266
-      },
-      {
-        rank: 7,
-        name: "Helge Holyard",
-        score: 255
-      },
-      {
-        rank: 8,
-        name: "Rod Titterton",
-        score: 244
-      },
-      {
-        rank: 9,
-        name: "Gawen Applewhite",
-        score: 189
-      },
-      {
-        rank: 10,
-        name: "Nero Mulgrew",
-        score: 132
-      }
-    ],
+    ranking: [],
     events: ["aaa"]
   }),
   methods: {
@@ -218,7 +166,53 @@ export default {
         name: "eventInfo",
         params: { eventid: id}
       });
-    }
+    },
+    participant(eventid) {
+      requestAPI({
+        url: "http://localhost:8080/api/user/jointEvent/",
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: {
+          userID: this.userInfo.id,
+          eventID: eventid
+        }
+      })
+              .then(res => {
+                alert(
+                        JSON.stringify(this.userInfo) + " success " + JSON.stringify(res)
+                );
+                console.log(res);
+              })
+              .catch(err => {
+                alert(
+                        JSON.stringify(this.userInfo) + " error " + JSON.stringify(err)
+                );
+                console.log(err);
+              });
+    },
+    clickLike(eventid) {
+      requestAPI({
+        url: "http://localhost:8080/api/user/favorateEvent/",
+        method: "POST",
+        headers:{
+          'Content-Type':'application/json'
+        },
+        body: {
+          userID: this.userInfo.id,
+          eventID: eventid
+        }
+      })
+              .then(res => {
+                console.log(JSON.stringify(this.userInfo) + " success "+JSON.stringify(res));
+                this.second = true;
+              })
+              .catch(err => {
+                alert(JSON.stringify(this.userInfo) + " "+ this.eventId +" error "+JSON.stringify(err));
+                console.log(err);
+              });
+    },
   },
   created: function() {
     localStorage.setItem(
@@ -237,6 +231,20 @@ export default {
     this.userInfo = JSON.parse(localStorage.getItem("Authorization"));
   },
   mounted() {
+    requestAPI({
+      url: "http://localhost:8080/api/user/userRanking/",
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json"
+      }
+    })
+            .then(res => {
+              this.ranking = JSON.parse(JSON.stringify(res)).data;
+            })
+            .catch(err => {
+              console.log(err);
+            });
+
     requestAPI({
       url: "http://localhost:8080/api/comingEvents",
       method: "GET",

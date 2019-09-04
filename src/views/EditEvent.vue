@@ -250,7 +250,7 @@ export default {
 
                 },
                 headers:{
-                    'content-type':'multipart/form-data'
+                    'content-type':'multipart/form-data;boundary=--------------------------450419547329771650902388'
                 },
                 carousel: [
                     {
