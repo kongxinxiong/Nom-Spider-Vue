@@ -175,7 +175,7 @@ export default {
           "Content-Type": "application/json"
         },
         body: {
-          userID: this.userInfo.userId,
+          userID: this.userInfo.id,
           eventID: eventid
         }
       })
@@ -200,7 +200,7 @@ export default {
           'Content-Type':'application/json'
         },
         body: {
-          userID: JSON.parse(localStorage.getItem("Authorization")).id,
+          userID: this.userInfo.id,
           eventID: eventid
         }
       })
