@@ -10,7 +10,9 @@
           <div class="md-layout md-gutter padding">
             <div class="md-layout-item md-size-40 md-small-size-100 ml-auto">
               <div class="avatar">
-                <img :src="img" class="img-raised rounded img-fluid" />
+                <img : :src="
+                        'http://localhost:8080/api/event/image/' + event.photoURL
+                      " class="img-raised rounded img-fluid" />
               </div>
             </div>
             <div class="md-layout-item md-size-40 md-small-size-100 mr-auto">
