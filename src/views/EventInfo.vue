@@ -194,7 +194,7 @@ export default {
     //request to get all the attendees for this event
     requestAPI({
       url: "http://localhost:8080/api/event/jointUsers/" + this.eventid,
-      method: "POST",
+      method: "GET",
       headers: {
         "Content-Type": "application/json"
       }
