@@ -355,12 +355,12 @@ export default {
     getUserEvents(this.userInfo.userId, "userCreatedEvents");
   },
   methods: {
-    go4Details() {
-      this.$router.push({
-        name: "eventInfo",
-        params: { eventid: this.eventid }
-      });
-    }
+      go4Details(id) {
+          this.$router.push({
+              name: "eventInfo",
+              params: { eventid: id}
+          });
+      }
   },
   data: () => ({
     events: [
