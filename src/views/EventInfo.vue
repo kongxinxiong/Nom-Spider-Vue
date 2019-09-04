@@ -44,7 +44,7 @@
             <div class="md-layout-item md-size-40 md-small-size-100 ml-auto">
               <h4 class="title"><span class="tim-note">Enrollment</span></h4>
               <p>
-                <span class="tim-note">{{ event.description }}</span>
+                <span class="tim-note">{{ enrollment }}</span>
               </p>
             </div>
             <div
@@ -175,6 +175,20 @@ export default {
   },
   created: function() {
     this.eventid = this.$route.params.eventid;
+    localStorage.setItem(
+            "Authorization",
+            "{\n" +
+            '"id": 25,\n' +
+            '"name": "mark",\n' +
+            '"birthday": "2019-08-26T09:26:57.000+0000",\n' +
+            '"location": null,\n' +
+            '"username": null,\n' +
+            '"password": null,\n' +
+            '"email": null,\n' +
+            '"photoURL": null\n' +
+            "}"
+    );
+    this.userInfo = JSON.parse(localStorage.getItem("Authorization"));
 
     //request to get all the detailed information of an event
     requestAPI({
@@ -185,7 +199,7 @@ export default {
       }
     })
       .then(res => {
-        this.event = JSON.parse(res);
+        this.event = JSON.parse(JSON.stringify(res)).data;
       })
       .catch(err => {
         alert(JSON.stringify(err));
@@ -193,14 +207,14 @@ export default {
 
     //request to get all the attendees for this event
     requestAPI({
-      url: "http://localhost:8080/api/event/jointUsers/" + this.eventid,
+      url: "http://localhost:8080/api/event/eventJointUsers/" + this.eventid,
       method: "GET",
       headers: {
         "Content-Type": "application/json"
       }
     })
       .then(res => {
-        this.enrollment = JSON.parse(res);
+        this.enrollment = JSON.parse(JSON.stringify(res)).data;
       })
       .catch(err => {
         // alert(JSON.stringify(err));
@@ -301,27 +315,26 @@ export default {
     },
     //like request, add/remove record from DB
     clickLike() {
-      if (this.like) this.like = false;
-      else this.like = true;
-      // requestAPI({
-      //   url: "http://localhost:8080/api/user/favorateEvent/",
-      //   method: "POST",
-      //   headers:{
-      //     'Content-Type':'application/json'
-      //   },
-      //   body: {
-      //     userId: 12,
-      //     eventId: 21
-      //   }
-      // })
-      //         .then(res => {
-      //           alert(JSON.stringify(this.userInfo) + " success "+JSON.stringify(res));
-      //           console.log(res);
-      //         })
-      //         .catch(err => {
-      //           alert(JSON.stringify(this.userInfo) + " error "+JSON.stringify(err));
-      //           console.log(err);
-      //         });
+      this.like = !this.like;
+      requestAPI({
+        url: "http://localhost:8080/api/user/favorateEvent/",
+        method: "POST",
+        headers:{
+          'Content-Type':'application/json'
+        },
+        body: {
+          userId: JSON.parse(localStorage.getItem("Authorization")).id,
+          eventId: this.$route.params.eventid
+        }
+      })
+              .then(res => {
+                alert(JSON.stringify(this.userInfo) + " success "+JSON.stringify(res));
+                console.log(res);
+              })
+              .catch(err => {
+                alert(JSON.stringify(this.userInfo) + " error "+JSON.stringify(err));
+                console.log(err);
+              });
     },
     //participant request, add or remove record from DB
     participant() {
