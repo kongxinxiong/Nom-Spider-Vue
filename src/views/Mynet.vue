@@ -14,13 +14,16 @@
             >
               <div class="md-layout-item md-size-30">
                 <img
-                  :src="img"
+                  :src="
+                    'http://localhost:8080/api/user/image/' +
+                      this.userInfo.photoURL
+                  "
                   alt="Circle Image"
                   class="rounded-circle avatar"
                 />
               </div>
               <div class="md-layout-item">
-                <h4 class="title">Carla Hortensia</h4>
+                <h4 class="title">{{ this.userInfo.name }}</h4>
                 <!--                <h6 class="description">-->
                 <!--                  <i class="material-icons">my_location</i>Hong Kong-->
                 <!--                </h6>-->
@@ -30,14 +33,18 @@
               class="md-layout-item md-layout md-gutter md-size-60 md-small-size-100 md-xsmall-size-100"
             >
               <div class="md-layout-item">
-                <md-button class="md-rose md-round">posted: 20</md-button>
+                <md-button class="md-rose md-round"
+                  >hosted: {{ this.hostedNum }}</md-button
+                >
               </div>
               <div class="md-layout-item ">
-                <md-button class="md-rose md-round">Joined: 25</md-button>
+                <md-button class="md-rose md-round"
+                  >Joined: {{ this.joinedNum }}</md-button
+                >
               </div>
               <div class="md-layout-item">
                 <md-button class="md-rose md-round" style="align-items: center"
-                  >Score: 305</md-button
+                  >Score: {{ this.score }}</md-button
                 >
               </div>
             </div>
@@ -52,7 +59,7 @@
             class="md-scrollbar md-card main-raised"
             style="overflow-x: auto; white-space: nowrap;width:100%;z-index: 5;background-color: rgba(0,0,0,0)"
           >
-            <event-card v-for="item in events">
+            <event-card v-for="item in upcoming">
               <img
                 :src="img"
                 alt="Rounded Image"
@@ -76,7 +83,7 @@
             class="md-scrollbar md-card main-raised"
             style="overflow-x: auto; white-space: nowrap;width:100%;z-index: 5;background-color: rgba(0,0,0,0)"
           >
-            <event-card v-for="item in events">
+            <event-card v-for="item in favorite">
               <img
                 :src="img"
                 alt="Rounded Image"
@@ -100,7 +107,7 @@
             class="md-scrollbar md-card main-raised"
             style="overflow-x: auto; white-space: nowrap;width:100%;z-index: 5;background-color: rgba(0,0,0,0)"
           >
-            <event-card v-for="item in events">
+            <event-card v-for="item in hosted">
               <img
                 :src="img"
                 alt="Rounded Image"
@@ -124,7 +131,7 @@
             class="md-scrollbar md-card main-raised"
             style="overflow-x: auto; white-space: nowrap;width:100%;z-index: 5;background-color: rgba(0,0,0,0)"
           >
-            <event-card v-for="item in events">
+            <event-card v-for="item in attended">
               <img
                 :src="img"
                 alt="Rounded Image"
@@ -149,7 +156,7 @@
 import requestAPI from "../plugins/request";
 import EventCard from "../components/cards/EventCard";
 
-function getUserEvents(userId, eventType) {
+function getUserEvents(userId, eventType, returnType) {
   requestAPI({
     url: "http://localhost:8080/api/user/" + eventType + "/" + userId,
     method: "GET",
@@ -158,11 +165,41 @@ function getUserEvents(userId, eventType) {
     }
   })
     .then(res => {
-      alert(JSON.stringify(this.userInfo) + " success " + JSON.stringify(res));
-      console.log(res);
+      let temp = JSON.parse(JSON.stringify(res)).data;
+      switch (returnType) {
+        case 1:
+          this.upcoming = temp;
+          break;
+        case 2:
+          this.favorite = temp;
+          break;
+        case 3:
+          this.hosted = temp;
+          break;
+        case 4:
+          this.attended = temp;
+          break;
+      }
     })
     .catch(err => {
-      alert(JSON.stringify(this.userInfo) + " error " + JSON.stringify(err));
+      console.log(err);
+    });
+}
+
+function getUserScore(userId) {
+  requestAPI({
+    url: "http://localhost:8080/api/user/userScore/" + userId,
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json"
+    }
+  })
+    .then(res => {
+      this.score = JSON.parse(JSON.stringify(res)).data.score;
+      this.joinedNum = this.upcoming.length + this.attended.length;
+      this.hostedNum = this.hosted.length;
+    })
+    .catch(err => {
       console.log(err);
     });
 }
@@ -189,13 +226,28 @@ export default {
     }
   },
   created() {
+    localStorage.setItem(
+      "Authorization",
+      "{\n" +
+        '"id": 25,\n' +
+        '"name": "Wu Dan",\n' +
+        '"birthday": "2019-08-26T09:26:57.000+0000",\n' +
+        '"location": "Shanghai",\n' +
+        '"username": null,\n' +
+        '"password": null,\n' +
+        '"email": null,\n' +
+        '"photoURL": null\n' +
+        "}"
+    );
     this.userInfo = JSON.parse(localStorage.getItem("Authorization"));
     //request for all joint but not yet started events
-    getUserEvents(this.userInfo.userId, "userJointComingEvents");
+    getUserEvents(this.userInfo.userId, "userJointComingEvents", 1);
     //request for all interested but not joint events ????? recommendation
-    getUserEvents(this.userInfo.userId, "userInterestEvents");
+    getUserEvents(this.userInfo.userId, "userInterestEvents", 2);
     //request for all events that you created
-    getUserEvents(this.userInfo.userId, "userCreatedEvents");
+    getUserEvents(this.userInfo.userId, "userCreatedEvents", 3);
+    //request for all evetns that you've ever attened
+    getUserEvents(this.userInfo.userId, "userJointHistoryEvents", 4);
   },
   methods: {
     go4Details(id) {
@@ -237,7 +289,14 @@ export default {
         title: "Karaoke Night",
         startdate: "2019-09-12"
       }
-    ]
+    ],
+    upcoming: [],
+    favorite: [],
+    hosted: [],
+    attended: [],
+    hostedNum: 0,
+    joinedNum: 0,
+    score: 0
   })
 };
 </script>
