@@ -192,7 +192,6 @@ export default {
     );
     this.userInfo = JSON.parse(localStorage.getItem("Authorization"));
 
-    alert("userId "+this.userInfo.id+" eventId="+ this.eventid);
     //request to get all the detailed information of an event
     requestAPI({
       url: "http://localhost:8080/api/event/" + this.eventid,
@@ -237,9 +236,11 @@ export default {
       }
     })
             .then(res => {
+              alert(JSON.stringify(res))
                this.isDisabled = JSON.parse(JSON.stringify(res)).data.status;
             })
             .catch(err => {
+              alert(JSON.stringify(err))
               console.log(JSON.stringify(err));
             });
 
@@ -265,7 +266,7 @@ export default {
   data() {
     return {
       like: false,
-      isDisabled: true,
+      isDisabled: false,
       enrollment: "",
       event: [],
       carousel: [
