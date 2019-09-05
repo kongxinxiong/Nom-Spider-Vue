@@ -214,9 +214,10 @@ export default {
       });
 
     //get event-user status : liked or not
+    alert(this.userInfo.id+"  "+this.eventid)
     requestAPI({
-      url: "http://localhost:8080/api/user/userInterestParticularEvents/",
-      method: "GET",
+      url: "http://localhost:8080/api/user/userInterestParticularEvents",
+      method: "POST",
       headers: {
         "Content-Type": "application/json"
       },
