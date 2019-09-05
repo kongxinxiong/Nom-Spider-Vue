@@ -61,7 +61,7 @@
           >
             <event-card v-for="item in upcoming">
               <img
-                :src="img"
+                :src="'http://localhost:8080/api/event/image/' + item.photoURL"
                 alt="Rounded Image"
                 class="rounded"
                 @click="go4Details(item.id)"
@@ -85,7 +85,7 @@
           >
             <event-card v-for="item in favorite">
               <img
-                :src="img"
+                :src="'http://localhost:8080/api/event/image/' + item.photoURL"
                 alt="Rounded Image"
                 class="rounded"
                 @click="go4Details(item.id)"
@@ -109,7 +109,7 @@
           >
             <event-card v-for="item in hosted">
               <img
-                :src="img"
+                :src="'http://localhost:8080/api/event/image/' + item.photoURL"
                 alt="Rounded Image"
                 class="rounded"
                 @click="go4Details(item.id)"
@@ -133,7 +133,7 @@
           >
             <event-card v-for="item in attended">
               <img
-                :src="img"
+                :src="'http://localhost:8080/api/event/image/' + item.photoURL"
                 alt="Rounded Image"
                 class="rounded"
                 @click="go4Details(item.id)"

@@ -44,7 +44,6 @@
 
               <li class="md-list-item">
                 <a
-                  href="#"
                   class="md-list-item-router md-list-item-container md-button-clean dropdown"
                   @click="readNotification"
                 >
@@ -62,7 +61,7 @@
                           v-if="hasNotification"
                         ></md-badge>
                       </md-button>
-                      <ul class="dropdown-menu dropdown-with-icons">
+                      <ul class="dropdown-menu dropdown-with-icons" v-if="showNotification">
                         <li v-for="event in events">
                           <a @click="go4Details(event.id)">
                             <i class="material-icons">access_time</i>
@@ -75,7 +74,7 @@
                 </a>
               </li>
 
-              <li class="md-list-item" v-if="!isLogin">
+              <li class="md-list-item" v-if="!isLogin()">
                 <a
                   href="javascript:void(0)"
                   class="md-list-item-router md-list-item-container md-button-clean"
@@ -87,7 +86,7 @@
                   </div>
                 </a>
               </li>
-              <li class="md-list-item" v-if="isLogin">
+              <li class="md-list-item" v-if="isLogin()">
                 <a
                   class="md-list-item-router md-list-item-container md-button-clean dropdown"
                 >
@@ -102,7 +101,7 @@
                       </div>
                       <ul class="dropdown-menu dropdown-menu-right">
                         <li>
-                          <a href="#pablo" class="dropdown-item">Sign Out</a>
+                          <a class="dropdown-item" @click="signout">Sign Out</a>
                         </li>
                       </ul>
                     </drop-down>
@@ -166,7 +165,7 @@ export default {
   },
   created() {
     this.userInfo = JSON.parse(localStorage.getItem("Authorization"));
-    this.isLogin = localStorage.getItem("Authorization") != null;
+    this.loginStatus = localStorage.getItem("Authorization") != null;
     this.getNotification(this.userInfo.id);
     localStorage.setItem("readNotification", "false");
   },
@@ -174,28 +173,21 @@ export default {
     return {
       extraNavClasses: "",
       toggledClass: false,
-      isLogin: false,
-      notificationNum: 11,
-      events: [
-        {
-          title: "Hiking Saturday",
-          startdate: "2019-09-09",
-          id:1
-        },
-        {
-          title: "Kakaro Night",
-          startdate: "2019-09-15",
-          id:2
-        }
-      ],
+      loginStatus: false,
+      notificationNum: 0,
+      events: [],
       read: false
     };
   },
   computed: {
     hasNotification() {
-      console.log(this.read);
+      // console.log(this.read);
       return this.notificationNum > 0 && !(this.read === "true");
-    }
+    },
+    showNotification() {
+      // console.log(this.read);
+      return this.notificationNum > 0;
+    },
   },
   methods: {
     bodyClick() {
@@ -255,6 +247,7 @@ export default {
         .then(res => {
           this.events = JSON.parse(JSON.stringify(res)).data;
           this.notificationNum = this.events.length;
+          // console.log(this.events);
         })
         .catch(err => {
           console.log(err);
@@ -269,6 +262,17 @@ export default {
         name: "eventInfo",
         params: {eventid: id}
       });
+    },
+    signout() {
+      console.log(this.loginStatus)
+      localStorage.removeItem("Authorization");
+      window.location.href = "#/";
+      console.log(localStorage.getItem("Authorization")===null)
+    },
+    isLogin(){
+      this.loginStatus = localStorage.getItem("Authorization")===null;
+      console.log(this.loginStatus);
+      return !this.loginStatus;
     }
   },
   mounted() {

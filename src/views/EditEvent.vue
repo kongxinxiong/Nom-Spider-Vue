@@ -177,7 +177,7 @@ export default {
                 this.event.user=this.userInfo.id;
                 alert(JSON.stringify(this.event));
                 console.log(JSON.stringify(this.event));
-                requestAPI({url: "http://192.168.43.129:8080/api/event/",
+                requestAPI({url: "http://localhost:8080/api/event/",
                     method: "POST",
                     headers:{
                     'Content-Type':'application/json',
@@ -197,7 +197,7 @@ export default {
                 //上传的地址
                 console.log("uploadImgUrl");
 
-                return "http://192.168.43.129:8080/api/event/image/";
+                return "http://localhost:8080/api/event/image/";
             },
             uploadImgError() {
                 console.log("uploadImgError");

@@ -24,21 +24,25 @@
               <p slot="description" class="description">Welcome to Nom Hub</p>
               <md-field class="md-form-group md-green" slot="inputs">
                 <md-icon>person_outline</md-icon>
-                <label>username</label>
-                <md-input v-model="username"></md-input>
+                <label>username/email</label>
+                <md-input v-model="userInfo.username"></md-input>
               </md-field>
               <md-field class="md-form-group md-green" slot="inputs">
                 <md-icon>lock_outline</md-icon>
                 <label>Password...</label>
-                <md-input type="password" v-model="password"></md-input>
+                <md-input type="password" v-model="userInfo.password"></md-input>
               </md-field>
-              <p slot="inputs" class="">
+              <p slot="inputs">
                 Don't have an account?
                 <router-link to="/signup">
                   sign up
                 </router-link>
               </p>
-              <md-button slot="footer" class="md-simple md-success md-lg">
+              <md-button
+                      slot="footer"
+                      class="md-simple md-success md-lg"
+                      @click="signin"
+              >
                 SIGN IN
               </md-button>
             </login-card>
@@ -51,6 +55,9 @@
 
 <script>
 import { LoginCard } from "@/components";
+import { mapMutations } from "vuex";
+import requestAPI from "../plugins/request";
+
 export default {
   components: {
     LoginCard
@@ -62,21 +69,53 @@ export default {
       default: require("@/assets/img/bg7.jpg")
     }
   },
-  created: function() {
-    this.userInfo = JSON.parse(localStorage.getItem("Authorization"));
-  },
-  data() {
-    return {
-      name: null,
+  data: () => ({
+    userInfo: {
       username: null,
+      email: null,
       password: null
-    };
-  },
+    },
+    userToken: ""
+  }),
   computed: {
     headerStyle() {
       return {
         backgroundImage: `url(${this.header})`
       };
+    }
+  },
+  methods: {
+    ...mapMutations(["changeLogin"]),
+    signin() {
+      requestAPI({
+        url: "http://localhost:8080/api/user/login",
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: this.userInfo
+      })
+              .then(res => {
+                if (res.data == null) {
+                  alert("please input correct username and password");
+                } else {
+                  this.userToken = res.data;
+                  // alert(JSON.stringify(this.userToken))
+                  // this.changeLogin(this.userToken);
+                  localStorage.setItem(
+                          "Authorization",
+                          JSON.stringify(this.userToken)
+                  );
+                  this.$router.push("/explore");
+                }
+                console.log(res);
+              })
+              .catch(err => {
+                alert(
+                        JSON.stringify(this.userInfo) + " error " + JSON.stringify(err)
+                );
+                console.log(err);
+              });
     }
   }
 };

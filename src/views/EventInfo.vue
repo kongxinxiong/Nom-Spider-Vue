@@ -31,7 +31,7 @@
 
                 <h4 class="title"><span class="tim-note">Number</span></h4>
                 <p>
-                  <span class="tim-note">{{attended}}/{{ event.maxnumber }}</span>
+                  <span class="tim-note">{{attended}}/{{ event.maxNumber }}</span>
                 </p>
                 <h4 class="title">
                   <span class="tim-note">Time &nbsp; & &nbsp; Location</span>
@@ -182,8 +182,8 @@ export default {
   mounted() {
     //request to get all the attendees for this event
     requestAPI({
-      url: "http://localhost:8080/api/event/eventJointUsers" + this.eventid,
-      method: "POST",
+      url: "http://localhost:8080/api/event/eventJointUsers/" + this.eventid,
+      method: "GET",
       headers: {
         "Content-Type": "application/json"
       }
@@ -222,7 +222,7 @@ export default {
     //get event-user status : liked or not
     requestAPI({
       url: "http://localhost:8080/api/user/userInterestParticularEvents/",
-      method: "GET",
+      method: "POST",
       headers: {
         "Content-Type": "application/json"
       },
