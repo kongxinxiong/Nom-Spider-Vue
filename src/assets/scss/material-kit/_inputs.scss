@@ -94,6 +94,48 @@
 
   }
 
+  &.md-yellow{
+    a{
+      color:$brand-warning !important;
+      &,
+      &:hover,
+      &:focus {
+        color: $brand-warning !important;
+      }
+    }
+    &:before{
+      background-color: $brand-warning !important;
+    }
+    &.md-focused > .fa,
+    &.md-focused > .md-icon,
+    &.md-focused > .fas,
+    &.md-focused > .fab {
+      color: $brand-warning !important;
+    }
+
+  }
+
+  &.md-gray{
+    a{
+      color:$gray-light !important;
+      &,
+      &:hover,
+      &:focus {
+        color: $gray-light !important;
+      }
+    }
+    &:before{
+      background-color: $gray-light !important;
+    }
+    &.md-focused > .fa,
+    &.md-focused > .md-icon,
+    &.md-focused > .fas,
+    &.md-focused > .fab {
+      color: $gray-light !important;
+    }
+
+  }
+
   &.md-error{
     label{
       color: $brand-danger !important;
