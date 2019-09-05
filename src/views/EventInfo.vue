@@ -180,8 +180,8 @@ export default {
   mounted() {
     //request to get all the attendees for this event
     requestAPI({
-      url: "http://localhost:8080/api/event/eventJointUsers/" + this.eventid,
-      method: "GET",
+      url: "http://localhost:8080/api/event/eventJointUsers" + this.eventid,
+      method: "POST",
       headers: {
         "Content-Type": "application/json"
       }
@@ -195,8 +195,8 @@ export default {
 
     //get event-user status : joint or not
     requestAPI({
-      url: "http://localhost:8080/api/user/userJointParticularEvents/",
-      method: "GET",
+      url: "http://localhost:8080/api/user/userJointParticularEvents",
+      method: "POST",
       headers: {
         "Content-Type": "application/json"
       },
@@ -207,6 +207,7 @@ export default {
     })
       .then(res => {
         this.isDisabled = JSON.parse(JSON.stringify(res)).data.status;
+        alert("join: "+JSON.stringify(JSON.parse(JSON.stringify(res)).data));
       })
       .catch(err => {
         console.log(JSON.stringify(err));
@@ -226,6 +227,8 @@ export default {
     })
       .then(res => {
         this.like = JSON.parse(JSON.stringify(res)).data.status;
+        alert("like: "+JSON.stringify(JSON.parse(JSON.stringify(res)).data));
+
       })
       .catch(err => {
         console.log(JSON.stringify(err));
@@ -267,8 +270,8 @@ export default {
 
   data() {
     return {
-      like: false,
-      isDisabled: true,
+      like: "",
+      isDisabled: "",
       enrollment: "",
       event: [],
       carousel: [
