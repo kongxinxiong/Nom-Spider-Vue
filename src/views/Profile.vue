@@ -58,7 +58,7 @@
                                 </div>
                                 <div class="md-layout">
                                     <div class="flex-column md-layout-item md-size-50 md-xsmall-size-100 md-small-size-50 md-medium-size-50">
-                                        <md-checkbox v-model="userProfile.preferences" value=20>Party</md-checkbox>
+                                        <md-checkbox v-model="userProfile.preferences" value=1>Party</md-checkbox>
                                         <md-checkbox v-model="userProfile.preferences" value=2>Reading</md-checkbox>
                                         <md-checkbox v-model="userProfile.preferences" value=3>Skiing</md-checkbox>
                                         <md-checkbox v-model="userProfile.preferences" value=4>Badminton</md-checkbox>
@@ -148,14 +148,14 @@
         },
         methods:{
             updateProfile(){
-                requestAPI({url: "http://localhost:8080/api/user/",
+                requestAPI({url: "http://localhost:8080/api/user",
                     method: "POST",
                     headers:{
                         'Content-Type':'application/json',
                     },
                     body: this.userProfile}).then(res => {
                     alert(JSON.stringify(this.userProfile) + " success "+JSON.stringify(res));
-                    this.$router.push('/explore');
+                    // this.$router.push('/explore');
                     console.log(res);
                 })
                     .catch(err => {

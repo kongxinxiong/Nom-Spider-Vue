@@ -84,7 +84,7 @@
                   <div class="img-container">
                     <img
                       :src="
-                        'http://localhost:8080/api/user/image/' + item.photoURL
+                        'http://localhost:8080/api/event/image/' + item.photoURL
                       "
                       @click="go4Details(item.id)"
                     />
