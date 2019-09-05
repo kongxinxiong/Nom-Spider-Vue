@@ -154,8 +154,8 @@
                         'Content-Type':'application/json',
                     },
                     body: this.userProfile}).then(res => {
-                    alert(JSON.stringify(this.userProfile) + " success "+JSON.stringify(res));
-                    // this.$router.push('/explore');
+                    // alert(JSON.stringify(this.userProfile) + " success "+JSON.stringify(res));
+                    this.$router.push('/explore');
                     console.log(res);
                 })
                     .catch(err => {
