@@ -10,10 +10,12 @@
           <div class="md-layout md-gutter padding">
             <div class="md-layout-item md-size-40 md-small-size-100 ml-auto">
               <div class="avatar">
-                <img  :src="
-                        'http://localhost:8080/api/event/image/' + event.photoURL
-                      "
-                      class="img-raised rounded img-fluid" />
+                <img
+                  :src="
+                    'http://localhost:8080/api/event/image/' + event.photoURL
+                  "
+                  class="img-raised rounded img-fluid"
+                />
               </div>
             </div>
             <div class="md-layout-item md-size-40 md-small-size-100 mr-auto">
@@ -175,40 +177,7 @@ export default {
       return this.like;
     }
   },
-  created: function() {
-    this.eventid = this.$route.params.eventid;
-    localStorage.setItem(
-            "Authorization",
-            "{\n" +
-            '"id": 25,\n' +
-            '"name": "mark",\n' +
-            '"birthday": "2019-08-26T09:26:57.000+0000",\n' +
-            '"location": null,\n' +
-            '"username": null,\n' +
-            '"password": null,\n' +
-            '"email": null,\n' +
-            '"photoURL": null\n' +
-            "}"
-    );
-    this.userInfo = JSON.parse(localStorage.getItem("Authorization"));
-
-    alert("userId "+this.userInfo.id+" eventId="+ this.eventid);
-    //request to get all the detailed information of an event
-    requestAPI({
-      url: "http://localhost:8080/api/event/" + this.eventid,
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json"
-      }
-    })
-      .then(res => {
-        this.event = JSON.parse(JSON.stringify(res)).data;
-        console.log(JSON.stringify(this.event));
-      })
-      .catch(err => {
-        console.log(JSON.stringify(err));
-      });
-
+  mounted() {
     //request to get all the attendees for this event
     requestAPI({
       url: "http://localhost:8080/api/event/eventJointUsers/" + this.eventid,
@@ -224,7 +193,7 @@ export default {
         console.log(JSON.stringify(err));
       });
 
-    //get event-user status : liked or joint
+    //get event-user status : joint or not
     requestAPI({
       url: "http://localhost:8080/api/user/userJointParticularEvents/",
       method: "GET",
@@ -236,13 +205,14 @@ export default {
         eventID: this.eventid
       }
     })
-            .then(res => {
-               this.isDisabled = JSON.parse(JSON.stringify(res)).data.status;
-            })
-            .catch(err => {
-              console.log(JSON.stringify(err));
-            });
+      .then(res => {
+        this.isDisabled = JSON.parse(JSON.stringify(res)).data.status;
+      })
+      .catch(err => {
+        console.log(JSON.stringify(err));
+      });
 
+    //get event-user status : liked or not
     requestAPI({
       url: "http://localhost:8080/api/user/userInterestParticularEvents/",
       method: "GET",
@@ -254,12 +224,45 @@ export default {
         eventID: this.eventid
       }
     })
-            .then(res => {
-              this.like = JSON.parse(JSON.stringify(res)).data.status;
-            })
-            .catch(err => {
-              console.log(JSON.stringify(err));
-            });
+      .then(res => {
+        this.like = JSON.parse(JSON.stringify(res)).data.status;
+      })
+      .catch(err => {
+        console.log(JSON.stringify(err));
+      });
+  },
+  created: function() {
+    this.eventid = this.$route.params.eventid;
+    localStorage.setItem(
+      "Authorization",
+      "{\n" +
+        '"id": 25,\n' +
+        '"name": "mark",\n' +
+        '"birthday": "2019-08-26T09:26:57.000+0000",\n' +
+        '"location": null,\n' +
+        '"username": null,\n' +
+        '"password": null,\n' +
+        '"email": null,\n' +
+        '"photoURL": null\n' +
+        "}"
+    );
+    this.userInfo = JSON.parse(localStorage.getItem("Authorization"));
+
+    //request to get all the detailed information of an event
+    requestAPI({
+      url: "http://localhost:8080/api/event/" + this.eventid,
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json"
+      }
+    })
+      .then(res => {
+        this.event = JSON.parse(JSON.stringify(res)).data;
+        console.log(JSON.stringify(this.event));
+      })
+      .catch(err => {
+        console.log(JSON.stringify(err));
+      });
   },
 
   data() {
@@ -359,22 +362,30 @@ export default {
       requestAPI({
         url: "http://localhost:8080/api/user/favorateEvent/",
         method: "POST",
-        headers:{
-          'Content-Type':'application/json'
+        headers: {
+          "Content-Type": "application/json"
         },
         body: {
           userID: this.userInfo.id,
           eventID: this.$route.params.eventid
         }
       })
-              .then(res => {
-                console.log(JSON.stringify(this.userInfo) + " success "+JSON.stringify(res));
-                console.log(res);
-              })
-              .catch(err => {
-                console.log(JSON.stringify(this.userInfo) + " "+ this.eventId +" error "+JSON.stringify(err));
-                console.log(err);
-              });
+        .then(res => {
+          console.log(
+            JSON.stringify(this.userInfo) + " success " + JSON.stringify(res)
+          );
+          console.log(res);
+        })
+        .catch(err => {
+          console.log(
+            JSON.stringify(this.userInfo) +
+              " " +
+              this.eventId +
+              " error " +
+              JSON.stringify(err)
+          );
+          console.log(err);
+        });
     },
     //participant request, add or remove record from DB
     participant() {
