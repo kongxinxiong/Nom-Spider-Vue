@@ -156,53 +156,6 @@
 import requestAPI from "../plugins/request";
 import EventCard from "../components/cards/EventCard";
 
-function getUserEvents(userId, eventType, returnType) {
-  requestAPI({
-    url: "http://localhost:8080/api/user/" + eventType + "/" + userId,
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json"
-    }
-  })
-    .then(res => {
-      let temp = JSON.parse(JSON.stringify(res)).data;
-      switch (returnType) {
-        case 1:
-          this.upcoming = temp;
-          break;
-        case 2:
-          this.favorite = temp;
-          break;
-        case 3:
-          this.hosted = temp;
-          break;
-        case 4:
-          this.attended = temp;
-          break;
-      }
-    })
-    .catch(err => {
-      console.log(err);
-    });
-}
-
-function getUserScore(userId) {
-  requestAPI({
-    url: "http://localhost:8080/api/user/userScore/" + userId,
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json"
-    }
-  })
-    .then(res => {
-      this.score = JSON.parse(JSON.stringify(res)).data.score;
-      this.joinedNum = this.upcoming.length + this.attended.length;
-      this.hostedNum = this.hosted.length;
-    })
-    .catch(err => {
-      console.log(err);
-    });
-}
 
 export default {
   name: "Mynet",
@@ -229,7 +182,7 @@ export default {
     localStorage.setItem(
       "Authorization",
       "{\n" +
-        '"id": 25,\n' +
+        '"id": 39,\n' +
         '"name": "Wu Dan",\n' +
         '"birthday": "2019-08-26T09:26:57.000+0000",\n' +
         '"location": "Shanghai",\n' +
@@ -241,13 +194,14 @@ export default {
     );
     this.userInfo = JSON.parse(localStorage.getItem("Authorization"));
     //request for all joint but not yet started events
-    getUserEvents(this.userInfo.userId, "userJointComingEvents", 1);
+    this.getUserEvents(this.userInfo.id, "userJointComingEvents", 1);
     //request for all interested but not joint events ????? recommendation
-    getUserEvents(this.userInfo.userId, "userInterestEvents", 2);
+    this.getUserEvents(this.userInfo.id, "userInterestEvents", 2);
     //request for all events that you created
-    getUserEvents(this.userInfo.userId, "userCreatedEvents", 3);
+    this.getUserEvents(this.userInfo.id, "userCreatedEvents", 3);
     //request for all evetns that you've ever attened
-    getUserEvents(this.userInfo.userId, "userJointHistoryEvents", 4);
+    this.getUserEvents(this.userInfo.id, "userJointHistoryEvents", 4);
+    this.getUserScore(this.userInfo.id);
   },
   methods: {
     go4Details(id) {
@@ -255,6 +209,55 @@ export default {
         name: "eventInfo",
         params: { eventid: id }
       });
+    },
+    getUserEvents(userId, eventType, returnType) {
+      requestAPI({
+        url: "http://localhost:8080/api/user/" + eventType + "/" + userId,
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json"
+        }
+      })
+              .then(res => {
+                let temp = JSON.parse(JSON.stringify(res)).data;
+                // console.log(temp);
+                // console.log(returnType);
+                console.log(this.upcoming);
+                switch (returnType) {
+                  case 1:
+                    this.upcoming = temp;
+                    break;
+                  case 2:
+                    this.favorite = temp;
+                    break;
+                  case 3:
+                    this.hosted = temp;
+                    break;
+                  case 4:
+                    this.attended = temp;
+                    break;
+                }
+              })
+              .catch(err => {
+                console.log(err);
+              });
+    },
+    getUserScore(userId) {
+      requestAPI({
+        url: "http://localhost:8080/api/user/userScore/" + userId,
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json"
+        }
+      })
+              .then(res => {
+                this.score = JSON.parse(JSON.stringify(res)).data.score;
+                this.joinedNum = this.upcoming.length + this.attended.length;
+                this.hostedNum = this.hosted.length;
+              })
+              .catch(err => {
+                console.log(err);
+              });
     }
   },
   data: () => ({
