@@ -187,7 +187,10 @@ export default {
       }
     })
       .then(res => {
-        this.enrollment = JSON.parse(JSON.stringify(res)).data;
+        let temp = JSON.parse(JSON.stringify(res)).data;
+        for(let i=0;i<temp.length;i++){
+          this.enrollment +=  temp[i] + "<br/>";
+        }
       })
       .catch(err => {
         console.log(JSON.stringify(err));
@@ -214,10 +217,9 @@ export default {
       });
 
     //get event-user status : liked or not
-    alert(this.userInfo.id+"  "+this.eventid)
     requestAPI({
-      url: "http://localhost:8080/api/user/userInterestParticularEvents",
-      method: "POST",
+      url: "http://localhost:8080/api/user/userInterestParticularEvents/",
+      method: "GET",
       headers: {
         "Content-Type": "application/json"
       },
