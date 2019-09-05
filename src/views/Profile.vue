@@ -32,12 +32,12 @@
                     <div>
                         <div class="md-layout">
                             <div class="md-layout-item md-size-50 mx-auto">
-                                <md-field slot="inputs">
+                                <md-field slot="inputs" class="md-form-group">
                                     <md-icon>face</md-icon>
                                     <label>Nick Name...</label>
                                     <md-input v-model="userProfile.name"></md-input>
                                 </md-field>
-                                <md-field slot="inputs">
+                                <md-field slot="inputs" class="md-form-group">
                                     <md-icon>email</md-icon>
                                     <label>Email...</label>
                                     <md-input v-model="userProfile.email" type="email"></md-input>
@@ -45,7 +45,7 @@
                                 <md-datepicker v-model="userProfile.birthday">
                                     <label>Birthday</label>
                                 </md-datepicker>
-                                <md-field slot="inputs">
+                                <md-field slot="inputs" class="md-form-group">
                                     <md-icon>explore</md-icon>
                                     <label>Location</label>
                                     <md-input v-model="userProfile.location"></md-input>
@@ -143,7 +143,7 @@
                     this.userProfile = JSON.parse(JSON.stringify(res)).data;
                 })
                 .catch(err => {
-                    alert(JSON.stringify(err));
+                    // alert(JSON.stringify(err));
                 });
         },
         methods:{
