@@ -179,19 +179,19 @@ export default {
     }
   },
   created() {
-    localStorage.setItem(
-      "Authorization",
-      "{\n" +
-        '"id": 39,\n' +
-        '"name": "Wu Dan",\n' +
-        '"birthday": "2019-08-26T09:26:57.000+0000",\n' +
-        '"location": "Shanghai",\n' +
-        '"username": null,\n' +
-        '"password": null,\n' +
-        '"email": null,\n' +
-        '"photoURL": null\n' +
-        "}"
-    );
+    // localStorage.setItem(
+    //   "Authorization",
+    //   "{\n" +
+    //     '"id": 39,\n' +
+    //     '"name": "Wu Dan",\n' +
+    //     '"birthday": "2019-08-26T09:26:57.000+0000",\n' +
+    //     '"location": "Shanghai",\n' +
+    //     '"username": null,\n' +
+    //     '"password": null,\n' +
+    //     '"email": null,\n' +
+    //     '"photoURL": null\n' +
+    //     "}"
+    // );
     this.userInfo = JSON.parse(localStorage.getItem("Authorization"));
     //request for all joint but not yet started events
     this.getUserEvents(this.userInfo.id, "userJointComingEvents", 1);

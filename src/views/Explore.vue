@@ -398,19 +398,6 @@
       },
     },
     created: function() {
-      localStorage.setItem(
-              "Authorization",
-              "{\n" +
-              '"id": 25,\n' +
-              '"name": "Wu Dan",\n' +
-              '"birthday": "2019-08-26T09:26:57.000+0000",\n' +
-              '"location": "Shanghai",\n' +
-              '"username": null,\n' +
-              '"password": null,\n' +
-              '"email": null,\n' +
-              '"photoURL": null\n' +
-              "}"
-      );
       this.userInfo = JSON.parse(localStorage.getItem("Authorization"));
     },
     mounted() {
