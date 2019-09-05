@@ -17,7 +17,7 @@
               <md-field class="md-form-group md-green" slot="inputs">
                 <md-icon>lock_outline</md-icon>
                 <label>Password...</label>
-                <md-input v-model="userInfo.password"></md-input>
+                <md-input type="password" v-model="userInfo.password"></md-input>
               </md-field>
               <p slot="inputs">
                 Don't have an account?

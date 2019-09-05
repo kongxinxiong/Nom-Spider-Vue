@@ -132,15 +132,15 @@
         },
         mounted() {
             requestAPI({
-                url: "http://localhost:8080/api/user/"+36,
+                url: "http://localhost:8080/api/user/"+this.userInfo.userID,
                 method: "GET",
                 headers:{
                     'Content-Type':'application/json'
                 },
             })
                 .then(res => {
-                    this.userProfile = JSON.parse(JSON.stringify(res)).data;
                     // alert(JSON.stringify(res));
+                    this.userProfile = JSON.parse(JSON.stringify(res)).data;
                 })
                 .catch(err => {
                     alert(JSON.stringify(err));
@@ -154,8 +154,8 @@
                         'Content-Type':'application/json',
                     },
                     body: this.userProfile}).then(res => {
-                    alert(JSON.stringify(this.userProfile) + " success "+JSON.stringify(res));
-                    // this.$router.push('/explore');
+                    // alert(JSON.stringify(this.userProfile) + " success "+JSON.stringify(res));
+                    this.$router.push('/explore');
                     console.log(res);
                 })
                     .catch(err => {

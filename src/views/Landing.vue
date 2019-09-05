@@ -24,13 +24,13 @@
               <p slot="description" class="description">Welcome to Nom Hub</p>
               <md-field class="md-form-group md-green" slot="inputs">
                 <md-icon>person_outline</md-icon>
-                <label>username/email</label>
+                <label>username</label>
                 <md-input v-model="username"></md-input>
               </md-field>
               <md-field class="md-form-group md-green" slot="inputs">
                 <md-icon>lock_outline</md-icon>
                 <label>Password...</label>
-                <md-input v-model="password"></md-input>
+                <md-input type="password" v-model="password"></md-input>
               </md-field>
               <p slot="inputs" class="">
                 Don't have an account?
