@@ -139,8 +139,8 @@
                 },
             })
                 .then(res => {
-                    this.userProfile = JSON.parse(JSON.stringify(res)).data;
                     // alert(JSON.stringify(res));
+                    this.userProfile = JSON.parse(JSON.stringify(res)).data;
                 })
                 .catch(err => {
                     alert(JSON.stringify(err));

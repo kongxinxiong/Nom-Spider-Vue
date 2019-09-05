@@ -17,18 +17,41 @@
                       class="md-layout-item md-size-45 md-small-size-100 mx-auto"
                     >
                       <md-field
-                        :class="getValidationClass('email')"
+                        :class="getValidationClass('name')"
                         class="md-form-group md-green"
+                      >
+                        <md-icon>person_outline</md-icon>
+                        <label for="name">Name</label>
+                        <md-input
+                          name="name"
+                          id="name"
+                          autocomplete="given-name"
+                          v-model="form.name"
+                          :disabled="sending"
+                        />
+                        <p class="md-error" v-if="!$v.form.name.required">
+                          The name is required
+                        </p>
+                        <p
+                          class="md-error"
+                          v-else-if="!$v.form.name.minlength"
+                        >
+                          Invalid name
+                        </p>
+                      </md-field>
+                      <md-field
+                              :class="getValidationClass('email')"
+                              class="md-form-group md-green"
                       >
                         <md-icon>email</md-icon>
                         <label for="email">Email</label>
                         <md-input
-                          type="email"
-                          name="email"
-                          id="email"
-                          autocomplete="email"
-                          v-model="form.email"
-                          :disabled="sending"
+                                type="email"
+                                name="email"
+                                id="email"
+                                autocomplete="email"
+                                v-model="form.email"
+                                :disabled="sending"
                         />
                         <p class="md-error" v-if="!$v.form.email.required">
                           The email is required
@@ -38,49 +61,26 @@
                         </p>
                       </md-field>
                       <md-field
-                        :class="getValidationClass('firstName')"
-                        class="md-form-group md-green"
-                      >
-                        <md-icon>person_outline</md-icon>
-                        <label for="first-name">First Name</label>
-                        <md-input
-                          name="first-name"
-                          id="first-name"
-                          autocomplete="given-name"
-                          v-model="form.firstName"
-                          :disabled="sending"
-                        />
-                        <p class="md-error" v-if="!$v.form.firstName.required">
-                          The first name is required
-                        </p>
-                        <p
-                          class="md-error"
-                          v-else-if="!$v.form.firstName.minlength"
-                        >
-                          Invalid first name
-                        </p>
-                      </md-field>
-                      <md-field
-                        :class="getValidationClass('lastName')"
+                        :class="getValidationClass('username')"
                         class="md-form-group md-green"
                       >
                         <md-icon>person</md-icon>
-                        <label for="last-name">Last Name</label>
+                        <label for="username">Username</label>
                         <md-input
-                          name="last-name"
-                          id="last-name"
-                          autocomplete="family-name"
-                          v-model="form.lastName"
+                          name="username"
+                          id="username"
+                          autocomplete="username"
+                          v-model="form.username"
                           :disabled="sending"
                         />
-                        <p class="md-error" v-if="!$v.form.lastName.required">
-                          The last name is required
+                        <p class="md-error" v-if="!$v.form.username.required">
+                          The username is required
                         </p>
                         <p
                           class="md-error"
-                          v-else-if="!$v.form.lastName.minlength"
+                          v-else-if="!$v.form.username.minlength"
                         >
-                          Invalid last name
+                          Invalid username
                         </p>
                       </md-field>
                       <md-field
@@ -157,53 +157,13 @@
                             &nbsp;&nbsp; &nbsp;&nbsp; Mumbai</md-option
                           >
                         </md-select>
-                        <p class="md-error">The gender is required</p>
                       </md-field>
-                      <md-field
-                        :class="getValidationClass('gender')"
-                        class="md-form-group md-green"
-                      >
-                        <md-icon>face</md-icon>
-                        <label>Gender</label>
-                        <md-select
-                          name="gender"
-                          id="gender"
-                          v-model="form.gender"
-                          md-dense
-                          :disabled="sending"
-                        >
-                          <md-option value="M"
-                            >&nbsp;&nbsp; &nbsp;&nbsp; M</md-option
-                          >
-                          <md-option value="F"
-                            >&nbsp;&nbsp; &nbsp;&nbsp; F</md-option
-                          >
-                        </md-select>
-                        <p class="md-error">The gender is required</p>
-                      </md-field>
-                      <md-field
-                        :class="getValidationClass('age')"
-                        class="md-form-group md-green"
-                      >
-                        <md-icon>brightness_5</md-icon>
-                        <label for="age">Age</label>
-                        <md-input
-                          id="age"
-                          name="age"
-                          autocomplete="age"
-                          v-model="form.age"
-                          :disabled="sending"
-                        />
-                        <p class="md-error" v-if="!$v.form.age.required">
-                          The age is required
-                        </p>
-                        <p class="md-error" v-else-if="!$v.form.age.maxlength">
-                          Invalid age
-                        </p>
-                      </md-field>
-                      <h6>Select your preference</h6>
-                      <div class="flex-column">
-                        <md-checkbox v-model="form.preferences" value=20>Party</md-checkbox>
+                      <md-datepicker v-model="form.birthday">
+                        <label>Birthday</label>
+                      </md-datepicker>
+                      <h6 class="description">Select your preference</h6>
+                      <div class="flex-column text-left">
+                        <md-checkbox v-model="form.preferences" value=1>Party</md-checkbox>
                         <md-checkbox v-model="form.preferences" value=2>Reading</md-checkbox>
                         <md-checkbox v-model="form.preferences" value=3>Skiing</md-checkbox>
                         <md-checkbox v-model="form.preferences" value=4>Badminton</md-checkbox>
@@ -276,12 +236,11 @@ export default {
   },
   data: () => ({
     form: {
-      firstName: null,
-      lastName: null,
-      gender: null,
-      age: null,
+      name: null,
+      username: null,
+      birthday: null,
       email: null,
-      perferences: []
+      preferences: []
     },
     userSaved: false,
     sending: false,
@@ -289,20 +248,16 @@ export default {
   }),
   validations: {
     form: {
-      firstName: {
+      name: {
         required,
         minLength: minLength(3)
       },
-      lastName: {
+      username: {
         required,
         minLength: minLength(3)
       },
-      age: {
+      birthday: {
         required,
-        maxLength: maxLength(3)
-      },
-      gender: {
-        required
       },
       email: {
         required,
@@ -322,10 +277,9 @@ export default {
     },
     clearForm() {
       this.$v.$reset();
-      this.form.firstName = null;
-      this.form.lastName = null;
-      this.form.age = null;
-      this.form.gender = null;
+      this.form.name = null;
+      this.form.username = null;
+      this.form.birthday = null;
       this.form.email = null;
     },
     saveUser() {
@@ -333,21 +287,22 @@ export default {
 
       // Instead of this timeout, here you can call your API
       window.setTimeout(() => {
-        this.lastUser = `${this.form.firstName} ${this.form.lastName}`;
+        this.lastUser = `${this.form.name} ${this.form.username}`;
         this.userSaved = true;
         this.sending = false;
         this.clearForm();
       }, 1500);
       console.log(JSON.stringify(this.form));
       requestAPI({
-        url: "http://localhost:8080/api/user/",
+        url: "http://localhost:8080/api/user",
         method: "POST",
         headers: {
           "Content-Type": "application/json"
         },
-        body: this.event
+        body: this.form
       })
         .then(res => {
+          alert(JSON.stringify(res));
           this.$router.push("/login");
           console.log(res);
         })
