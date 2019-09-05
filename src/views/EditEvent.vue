@@ -221,16 +221,16 @@ export default {
             }
         },
         created: function() {
-            localStorage.setItem('Authorization',"{\n" +
-                "\"id\": 25,\n" +
-                "\"name\": \"mark\",\n" +
-                "\"birthday\": \"2019-08-26\",\n" +
-                "\"location\": null,\n" +
-                "\"username\": null,\n" +
-                "\"password\": null,\n" +
-                "\"email\": null,\n" +
-                "\"photoURL\": null\n" +
-                "}");
+            // localStorage.setItem('Authorization',"{\n" +
+            //     "\"id\": 25,\n" +
+            //     "\"name\": \"mark\",\n" +
+            //     "\"birthday\": \"2019-08-26\",\n" +
+            //     "\"location\": null,\n" +
+            //     "\"username\": null,\n" +
+            //     "\"password\": null,\n" +
+            //     "\"email\": null,\n" +
+            //     "\"photoURL\": null\n" +
+            //     "}");
             this.userInfo=JSON.parse(localStorage.getItem('Authorization'));
 
 
