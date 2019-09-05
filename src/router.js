@@ -111,18 +111,18 @@ const router = new Router({
   }
 });
 
-// router.beforeEach((to, from, next) => {
-//   if (to.path === "/login" || to.path === "/signup") {
-//     next();
-//   } else {
-//     let token = localStorage.getItem("Authorization");
-//
-//     if (token === null || token === "") {
-//       next("/login");
-//     } else {
-//       next();
-//     }
-//   }
-// });
+router.beforeEach((to, from, next) => {
+  if (to.path === "/" || to.path === "/login" || to.path === "/signup") {
+    next();
+  } else {
+    let token = localStorage.getItem("Authorization");
+
+    if (token === null || token === "") {
+      next("/");
+    } else {
+      next();
+    }
+  }
+});
 
 export default router;

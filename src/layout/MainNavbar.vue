@@ -97,7 +97,7 @@
                         slot="title"
                         data-toggle="dropdown"
                       >
-                        <img :src="img" alt="Circle Image" />
+                        <img :src="'http://localhost:8080/api/user/image/' + userInfo.photoURL" alt="Circle Image" />
                       </div>
                       <ul class="dropdown-menu dropdown-menu-right">
                         <li>
@@ -163,6 +163,7 @@ export default {
       default: require("@/assets/img/faces/christian.jpg")
     }
   },
+  inject: ['reload'],
   created() {
     this.userInfo = JSON.parse(localStorage.getItem("Authorization"));
     this.loginStatus = localStorage.getItem("Authorization") != null;
@@ -176,7 +177,8 @@ export default {
       loginStatus: false,
       notificationNum: 0,
       events: [],
-      read: false
+      read: false,
+      userInfo:{}
     };
   },
   computed: {
@@ -264,10 +266,11 @@ export default {
       });
     },
     signout() {
-      console.log(this.loginStatus)
+      this.loginStatus = false;
       localStorage.removeItem("Authorization");
       window.location.href = "#/";
-      console.log(localStorage.getItem("Authorization")===null)
+      // console.log(localStorage.getItem("Authorization")===null)
+      this.reload();
     },
     isLogin(){
       this.loginStatus = localStorage.getItem("Authorization")===null;
