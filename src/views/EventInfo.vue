@@ -242,19 +242,19 @@ export default {
   },
   created: function() {
     this.eventid = this.$route.params.eventid;
-    // localStorage.setItem(
-    //   "Authorization",
-    //   "{\n" +
-    //     '"id": 25,\n' +
-    //     '"name": "mark",\n' +
-    //     '"birthday": "2019-08-26T09:26:57.000+0000",\n' +
-    //     '"location": null,\n' +
-    //     '"username": null,\n' +
-    //     '"password": null,\n' +
-    //     '"email": null,\n' +
-    //     '"photoURL": null\n' +
-    //     "}"
-    // );
+    localStorage.setItem(
+      "Authorization",
+      "{\n" +
+        '"id": 25,\n' +
+        '"name": "mark",\n' +
+        '"birthday": "2019-08-26T09:26:57.000+0000",\n' +
+        '"location": null,\n' +
+        '"username": null,\n' +
+        '"password": null,\n' +
+        '"email": null,\n' +
+        '"photoURL": null\n' +
+        "}"
+    );
     this.userInfo = JSON.parse(localStorage.getItem("Authorization"));
 
     //request to get all the detailed information of an event
@@ -331,17 +331,18 @@ export default {
     uploadImgError() {
       console.log("uploadImgError");
       //刷新当前页面，应该只在成功的时候调用，此处只是为了测试，应该注释
-      let NewPage = "_empty" + "?time=" + new Date().getTime() / 500;
-      this.$router.push(NewPage);
-      this.$router.go(-1);
+      // let NewPage = "_empty" + "?time=" + new Date().getTime() / 500;
+      // this.$router.push(NewPage);
+      // this.$router.go(-1);
     },
-    uploadImgSuccess() {
+    uploadImgSuccess(res) {
       console.log("uploadImgSuccess");
-      this.$notify.success();
+      console.log(JSON.stringify(res));
+      // this.$notify.success();
       //在此处刷新当前界面
-      let NewPage = "_empty" + "?time=" + new Date().getTime() / 500;
-      this.$router.push(NewPage);
-      this.$router.go(-1);
+      // let NewPage = "_empty" + "?time=" + new Date().getTime() / 500;
+      // this.$router.push(NewPage);
+      // this.$router.go(-1);
     },
     beforImgUpload() {
       console.log("beforImgUpload");

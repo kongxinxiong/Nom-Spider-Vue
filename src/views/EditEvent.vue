@@ -63,7 +63,7 @@
                         </div>
 
                         <div class="md-layout-item md-white md-size-50 md-small-size-100 md-xsmall-size-100 md-medium-size-50 mx-auto">
-                            <md-datepicker v-model="event.startdate">
+                            <md-datepicker v-model="event.startDate">
                                 <label>Select date</label>
                             </md-datepicker>
                         </div>
@@ -103,8 +103,7 @@
                                     :on-success="uploadImgSuccess"
                                     :before-upload="beforeImgUpload"
                                     enctype="multipart/form-data"
-                                    :limit="1"
-                                    :headers="headers"
+                                    :file-list="carousel"
                             >
                                 <md-button class="md-success md-sm">Upload</md-button>
                                 <!--                <div slot="tip" class="el-upload__tip">You can only upload required picture format</div>-->
@@ -174,7 +173,7 @@ export default {
                 //console.log(this.eventpic)
             },
             createEvent(){
-                this.event.user=this.userInfo.id;
+                this.event.eventCreator=this.userInfo.id;
                 alert(JSON.stringify(this.event));
                 console.log(JSON.stringify(this.event));
                 requestAPI({url: "http://localhost:8080/api/event/",
@@ -206,11 +205,11 @@ export default {
                 // this.$router.push(NewPage);
                 // this.$router.go(-1);
             },
-            uploadImgSuccess(res,file) {
+            uploadImgSuccess(res) {
                 console.log("uploadImgSuccess");
-                this.$notify.success();
+                // this.$notify.success();
                 console.log(JSON.stringify(res));
-                this.event.photoURL=res.data.filename
+                this.event.photoURL=res.data
                 //在此处刷新当前界面
                 // let NewPage = "_empty" + "?time=" + new Date().getTime() / 500;
                 // this.$router.push(NewPage);
@@ -239,13 +238,13 @@ export default {
                 eventpic:[],
                 event:{
                     id:"",
-                    user:0,
+                    eventCreator:0,
                     title:"",
                     maxnumber:"",
                     location:"",
                     description:"",
-                    startdate:null,
-                    perferences:[],
+                    startDate:null,
+                    preferences:[],
                     photoURL:"test.png"
 
                 },
