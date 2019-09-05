@@ -132,7 +132,7 @@
         },
         mounted() {
             requestAPI({
-                url: "http://localhost:8080/api/user/"+36,
+                url: "http://localhost:8080/api/user/"+this.userInfo.userID,
                 method: "GET",
                 headers:{
                     'Content-Type':'application/json'
