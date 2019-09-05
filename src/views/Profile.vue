@@ -159,7 +159,7 @@
                     console.log(res);
                 })
                     .catch(err => {
-                        alert(" error "+JSON.stringify(err));
+                        // alert(" error "+JSON.stringify(err));
                         console.log(err);
                     });
             }
