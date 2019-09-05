@@ -19,7 +19,7 @@
               </div>
             </div>
             <div class="md-layout-item md-size-40 md-small-size-100 mr-auto">
-              <div class="description text-center">
+              <div class="description text-left">
                 <h4 class="title"><span class="tim-note">Title</span></h4>
                 <p>
                   <span class="tim-note">{{ event.title }}</span>
@@ -31,7 +31,7 @@
 
                 <h4 class="title"><span class="tim-note">Number</span></h4>
                 <p>
-                  <span class="tim-note">{{ event.maxnumber }}</span>
+                  <span class="tim-note">{{attended}}/{{ event.maxnumber }}</span>
                 </p>
                 <h4 class="title">
                   <span class="tim-note">Time &nbsp; & &nbsp; Location</span>
@@ -46,8 +46,9 @@
             </div>
           </div>
           <div class="md-layout">
-            <div class="md-layout-item md-size-40 md-small-size-100 ml-auto">
-              <h4 class="title"><span class="tim-note">Enrollment</span></h4>
+              <div class="md-layout-item md-size-50"></div>
+              <div class="md-layout-item md-small-size-100 mr-auto">
+              <h4 class="title"><span class="tim-note">Joiners:{{attended}}</span></h4>
               <p>
                 <span class="tim-note">{{ enrollment }}</span>
               </p>
@@ -57,14 +58,15 @@
             ></div>
           </div>
           <div class="md-layout md-gutter">
+            <div class="md-layout-item md-size-50"></div>
             <div class="md-layout-item " style="justify-content: center">
               <md-button
                 class="md-success"
                 v-if="!isFinished"
                 @click="participant"
-                >Enroll</md-button
+                >Join</md-button
               >
-              <md-button v-else>Enrolled</md-button>
+              <md-button v-else>Joined</md-button>
             </div>
             <div class="md-layout-item" style="justify-content: center">
               <md-button
@@ -191,6 +193,7 @@ export default {
         for(let i=0;i<temp.length;i++){
           this.enrollment +=  temp[i] + "<br/>";
         }
+        this.attended = temp.length;
       })
       .catch(err => {
         console.log(JSON.stringify(err));
@@ -273,6 +276,7 @@ export default {
 
   data() {
     return {
+      attended:"",
       like: "",
       isDisabled: "",
       enrollment: "",
