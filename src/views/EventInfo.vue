@@ -52,7 +52,7 @@
             </div>
             <div class="md-layout-item md-size-50 md-small-size-100 mr-auto">
               <h4 class="title">
-                <span class="tim-note">Joiners:{{ attended }}</span>
+                <span class="tim-note">Joiners: &nbsp; {{ attended }}</span>
               </h4>
               <md-content class="md-scrollbar"
                           style="overflow-x: auto; white-space: nowrap;width:100%;z-index: 5;background-color: rgba(0,0,0,0)">
@@ -364,7 +364,7 @@ export default {
         },
         body: {
           userID: this.userInfo.id,
-          eventID: this.$route.params.eventid
+          eventID: this.$route.query.eventid
         }
       })
         .then(res => {
