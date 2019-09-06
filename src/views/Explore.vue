@@ -399,6 +399,7 @@
     },
     created: function() {
       this.userInfo = JSON.parse(localStorage.getItem("Authorization"));
+      console.log(this.userInfo);
     },
     mounted() {
       requestAPI({

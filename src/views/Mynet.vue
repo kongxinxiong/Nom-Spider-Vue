@@ -33,17 +33,17 @@
               class="md-layout-item md-layout md-gutter md-size-60 md-small-size-100 md-xsmall-size-100"
             >
               <div class="md-layout-item">
-                <md-button class="md-rose md-round"
+                <md-button class="md-warning md-round"
                   >hosted: {{ this.hostedNum }}</md-button
                 >
               </div>
               <div class="md-layout-item ">
-                <md-button class="md-rose md-round"
+                <md-button class="md-warning md-round"
                   >Joined: {{ this.joinedNum }}</md-button
                 >
               </div>
               <div class="md-layout-item">
-                <md-button class="md-rose md-round" style="align-items: center"
+                <md-button class="md-warning md-round" style="align-items: center"
                   >Score: {{ this.score }}</md-button
                 >
               </div>
@@ -56,7 +56,7 @@
             </div>
           </div>
           <md-content
-            class="md-scrollbar md-card main-raised"
+            class="md-scrollbar"
             style="overflow-x: auto; white-space: nowrap;width:100%;z-index: 5;background-color: rgba(0,0,0,0)"
           >
             <event-card v-for="item in upcoming">
@@ -80,7 +80,7 @@
             </div>
           </div>
           <md-content
-            class="md-scrollbar md-card main-raised"
+            class="md-scrollbar"
             style="overflow-x: auto; white-space: nowrap;width:100%;z-index: 5;background-color: rgba(0,0,0,0)"
           >
             <event-card v-for="item in favorite">
@@ -104,7 +104,7 @@
             </div>
           </div>
           <md-content
-            class="md-scrollbar md-card main-raised"
+            class="md-scrollbar"
             style="overflow-x: auto; white-space: nowrap;width:100%;z-index: 5;background-color: rgba(0,0,0,0)"
           >
             <event-card v-for="item in hosted">
@@ -128,7 +128,7 @@
             </div>
           </div>
           <md-content
-            class="md-scrollbar md-card main-raised"
+            class="md-scrollbar"
             style="overflow-x: auto; white-space: nowrap;width:100%;z-index: 5;background-color: rgba(0,0,0,0)"
           >
             <event-card v-for="item in attended">

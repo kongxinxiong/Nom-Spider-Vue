@@ -71,6 +71,7 @@ export default {
       };
     }
   },
+  inject: ['reload'],
   methods: {
     ...mapMutations(["changeLogin"]),
     signin() {
@@ -94,6 +95,7 @@ export default {
               JSON.stringify(this.userToken)
             );
             this.$router.push("/explore");
+            this.reload();
           }
           console.log(res);
         })

@@ -18,7 +18,7 @@
                                 </h2>
                             </div>
                             <div class="space-50"></div>
-                            <p  class="description">Please input follow information to create your own Event!</p>
+                            <p>Please input follow information to create your own Event!</p>
                         </div>
 
                         <div  class="md-layout-item md-white md-size-100 md-small-size-100 md-xsmall-size-100 md-medium-size-100 mx-auto">
@@ -59,7 +59,7 @@
                             <md-checkbox v-model="event.preferences" value=8>Basket Ball</md-checkbox>
                             <md-checkbox v-model="event.preferences" value=9>Family Event</md-checkbox>
                             <md-checkbox v-model="event.preferences" value=10>Pet</md-checkbox>
-                            <p  class="description">Please choose subject of your event!</p>
+                            <p>Please choose subject of your event!</p>
                         </div>
 
                         <div class="md-layout-item md-white md-size-50 md-small-size-100 md-xsmall-size-100 md-medium-size-50 mx-auto">
@@ -94,7 +94,7 @@
                         <div class="md-layout-item md-white md-size-100 md-small-size-100 md-xsmall-size-100 md-medium-size-50 mx-auto">
                             <div class="space-50"></div>
                             <el-upload
-                                    :show-file-list="false"
+                                    :show-file-list="true"
                                     accept=".png,jpg,jpeg"
                                     with-credentials
                                     name="file"
@@ -103,12 +103,12 @@
                                     :on-success="uploadImgSuccess"
                                     :before-upload="beforeImgUpload"
                                     enctype="multipart/form-data"
-                                    :file-list="carousel"
+                                    :file-list="file"
                             >
                                 <md-button class="md-success md-sm">Upload</md-button>
                                 <!--                <div slot="tip" class="el-upload__tip">You can only upload required picture format</div>-->
                             </el-upload>
-                            <p class="description">please upload images for your event</p>
+                            <p>please upload images for your event</p>
                         </div>
                         <div  class="md-layout-item md-white md-size-20 md-small-size-20 md-xsmall-size-30 md-medium-size-20 mx-auto">
                             <div class="space-50"></div>
