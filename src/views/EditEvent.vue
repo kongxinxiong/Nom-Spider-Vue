@@ -49,7 +49,7 @@
 <!--                                                </md-field>-->
 <!--                                                </div>-->
                         <div  class="md-layout-item md-white md-size-100 md-small-size-100 md-xsmall-size-100 md-medium-size-100 mx-auto">
-                            <md-checkbox v-model="event.preferences" value=20>Party</md-checkbox>
+                            <md-checkbox v-model="event.preferences" value=1>Party</md-checkbox>
                             <md-checkbox v-model="event.preferences" value=2>Reading</md-checkbox>
                             <md-checkbox v-model="event.preferences" value=3>Skiing</md-checkbox>
                             <md-checkbox v-model="event.preferences" value=4>Badminton</md-checkbox>

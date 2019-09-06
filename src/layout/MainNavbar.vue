@@ -8,7 +8,8 @@
   >
     <div class="md-toolbar-row md-collapse-lateral">
       <div class="md-toolbar-section-start">
-        <router-link to="/"><h3 class="md-title">Nom Hub</h3></router-link>
+        <router-link to="/">
+          <h1 class="md-title">Nom Hub</h1></router-link>
       </div>
       <div class="md-toolbar-section-end">
         <md-button
@@ -178,7 +179,11 @@ export default {
       notificationNum: 0,
       events: [],
       read: false,
-      userInfo:{}
+      userInfo:{},
+      nomspider:{
+        type: String,
+        default: require("@/assets/img/NomSpider.png")
+      }
     };
   },
   computed: {
@@ -261,8 +266,8 @@ export default {
     },
     go4Details(id) {
       this.$router.push({
-        name: "eventInfo",
-        params: {eventid: id}
+        path: "/eventInfo",
+        query: {eventid: id}
       });
     },
     signout() {
