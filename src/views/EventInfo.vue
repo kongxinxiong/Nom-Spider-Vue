@@ -38,7 +38,7 @@
                 </h4>
                 <p>
                   <span class="tim-note"
-                    >{{ event.startdate }} &nbsp; @ &nbsp;
+                    >{{ event.startDate }} &nbsp; @ &nbsp;
                     {{ event.location }}</span
                   >
                 </p>
@@ -213,7 +213,7 @@ export default {
     })
       .then(res => {
         this.isDisabled = JSON.parse(JSON.stringify(res)).data.status;
-        alert("join: "+JSON.stringify(JSON.parse(JSON.stringify(res)).data));
+        console.log("join: "+JSON.stringify(JSON.parse(JSON.stringify(res)).data));
       })
       .catch(err => {
         console.log(JSON.stringify(err));
@@ -233,7 +233,7 @@ export default {
     })
       .then(res => {
         this.like = JSON.parse(JSON.stringify(res)).data.status;
-        alert("like: "+JSON.stringify(JSON.parse(JSON.stringify(res)).data));
+        console.log("like: "+JSON.stringify(JSON.parse(JSON.stringify(res)).data));
 
       })
       .catch(err => {
