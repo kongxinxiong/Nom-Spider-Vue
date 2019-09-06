@@ -174,7 +174,7 @@ export default {
             },
             createEvent(){
                 this.event.eventCreator=this.userInfo.id;
-                alert(JSON.stringify(this.event));
+                // alert(JSON.stringify(this.event));
                 console.log(JSON.stringify(this.event));
                 requestAPI({url: "http://localhost:8080/api/event/",
                     method: "POST",
@@ -182,12 +182,12 @@ export default {
                     'Content-Type':'application/json',
                 },
                 body: this.event}).then(res => {
-                    alert(JSON.stringify(this.event) + " success "+JSON.stringify(res));
+                    // alert(JSON.stringify(this.event) + " success "+JSON.stringify(res));
                     this.$router.push('/explore');
                     console.log(res);
                 })
                     .catch(err => {
-                        alert(" error "+JSON.stringify(err));
+                        // alert(" error "+JSON.stringify(err));
                         console.log(err);
                     });
 

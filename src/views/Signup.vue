@@ -302,12 +302,12 @@ export default {
         body: this.form
       })
         .then(res => {
-          alert(JSON.stringify(res));
+          // alert(JSON.stringify(res));
           this.$router.push("/login");
           console.log(res);
         })
         .catch(err => {
-          alert(" error " + JSON.stringify(err));
+          // alert(" error " + JSON.stringify(err));
           console.log(err);
         });
     },

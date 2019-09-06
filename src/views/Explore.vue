@@ -194,15 +194,20 @@
           }
         })
                 .then(res => {
-                  alert(
-                          JSON.stringify(this.userInfo) + " success " + JSON.stringify(res)
-                  );
+                  // alert(
+                  //         JSON.stringify(this.userInfo) + " success " + JSON.stringify(res)
+                  // );
+                  // console.log(JSON.stringify(this.userInfo) + " success "+JSON.stringify(res));
+                  this.$router.push({
+                    path: "/eventInfo",
+                    query: { eventid: eventid}
+                  });
                   console.log(res);
                 })
                 .catch(err => {
-                  alert(
-                          JSON.stringify(this.userInfo) + " error " + JSON.stringify(err)
-                  );
+                  // alert(
+                  //         JSON.stringify(this.userInfo) + " error " + JSON.stringify(err)
+                  // );
                   console.log(err);
                 });
       },
