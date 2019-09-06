@@ -100,19 +100,22 @@
                       }}</md-table-cell>
                     <md-table-cell md-label="Action">
                       <md-button
-                              class="md-success md-sm"
+                              class="md-success md-sm" v-if="!item.isJoint"
                               @click="participant(item.id)"
                       ><md-icon>plus_one</md-icon>JOIN NOW</md-button
                       >
-                      <md-dialog-alert
-                              :md-active.sync="second"
-                              md-title="Favorite created!"
-                              md-content="Your favorite <strong> Interest </strong> has been created."
-                      />
                       <md-button
-                              class="md-warning md-sm"
+                              class="md-success md-sm" v-else
+                      ><md-icon>plus_one</md-icon>JOINED</md-button
+                      >
+                      <md-button
+                              class="md-warning md-sm" v-if="!item.isFavorate"
                               @click="clickLike(item.id)"
                       ><md-icon>favorite</md-icon>Add To favorite</md-button
+                      >
+                      <md-button
+                              class="md-warning md-sm md-rose" v-else
+                      ><md-icon>favorite</md-icon>Favorited</md-button
                       >
                     </md-table-cell>
                   </md-table-row>
@@ -160,7 +163,6 @@
     data: () => ({
       search: null,
       searched: [],
-      second: false,
       ranking: [
         {
           rank: 1,
@@ -389,7 +391,6 @@
         })
                 .then(res => {
                   console.log(JSON.stringify(this.userInfo) + " success "+JSON.stringify(res));
-                  this.second = true;
                 })
                 .catch(err => {
                   alert(JSON.stringify(this.userInfo) + " "+ this.eventId +" error "+JSON.stringify(err));
