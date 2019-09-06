@@ -95,9 +95,9 @@
                         />
                       </div>
                     </md-table-cell>
-                    <md-table-cell md-label="Detail" md-sort-by="detail">{{
-                      item.title
-                      }}</md-table-cell>
+                    <md-table-cell md-label="Detail" md-sort-by="detail">
+                      <p><strong>{{item.title}}</strong><br/>Date: {{item.startDate}}<br/>Location: {{item.location}}</p>
+                      </md-table-cell>
                     <md-table-cell md-label="Action">
 
                       <md-button

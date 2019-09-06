@@ -232,6 +232,7 @@ export default {
                     break;
                   case 3:
                     this.hosted = temp;
+                    this.hostedNum = this.hosted.length;
                     break;
                   case 4:
                     this.attended = temp;
@@ -253,7 +254,7 @@ export default {
               .then(res => {
                 this.score = JSON.parse(JSON.stringify(res)).data.score;
                 this.joinedNum = this.upcoming.length + this.attended.length;
-                this.hostedNum = this.hosted.length;
+                console.log(JSON.stringify(res))
               })
               .catch(err => {
                 console.log(err);
