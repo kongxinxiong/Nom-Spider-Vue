@@ -254,7 +254,6 @@ export default {
       .then(res => {
         this.event = JSON.parse(JSON.stringify(res)).data;
         console.log(JSON.stringify(this.event));
-        console.log(this.userInfo);
       })
       .catch(err => {
         console.log(JSON.stringify(err));
