@@ -241,20 +241,20 @@ export default {
       });
   },
   created: function() {
-    this.eventid = this.$route.params.eventid;
-    localStorage.setItem(
-      "Authorization",
-      "{\n" +
-        '"id": 25,\n' +
-        '"name": "mark",\n' +
-        '"birthday": "2019-08-26T09:26:57.000+0000",\n' +
-        '"location": null,\n' +
-        '"username": null,\n' +
-        '"password": null,\n' +
-        '"email": null,\n' +
-        '"photoURL": null\n' +
-        "}"
-    );
+    this.eventid = this.$route.query.eventid;
+    // localStorage.setItem(
+    //   "Authorization",
+    //   "{\n" +
+    //     '"id": 25,\n' +
+    //     '"name": "mark",
+    //     '"birthday": "2019-08-26T09:26:57.000+0000",\n' +
+    //     '"location": null,\n' +
+    //     '"username": null,\n' +
+    //     '"password": null,\n' +
+    //     '"email": null,\n' +
+    //     '"photoURL": null\n' +
+    //     "}"
+    // );
     this.userInfo = JSON.parse(localStorage.getItem("Authorization"));
 
     //request to get all the detailed information of an event

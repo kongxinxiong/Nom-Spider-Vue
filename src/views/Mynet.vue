@@ -206,8 +206,8 @@ export default {
   methods: {
     go4Details(id) {
       this.$router.push({
-        name: "eventInfo",
-        params: { eventid: id }
+        path: "/eventInfo",
+        query: { eventid: id }
       });
     },
     getUserEvents(userId, eventType, returnType) {
