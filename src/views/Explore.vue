@@ -416,7 +416,7 @@
                 console.log(err);
               });
       requestAPI({
-        url: "http://localhost:8080/api/comingEvents",
+        url: "http://localhost:8080/api/user/comingEventsWithStatusAndPreferences/"+this.userInfo.id,
         method: "GET",
         headers: {
           "Content-Type": "application/json"
