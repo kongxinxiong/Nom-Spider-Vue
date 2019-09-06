@@ -240,7 +240,7 @@ export default {
       });
   },
   created: function() {
-    this.eventid = this.$route.params.eventid;
+    this.eventid = this.$route.query.eventid;
     this.userInfo = JSON.parse(localStorage.getItem("Authorization"));
 
     //request to get all the detailed information of an event

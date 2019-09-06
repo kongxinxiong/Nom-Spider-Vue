@@ -99,23 +99,24 @@
                       item.title
                       }}</md-table-cell>
                     <md-table-cell md-label="Action">
+
+                      <md-button
+                              class="md-sm  md-just-icon" v-if="!item.isFavorate"
+                              @click="clickLike(item.id)"
+                      ><md-icon>favorite</md-icon></md-button
+                      >
+                      <md-button
+                              class="md-sm md-rose md-just-icon" v-else
+                      ><md-icon>favorite</md-icon></md-button
+                      >
                       <md-button
                               class="md-success md-sm" v-if="!item.isJoint"
                               @click="participant(item.id)"
-                      ><md-icon>plus_one</md-icon>JOIN NOW</md-button
+                      >JOIN NOW</md-button
                       >
                       <md-button
-                              class="md-success md-sm" v-else
-                      ><md-icon>plus_one</md-icon>JOINED</md-button
-                      >
-                      <md-button
-                              class="md-warning md-sm" v-if="!item.isFavorate"
-                              @click="clickLike(item.id)"
-                      ><md-icon>favorite</md-icon>Add To favorite</md-button
-                      >
-                      <md-button
-                              class="md-warning md-sm md-rose" v-else
-                      ><md-icon>favorite</md-icon>Favorited</md-button
+                              class="md-sm" v-else
+                      >JOINED</md-button
                       >
                     </md-table-cell>
                   </md-table-row>
@@ -163,180 +164,8 @@
     data: () => ({
       search: null,
       searched: [],
-      ranking: [
-        {
-          rank: 1,
-          name: "Shawna Dubbin",
-          score: 314
-        },
-        {
-          rank: 2,
-          name: "Odette Demageard",
-          score: 301
-        },
-        {
-          rank: 3,
-          name: "Vera Taleworth",
-          score: 299
-        },
-        {
-          rank: 4,
-          name: "Lonnie Izkovitz",
-          score: 288
-        },
-        {
-          rank: 5,
-          name: "Thatcher Stave",
-          score: 277
-        },
-        {
-          rank: 6,
-          name: "Karim Chipping",
-          score: 266
-        },
-        {
-          rank: 7,
-          name: "Helge Holyard",
-          score: 255
-        },
-        {
-          rank: 8,
-          name: "Rod Titterton",
-          score: 244
-        },
-        {
-          rank: 9,
-          name: "Gawen Applewhite",
-          score: 189
-        },
-        {
-          rank: 10,
-          name: "Nero Mulgrew",
-          score: 132
-        }
-      ],
-      events: [
-        {
-          img: require("@/assets/img/profile_city.jpg"),
-          title: "Hiking Saturaday\n",
-          detail:
-                  "Location: Hong Kong\n" +
-                  "Date: 20190909\n" +
-                  "Time: 3:00pm\n" +
-                  "Number of Participants: 30\n" +
-                  "Fees: Free"
-        },
-        {
-          img: require("@/assets/img/profile_city.jpg"),
-          title: "Karaoke Night",
-          detail:
-                  "Location: Hong Kong\n" +
-                  "Date: 20190909\n" +
-                  "Time: 3:00pm\n" +
-                  "Number of Participants: 30\n" +
-                  "Fees: Free"
-        },
-        {
-          img: require("@/assets/img/profile_city.jpg"),
-          title: "Karaoke Night",
-          detail:
-                  "Location: Hong Kong\n" +
-                  "Date: 20190909\n" +
-                  "Time: 3:00pm\n" +
-                  "Number of Participants: 30\n" +
-                  "Fees: Free"
-        },
-        {
-          img: require("@/assets/img/profile_city.jpg"),
-          title: "Karaoke Night",
-          detail:
-                  "Location: Hong Kong\n" +
-                  "Date: 20190909\n" +
-                  "Time: 3:00pm\n" +
-                  "Number of Participants: 30\n" +
-                  "Fees: Free"
-        },
-        {
-          img: require("@/assets/img/profile_city.jpg"),
-          title: "Karaoke Night",
-          detail:
-                  "Location: Hong Kong\n" +
-                  "Date: 20190909\n" +
-                  "Time: 3:00pm\n" +
-                  "Number of Participants: 30\n" +
-                  "Fees: Free"
-        },
-        {
-          img: require("@/assets/img/profile_city.jpg"),
-          title: "Karaoke Night",
-          detail:
-                  "Location: Hong Kong\n" +
-                  "Date: 20190909\n" +
-                  "Time: 3:00pm\n" +
-                  "Number of Participants: 30\n" +
-                  "Fees: Free"
-        },
-        {
-          img: require("@/assets/img/profile_city.jpg"),
-          title: "Karaoke Night",
-          detail:
-                  "Location: Hong Kong\n" +
-                  "Date: 20190909\n" +
-                  "Time: 3:00pm\n" +
-                  "Number of Participants: 30\n" +
-                  "Fees: Free"
-        },
-        {
-          img: require("@/assets/img/profile_city.jpg"),
-          title: "Karaoke Night",
-          detail:
-                  "Location: Hong Kong\n" +
-                  "Date: 20190909\n" +
-                  "Time: 3:00pm\n" +
-                  "Number of Participants: 30\n" +
-                  "Fees: Free"
-        },
-        {
-          img: require("@/assets/img/profile_city.jpg"),
-          title: "Karaoke Night",
-          detail:
-                  "Location: Hong Kong\n" +
-                  "Date: 20190909\n" +
-                  "Time: 3:00pm\n" +
-                  "Number of Participants: 30\n" +
-                  "Fees: Free"
-        },
-        {
-          img: require("@/assets/img/profile_city.jpg"),
-          title: "Karaoke Night",
-          detail:
-                  "Location: Hong Kong\n" +
-                  "Date: 20190909\n" +
-                  "Time: 3:00pm\n" +
-                  "Number of Participants: 30\n" +
-                  "Fees: Free"
-        },
-        {
-          img: require("@/assets/img/profile_city.jpg"),
-          title: "Karaoke Night",
-          detail:
-                  "Location: Hong Kong\n" +
-                  "Date: 20190909\n" +
-                  "Time: 3:00pm\n" +
-                  "Number of Participants: 30\n" +
-                  "Fees: Free"
-        },
-        {
-          img: require("@/assets/img/profile_city.jpg"),
-          title: "Karaoke Night",
-          detail:
-                  "Location: Hong Kong\n" +
-                  "Date: 20190909\n" +
-                  "Time: 3:00pm\n" +
-                  "Number of Participants: 30\n" +
-                  "Fees: Free"
-        }
-      ]
+      ranking: [],
+      events: [],
     }),
     methods: {
       searchOnTable() {
@@ -391,9 +220,13 @@
         })
                 .then(res => {
                   console.log(JSON.stringify(this.userInfo) + " success "+JSON.stringify(res));
+                  this.$router.push({
+                    path: "/eventInfo",
+                    query: { eventid: eventid}
+                  });
                 })
                 .catch(err => {
-                  alert(JSON.stringify(this.userInfo) + " "+ this.eventId +" error "+JSON.stringify(err));
+                  // alert(JSON.stringify(this.userInfo) + " "+ this.eventId +" error "+JSON.stringify(err));
                   console.log(err);
                 });
       },
@@ -417,7 +250,7 @@
                 console.log(err);
               });
       requestAPI({
-        url: "http://localhost:8080/api/comingEvents",
+        url: "http://localhost:8080/api/user/comingEventsWithStatusAndPreferences/"+this.userInfo.id,
         method: "GET",
         headers: {
           "Content-Type": "application/json"
@@ -426,6 +259,7 @@
               .then(res => {
                 this.events = JSON.parse(JSON.stringify(res)).data;
                 this.searched = this.events;
+                console.log(this.events);
               })
               .catch(err => {
                 console.log(err);
